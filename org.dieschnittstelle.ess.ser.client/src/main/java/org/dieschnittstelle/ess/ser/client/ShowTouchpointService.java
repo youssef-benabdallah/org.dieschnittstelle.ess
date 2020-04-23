@@ -173,7 +173,7 @@ public class ShowTouchpointService {
 	}
 
 	/**
-	 * TODO SER3
+	 * TODO SER4
 	 * 
 	 * @param tp
 	 */
@@ -191,7 +191,7 @@ public class ShowTouchpointService {
 	}
 
 	/**
-	 * TODO SER4
+	 * TODO SER3
 	 * 
 	 * fuer das Schreiben des zu erzeugenden Objekts als Request Body siehe die
 	 * Hinweise auf:
