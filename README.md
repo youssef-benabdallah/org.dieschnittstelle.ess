@@ -1,4 +1,5 @@
 #200921
+
 For the ESS W20 course, all necessary settings will be provided by the project's configuration files and run configurations for IDEA.
 
 Note that for running the project on Wildfly 20 and higher, EJB run configurations need to specify the following parameters for the Jackson JSON Processor:
