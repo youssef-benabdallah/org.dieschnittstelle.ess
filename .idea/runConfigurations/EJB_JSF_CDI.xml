@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="EJB+JSF-CDI" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 18.0.1.Final" ALTERNATIVE_JRE_ENABLED="false">
+  <configuration default="false" name="EJB+JSF-CDI" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 20.0.1.Final" ALTERNATIVE_JRE_ENABLED="false">
     <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/org.dieschnittstelle.ess.jsf.cdi/" />
-    <option name="COMMON_VM_ARGUMENTS" value="-Dresteasy.preferJacksonOverJsonB=true" />
+    <option name="COMMON_VM_ARGUMENTS" value="-Dresteasy.preferJacksonOverJsonB=true -Dresteasy.jackson.deserialization.whitelist.allowIfBaseType.prefix=* -Dresteasy.jackson.deserialization.whitelist.allowIfSubType.prefix=*" />
     <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
       <artifact name="ejb-earapp:ear">

@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="JWS" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 18.0.1.Final" ALTERNATIVE_JRE_ENABLED="false">
+  <configuration default="false" name="JWS" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 20.0.1.Final" ALTERNATIVE_JRE_ENABLED="false">
+    <option name="COMMON_VM_ARGUMENTS" value="-Dresteasy.preferJacksonOverJsonB=true -Dresteasy.jackson.deserialization.whitelist.allowIfBaseType.prefix=* -Dresteasy.jackson.deserialization.whitelist.allowIfSubType.prefix=*" />
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
       <artifact name="jws-webapp:war">
