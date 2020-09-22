@@ -126,8 +126,7 @@ public class JAXRSClientInterpreter implements InvocationHandler {
             // declare a variable for the return value
             Object returnValue = null;
 
-            // TODO: convert the resonse body to a java object of an appropriate type considering the return type of the method and set the object as value of returnValue
-            // in order to check whether the return type of meth is parameterised generic type, you can use the following expression (meth.getGenericReturnType() instanceof ParameterizedType)
+            // TODO: convert the resonse body to a java object of an appropriate type considering the return type of the method as returned by getGenericReturnType() and set the object as value of returnValue
 
             // and return the return value
             logger.info("invoke(): returning value: " + returnValue);
