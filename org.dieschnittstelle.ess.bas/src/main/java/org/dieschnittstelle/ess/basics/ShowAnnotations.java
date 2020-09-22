@@ -34,7 +34,7 @@ public class ShowAnnotations {
 		// TODO BAS2: create a string representation of consumable by iterating
 		//  over the object's attributes / fields as provided by its class
 		//  and reading out the attribute values. The string representation
-		//  will then be built out of the field names and field values.
+		//  will then be built from the field names and field values.
 		//  Note that only read-access to fields via getters or direct access
 		//  is required here.
 
