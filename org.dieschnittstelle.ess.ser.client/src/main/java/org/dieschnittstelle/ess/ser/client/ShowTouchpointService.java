@@ -245,17 +245,4 @@ public class ShowTouchpointService {
 		this.stepwise = stepwise;
 	}
 
-	/**
-	 * utility...
-	 */
-	private void step() {
-		try {
-			System.out.println("/>");
-			System.in.read();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 }
