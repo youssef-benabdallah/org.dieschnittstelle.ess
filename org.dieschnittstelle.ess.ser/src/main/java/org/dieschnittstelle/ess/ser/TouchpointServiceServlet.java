@@ -48,7 +48,10 @@ public class TouchpointServiceServlet extends HttpServlet {
 		}
 
 	}
-	
+
+	/*
+	 * TODO: SER3 server-side implementation of createNewTouchpoint
+	 */
 	/*
 	@Override	
 	protected void doPost(HttpServletRequest request,
@@ -81,6 +84,9 @@ public class TouchpointServiceServlet extends HttpServlet {
 	}
 	*/
 
+	/*
+	 * TODO: SER4 server-side implementation of deleteTouchpoint
+	 */
 
-	
+
 }
