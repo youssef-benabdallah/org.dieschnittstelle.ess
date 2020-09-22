@@ -9,7 +9,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
-import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Address;
@@ -152,10 +151,6 @@ public class ShowTouchpointService {
 
 				logger.info("read touchpoints: " + touchpoints);
 
-				// this is necessary to be able to use the client for
-				// subsequent requests
-				EntityUtils.consume(response.getEntity());
-
 				return touchpoints;
 
 			} else {
@@ -183,10 +178,6 @@ public class ShowTouchpointService {
 		createClient();
 
 		logger.debug("client running: {}",client.isRunning());
-
-		// once you have received a response this is necessary to be able to
-		// use the client for subsequent requests:
-		// EntityUtils.consume(response.getEntity());
 
 	}
 
@@ -236,9 +227,6 @@ public class ShowTouchpointService {
 			// response entity (accessible via getEntity())
 
 			// read the touchpoint object from the input stream
-
-			// cleanup the request
-			// EntityUtils.consume(response.getEntity());
 
 			// return the object that you have read from the response
 			return null;

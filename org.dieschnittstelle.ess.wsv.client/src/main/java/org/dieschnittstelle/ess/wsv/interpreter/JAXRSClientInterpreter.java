@@ -23,7 +23,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.util.EntityUtils;
 
 import org.dieschnittstelle.ess.utils.Http;
 import org.dieschnittstelle.ess.wsv.interpreter.json.JSONObjectSerialiser;
@@ -129,11 +128,6 @@ public class JAXRSClientInterpreter implements InvocationHandler {
 
             // TODO: convert the resonse body to a java object of an appropriate type considering the return type of the method and set the object as value of returnValue
             // in order to check whether the return type of meth is parameterised generic type, you can use the following expression (meth.getGenericReturnType() instanceof ParameterizedType)
-
-            // don't forget to cleanup the entity using EntityUtils.consume()
-            if (bae != null) {
-                EntityUtils.consume(bae);
-            }
 
             // and return the return value
             logger.info("invoke(): returning value: " + returnValue);
