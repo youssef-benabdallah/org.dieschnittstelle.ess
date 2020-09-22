@@ -16,7 +16,6 @@ public class ShowAnnotations {
 		collection.load();
 
 		for (IStockItem consumable : collection.getStockItems()) {
-			;
 			showAttributes(((StockItemProxyImpl)consumable).getProxiedObject());
 		}
 
@@ -31,6 +30,16 @@ public class ShowAnnotations {
 	 */
 	private static void showAttributes(Object consumable) {
 		show("class is: " + consumable.getClass());
+
+		// TODO BAS2: create a string representation of consumable by iterating
+		//  over the object's attributes / fields as provided by its class
+		//  and reading out the attribute values. The string representation
+		//  will then be built out of the field names and field values
+
+		// TODO BAS3: if the new @DisplayAs annotation is present on a field,
+		//  the string representation will not use the field's name, but the name
+		//  specified in the the annotation. Regardless of @DisplayAs being present
+		//  or not, the field's value will be included in the string representation
 	}
 
 }
