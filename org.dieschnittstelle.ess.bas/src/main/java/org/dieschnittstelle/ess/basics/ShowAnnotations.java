@@ -34,12 +34,14 @@ public class ShowAnnotations {
 		// TODO BAS2: create a string representation of consumable by iterating
 		//  over the object's attributes / fields as provided by its class
 		//  and reading out the attribute values. The string representation
-		//  will then be built out of the field names and field values
+		//  will then be built out of the field names and field values.
+		//  Note that only read-access to fields via getters or direct access
+		//  is required here.
 
 		// TODO BAS3: if the new @DisplayAs annotation is present on a field,
 		//  the string representation will not use the field's name, but the name
 		//  specified in the the annotation. Regardless of @DisplayAs being present
-		//  or not, the field's value will be included in the string representation
+		//  or not, the field's value will be included in the string representation.
 	}
 
 }
