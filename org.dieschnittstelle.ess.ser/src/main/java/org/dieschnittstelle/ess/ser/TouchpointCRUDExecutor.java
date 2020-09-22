@@ -112,6 +112,8 @@ public class TouchpointCRUDExecutor {
 
 				this.createTouchpoint(tp);
 			} else {
+				logger.info("loading from existing file: " + this.touchpointsDatabaseFile.getAbsolutePath());
+
 				ObjectInputStream ois = new ObjectInputStream(
 						new FileInputStream(this.touchpointsDatabaseFile));
 

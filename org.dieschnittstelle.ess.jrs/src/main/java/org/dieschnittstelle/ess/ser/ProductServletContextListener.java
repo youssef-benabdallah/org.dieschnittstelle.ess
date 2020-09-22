@@ -42,7 +42,7 @@ public class ProductServletContextListener implements ServletContextListener {
 		logger.info("contextInitialised()");
 
 		// we create a new executor for a file to be stored in the context root
-		String rootPath = evt.getServletContext().getRealPath("/");
+		String rootPath = evt.getServletContext().getRealPath("../");
 		
 		GenericCRUDExecutor<AbstractProduct> exec = new GenericCRUDExecutor<AbstractProduct>(new File(
 				rootPath, "products.data"));
