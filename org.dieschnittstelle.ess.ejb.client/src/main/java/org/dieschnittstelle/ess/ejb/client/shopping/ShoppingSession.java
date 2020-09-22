@@ -103,6 +103,9 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 		checkAndRemoveProductsFromStock();
 
 		// then we add a new customer transaction for the current purchase
+		// TODO PAT1: once this functionality has been moved to the server side components, make sure
+		//  that the ShoppingCartItem instances will be cloned/copied by constructing new items before
+		//  using them for creating the CustomerTransaction object.
 		List<ShoppingCartItem> products = this.shoppingCart.getItems();
 		CustomerTransaction transaction = new CustomerTransaction(this.customer, this.touchpoint, products);
 		transaction.setCompleted(true);

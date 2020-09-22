@@ -47,7 +47,7 @@ public class TotalUsecase {
 
 	// TODO: PAT1: set to true for testing purchase service
 	// TODO: ADD4: set to true for testing success-case for transactions and ShoppingException
-	private boolean usePurchaseClient = false /*true*/;
+	private boolean useShoppingSessionClient = false /*true*/;
 
 	// declare the attributes that will be instantiated with the ejb clients - note that the attributes use the remote interface types
 	private ProductCRUDRemote productCRUD;
@@ -63,7 +63,7 @@ public class TotalUsecase {
 	
 	public void runAll() {
 
-		System.out.println("\n%%%%%%%%%%%% TotalUsecase: " + (this.provokeErrorOnPurchase ? "ShoppingException will be provoked (ADD4)" : "will run regularly") + ", using " + (EJBProxyFactory.getInstance().usesWebAPIAsDefault() ? "WebAPI clients" :"EJB clients") + " for accessing server-side components; " + (this.usePurchaseClient ? "remote purchase service will be used (PAT)" : "will use local ShoppingSession implementation") + " %%%%%%%%%%%\n\n");
+		System.out.println("\n%%%%%%%%%%%% TotalUsecase: " + (this.provokeErrorOnPurchase ? "ShoppingException will be provoked (ADD4)" : "will run regularly") + ", using " + (EJBProxyFactory.getInstance().usesWebAPIAsDefault() ? "WebAPI clients" :"EJB clients") + " for accessing server-side components; " + (this.useShoppingSessionClient ? "remote purchase service will be used (PAT)" : "will use local ShoppingSession implementation") + " %%%%%%%%%%%\n\n");
 
 		if (this.stepping) step();
 
@@ -172,7 +172,7 @@ public class TotalUsecase {
 					// it can access the required beans
 					ShoppingBusinessDelegate session;
 
-					if (!usePurchaseClient) {
+					if (!useShoppingSessionClient) {
 						session = new ShoppingSession();
 					}
 					else {
@@ -250,8 +250,8 @@ public class TotalUsecase {
 		this.provokeErrorOnPurchase = provoke;
 	}
 
-	public void setUsePurchaseClient(boolean use) {
-		this.usePurchaseClient = use;
+	public void setUseShoppingSessionClient(boolean use) {
+		this.useShoppingSessionClient = use;
 	}
 
 

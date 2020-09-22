@@ -8,6 +8,6 @@ import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 // TODO: PAT1: this is the interface to be provided as a rest service if rest service access is used
 public interface PurchaseShoppingCartService {
 
-	public void purchase(long shoppingCartId,long touchpointId,long customerId) throws ShoppingException;
+	void purchaseCartAtTouchpointForCustomer(long shoppingCartId, long touchpointId, long customerId) throws ShoppingException;
 	
 }

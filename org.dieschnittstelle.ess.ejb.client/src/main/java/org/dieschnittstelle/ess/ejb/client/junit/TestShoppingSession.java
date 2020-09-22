@@ -28,7 +28,7 @@ public class TestShoppingSession {
 		TotalUsecase uc = new TotalUsecase();
 		uc.setStepping(false);
 		uc.setProvokeErrorOnPurchase(false);
-		uc.setUsePurchaseClient(true);
+		uc.setUseShoppingSessionClient(true);
 		
 		uc.runAll();
 		
