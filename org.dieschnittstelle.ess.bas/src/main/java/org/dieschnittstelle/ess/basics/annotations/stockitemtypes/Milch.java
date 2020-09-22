@@ -3,7 +3,6 @@ package org.dieschnittstelle.ess.basics.annotations.stockitemtypes;
 import org.dieschnittstelle.ess.basics.annotations.Initialise;
 import org.dieschnittstelle.ess.basics.annotations.Brandname;
 import org.dieschnittstelle.ess.basics.annotations.StockItem;
-import org.dieschnittstelle.ess.basics.annotations.Purchase;
 import org.dieschnittstelle.ess.basics.annotations.Units;
 
 @StockItem
@@ -29,18 +28,6 @@ public class Milch {
 
 	public void setMarkenname(String markenname) {
 		this.markenname = markenname;
-	}
-
-	@Purchase
-	public void kaufen(int unitsToPurchase) {
-		if (unitsToPurchase > this.menge) {
-			throw new RuntimeException(
-					"You cannot purchase more than what is available. Got: "
-							+ unitsToPurchase
-							+ " units to purchase, but have available only: "
-							+ this.menge);
-		}
-		this.menge -= unitsToPurchase;
 	}
 
 	@Initialise

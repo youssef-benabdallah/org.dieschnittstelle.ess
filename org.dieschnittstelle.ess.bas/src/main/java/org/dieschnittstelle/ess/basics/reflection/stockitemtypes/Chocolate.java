@@ -30,25 +30,15 @@ public class Chocolate implements IStockItem {
 	}
 
 	@Override
-	public void purchase(int unitsToPurchase) {
-		
-		show("Chocolate: purchase() invoked");
-		
-		if (unitsToPurchase > this.units) {
-			throw new RuntimeException(
-					"You cannot purchase more than what is available. Got: "
-							+ unitsToPurchase
-							+ " units to purchase, but have available only: "
-							+ this.units);
-		}
-		this.units -= unitsToPurchase;
-	}
-
-	@Override
 	public int getUnits() {
 		return this.units;
 	}
-	
+
+	@Override
+	public void setUnits(int units) {
+		this.units = units;
+	}
+
 	@Override
 	public String toString() {
 		return String.format("<Chocolate %s %d %d>", this.brandname, this.units, this.price);

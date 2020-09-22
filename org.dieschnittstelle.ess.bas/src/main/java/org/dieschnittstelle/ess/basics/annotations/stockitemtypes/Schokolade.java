@@ -3,7 +3,6 @@ package org.dieschnittstelle.ess.basics.annotations.stockitemtypes;
 import org.dieschnittstelle.ess.basics.annotations.Initialise;
 import org.dieschnittstelle.ess.basics.annotations.Brandname;
 import org.dieschnittstelle.ess.basics.annotations.StockItem;
-import org.dieschnittstelle.ess.basics.annotations.Purchase;
 import org.dieschnittstelle.ess.basics.annotations.Units;
 
 @StockItem
@@ -37,18 +36,6 @@ public class Schokolade {
 		this.marke = name;
 	}
 
-	@Purchase
-	public void indenEinkaufswagenLegen(int unitsToPurchase) {
-		if (unitsToPurchase > this.anzahlStuecke) {
-			throw new RuntimeException(
-					"You cannot purchase more than what is available. Got: "
-							+ unitsToPurchase
-							+ " units to purchase, but have available only: "
-							+ this.anzahlStuecke);
-		}
-		this.anzahlStuecke -= unitsToPurchase;
-	}
-	
 	/**
 	 * toString
 	 */

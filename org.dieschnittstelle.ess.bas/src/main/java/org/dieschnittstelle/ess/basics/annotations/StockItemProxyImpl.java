@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.basics.annotations;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.basics.IStockItem;
+import org.dieschnittstelle.ess.basics.reflection.ReflectedStockItemBuilder;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -17,9 +18,9 @@ public class StockItemProxyImpl implements IStockItem {
 	 * the methods that are the targets for the interface methods
 	 */
 	private Method acquireMethod;
-	private Method purchaseMethod;
 	private Method getBrandnameMethod;
 	private Method getUnitsMethod;
+	private Method setUnitsMethod;
 
 	/**
 	 * in the constructor we set the object to be proxied and extract the target
@@ -37,25 +38,29 @@ public class StockItemProxyImpl implements IStockItem {
 			// isAnnotationPresent() or getAnnotation(), where the latter
 			// requires checking non null on the return value
 			for (Method m : proxiedObject.getClass().getDeclaredMethods()) {
-				if (purchaseMethod == null
-						&& m.isAnnotationPresent(Purchase.class)) {
-					purchaseMethod = m;
-				} else if (acquireMethod == null
+				if (acquireMethod == null
 						&& m.getAnnotation(Initialise.class) != null) {
 					acquireMethod = m;
 				} else if (getBrandnameMethod == null
 						&& m.isAnnotationPresent(Brandname.class)) {
 					getBrandnameMethod = m;
 				} else if (getUnitsMethod == null
-						&& m.isAnnotationPresent(Units.class)) {
+						&& m.isAnnotationPresent(Units.class)
+						&& m.getParameterCount() == 0
+						&& m.getName().startsWith("get")) {
 					getUnitsMethod = m;
+				} else if (setUnitsMethod == null
+						&& m.isAnnotationPresent(Units.class)
+						&& m.getParameterCount() == 1
+						&& m.getName().startsWith("set")) {
+					setUnitsMethod = m;
 				}
 			}
 
 			// it might be possible that the @Units or @Brandname annotation is
 			// declared on the attributes rather than on the methods, in this
 			// case iterate over the fields
-			if (getBrandnameMethod == null || getUnitsMethod == null) {
+			if (getBrandnameMethod == null || getUnitsMethod == null || setUnitsMethod == null) {
 				for (Field f : proxiedObject.getClass().getDeclaredFields()) {
 					/*
 					 * if the annotation is declared on one of the fields, we
@@ -68,19 +73,22 @@ public class StockItemProxyImpl implements IStockItem {
 					if (getBrandnameMethod == null
 							&& f.isAnnotationPresent(Brandname.class)) {
 						getBrandnameMethod = proxiedObject.getClass()
-								.getDeclaredMethod(
-										"get"
-												+ f.getName().substring(0, 1)
-														.toUpperCase()
-												+ f.getName().substring(1));
-					} else if (getUnitsMethod == null
+								.getDeclaredMethod(ReflectedStockItemBuilder
+										.getAccessorNameForField("get", f.getName()));
+					} else if ((getUnitsMethod == null || setUnitsMethod == null)
 							&& f.isAnnotationPresent(Units.class)) {
-						getUnitsMethod = proxiedObject.getClass()
-								.getDeclaredMethod(
-										"get"
-												+ f.getName().substring(0, 1)
-														.toUpperCase()
-												+ f.getName().substring(1));
+						if (getUnitsMethod == null) {
+							getUnitsMethod = proxiedObject.getClass()
+									.getDeclaredMethod(ReflectedStockItemBuilder
+											.getAccessorNameForField("get", f.getName()));
+						}
+						if (setUnitsMethod == null
+							&& f.isAnnotationPresent(Units.class)) {
+							setUnitsMethod = proxiedObject.getClass()
+									.getDeclaredMethod(ReflectedStockItemBuilder
+											.getAccessorNameForField("set", f.getName()),
+											f.getType());
+						}
 					}
 				}
 			}
@@ -109,9 +117,9 @@ public class StockItemProxyImpl implements IStockItem {
 	}
 
 	@Override
-	public void purchase(int units) {
+	public int getUnits() {
 		try {
-			this.purchaseMethod.invoke(this.proxiedObject,units);
+			return (Integer) this.getUnitsMethod.invoke(this.proxiedObject);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);
@@ -119,9 +127,9 @@ public class StockItemProxyImpl implements IStockItem {
 	}
 
 	@Override
-	public int getUnits() {
+	public void setUnits(int units) {
 		try {
-			return (Integer) this.getUnitsMethod.invoke(this.proxiedObject);
+			this.setUnitsMethod.invoke(this.proxiedObject,units);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);
