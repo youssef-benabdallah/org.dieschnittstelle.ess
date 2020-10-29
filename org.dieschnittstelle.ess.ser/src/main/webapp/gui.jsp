@@ -9,7 +9,7 @@
 		.getLogger("org.dieschnittstelle.ess.ser#gui.jsp"); %>
 <!-- check whether a redirect shall be initiated, in which case we will not generate markup -->
 <%
-	String basecontext = "/org.dieschnittstelle.ess.ser/";
+	String basecontext = request.getContextPath() + "/";
 
 	if (request.getAttribute("redirectToRoot") != null)
 {
