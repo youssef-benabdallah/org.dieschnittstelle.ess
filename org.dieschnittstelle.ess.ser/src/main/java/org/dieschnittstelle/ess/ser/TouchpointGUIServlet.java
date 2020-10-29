@@ -1,20 +1,22 @@
 package org.dieschnittstelle.ess.ser;
 
+import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.Address;
+import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.entities.crm.Address;
-import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
-
-import static org.dieschnittstelle.ess.utils.Utils.*;
+import static org.dieschnittstelle.ess.utils.Utils.show;
 
 public class TouchpointGUIServlet extends HttpServlet {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager
 			.getLogger(TouchpointGUIServlet.class);
+
+	private boolean idempotenceDemoMode = false;
 
 	public TouchpointGUIServlet() {
 		show("TouchpointGUIServlet: constructor invoked\n");
@@ -22,19 +24,27 @@ public class TouchpointGUIServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) {
+						 HttpServletResponse response) {
 
 		show("TouchpointGUIServlet: doGet() invoked\n");
 
-		displayView(request, response);
+		// this can be used to demonstrate browser behaviour
+		// for refreshes of POST vs. GET requests for the create action.
+		// change method attribute in jsp for trying it out.
+		if (request.getPathInfo().startsWith("/create"))  {
+			doPost(request,response);
+		}
+		else {
+			displayView(request, response);
+		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+						  HttpServletResponse response) {
+
 		show("TouchpointGUIServlet: doPost() invoked\n");
-		
+
 		// obtain the executor
 		TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext()
 				.getAttribute("touchpointCRUD");
@@ -64,7 +74,9 @@ public class TouchpointGUIServlet extends HttpServlet {
 			exec.createTouchpoint(tp);
 		}
 
-		request.setAttribute("redirectToRoot",true);
+		if (!idempotenceDemoMode) {
+			request.setAttribute("redirectToRoot",true);
+		}
 		displayView(request, response);
 	}
 
@@ -75,7 +87,7 @@ public class TouchpointGUIServlet extends HttpServlet {
 	 * now pass the request to the jsp for display
 	 */
 	private void displayView(HttpServletRequest request,
-			HttpServletResponse response) {
+							 HttpServletResponse response) {
 		/*
 		 * we read out the touchpoint data and add it as an attribute to the
 		 * request such that the jsp can be agnostic with regard to how the data
