@@ -16,7 +16,8 @@ public class TouchpointGUIServlet extends HttpServlet {
 	protected static Logger logger = org.apache.logging.log4j.LogManager
 			.getLogger(TouchpointGUIServlet.class);
 
-	private boolean idempotenceDemoMode = false;
+	private boolean demoPostNonIdempotence = false;
+	private boolean demoGetIdempotence = false;
 
 	public TouchpointGUIServlet() {
 		show("TouchpointGUIServlet: constructor invoked\n");
@@ -35,6 +36,9 @@ public class TouchpointGUIServlet extends HttpServlet {
 			doPost(request,response);
 		}
 		else {
+			if (demoGetIdempotence) {
+				request.setAttribute("demoGetIdempotence",true);
+			}
 			displayView(request, response);
 		}
 	}
@@ -74,8 +78,11 @@ public class TouchpointGUIServlet extends HttpServlet {
 			exec.createTouchpoint(tp);
 		}
 
-		if (!idempotenceDemoMode) {
+		if (!demoPostNonIdempotence && !demoGetIdempotence) {
 			request.setAttribute("redirectToRoot",true);
+		}
+		else if (demoGetIdempotence) {
+			request.setAttribute("demoGetIdempotence",true);
 		}
 		displayView(request, response);
 	}
