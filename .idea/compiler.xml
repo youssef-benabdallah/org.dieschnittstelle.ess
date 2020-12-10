@@ -6,50 +6,50 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demo-jrs-webapp" />
-        <module name="ejb-webapp" />
-        <module name="jws-client" />
-        <module name="org.dieschnittstelle.ess.jws.client" />
-        <module name="ejb-ejbmodule-erp" />
-        <module name="ue-jsf5" />
-        <module name="lib-utils" />
-        <module name="lib-entities-crm" />
-        <module name="demo-jws-client" />
-        <module name="demo-lib-entities-erp" />
-        <module name="jrs-client" />
-        <module name="jws-webapp" />
-        <module name="demo-lib-entities-crm" />
-        <module name="ue-add2" />
-        <module name="bas" />
-        <module name="demo-jrs-api" />
-        <module name="ue-jws5" />
-        <module name="ue-jws4" />
-        <module name="org.dieschnittstelle.ess.ue.jws4" />
-        <module name="ser-client" />
-        <module name="wsv-client" />
-        <module name="jrs-api" />
-        <module name="jrs-webapp" />
-        <module name="demo-ue-add2" />
-        <module name="jsf-cdi-webapp" />
-        <module name="demo-wsv-client" />
-        <module name="demo-bas" />
-        <module name="jsf-webapp" />
-        <module name="ser-webapp" />
-        <module name="demo-ejb-ejbmodule-crm" />
-        <module name="ejb-earapp" />
-        <module name="ejb-ejbmodule-crm" />
-        <module name="demo-jrs-client" />
-        <module name="ejb-client" />
-        <module name="demo-ser-webapp" />
-        <module name="lib-esa-utils" />
-        <module name="demo-jws-webapp" />
-        <module name="lib-entities-erp" />
-        <module name="demo-ejb-earapp" />
         <module name="demo-ejb-ejbmodule-erp" />
-        <module name="org.dieschnittstelle.ess.bas" />
-        <module name="demo-ejb-client" />
+        <module name="demo-jws-webapp" />
+        <module name="demo-ejb-ejbmodule-crm" />
+        <module name="demo-ser-webapp" />
         <module name="demo-ser-client" />
+        <module name="ue-jsf5" />
+        <module name="demo-jrs-webapp" />
+        <module name="ser-webapp" />
+        <module name="org.dieschnittstelle.ess.ue.jws4" />
+        <module name="jws-webapp" />
+        <module name="jsf-cdi-webapp" />
+        <module name="bas" />
+        <module name="ser-client" />
+        <module name="demo-bas" />
+        <module name="jws-client" />
+        <module name="demo-jrs-client" />
+        <module name="ejb-earapp" />
+        <module name="jrs-webapp" />
+        <module name="demo-lib-entities-erp" />
+        <module name="demo-jrs-api" />
+        <module name="lib-esa-utils" />
+        <module name="lib-utils" />
+        <module name="org.dieschnittstelle.ess.jws.client" />
+        <module name="ejb-ejbmodule-crm" />
+        <module name="wsv-client" />
+        <module name="demo-lib-entities-crm" />
+        <module name="ejb-ejbmodule-erp" />
+        <module name="demo-ejb-client" />
+        <module name="org.dieschnittstelle.ess.bas" />
+        <module name="ue-jws5" />
+        <module name="ejb-webapp" />
+        <module name="ue-add2" />
+        <module name="ue-jws4" />
+        <module name="ejb-client" />
         <module name="ue-add3" />
+        <module name="demo-jws-client" />
+        <module name="jrs-client" />
+        <module name="demo-wsv-client" />
+        <module name="jsf-webapp" />
+        <module name="lib-entities-erp" />
+        <module name="demo-ue-add2" />
+        <module name="lib-entities-crm" />
+        <module name="jrs-api" />
+        <module name="demo-ejb-earapp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -80,7 +80,7 @@
       <module name="demo-ser-webapp" target="1.8" />
       <module name="demo-ue-add2" target="1.8" />
       <module name="demo-wsv-client" target="1.8" />
-      <module name="ejb-client" target="1.8" />
+      <module name="ejb-client" target="1.9" />
       <module name="ejb-earapp" target="1.8" />
       <module name="ejb-ejbmodule-crm" target="1.8" />
       <module name="ejb-ejbmodule-erp" target="1.8" />
