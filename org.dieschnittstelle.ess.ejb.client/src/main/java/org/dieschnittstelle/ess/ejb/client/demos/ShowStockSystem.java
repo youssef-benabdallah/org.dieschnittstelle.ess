@@ -7,7 +7,7 @@ import static org.dieschnittstelle.ess.ejb.client.Constants.TOUCHPOINT_2;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.ejb.client.ejbclients.EJBProxyFactory;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.ShoppingException;
 import org.dieschnittstelle.ess.utils.Utils;
 import org.dieschnittstelle.ess.ejb.client.ejbclients.ProductCRUDClient;
 import org.dieschnittstelle.ess.ejb.client.ejbclients.StockSystemClient;

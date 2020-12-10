@@ -7,10 +7,27 @@
     <groupId>org.dieschnittstelle.ess</groupId>
     <artifactId>ejb-earapp</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>ear</packaging>
+    <!-- MP: use war packaging -->
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- these are the settings from the wildfly examples -->
+        <version.bootable.jar>3.0.0.Beta1-SNAPSHOT</version.bootable.jar>
+        <version.wildfly>21.0.0.Final</version.wildfly>
+        <version.jkube>1.0.1</version.jkube>
+        <plugin.fork.embedded>true</plugin.fork.embedded>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.microprofile.bom>${version.wildfly}</version.microprofile.bom>
+        <version.server.bom>${version.wildfly}</version.server.bom>
+        <version.org.wildfly.arquillian>3.0.0.Final</version.org.wildfly.arquillian>
+        <version.org.jboss.arquillian.junit>1.6.0.Final</version.org.jboss.arquillian.junit>
+        <version.junit>4.13.1</version.junit>
+        <version.org.jboss.shrinkwrap.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap.shrinkwrap>
     </properties>
 
     <build>
@@ -23,103 +40,29 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!-- this is for running the application in wildfly -->
             <plugin>
-                <artifactId>maven-ear-plugin</artifactId>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-jar-maven-plugin</artifactId>
                 <configuration>
-                    <version>1.4</version>
-                    <modules>
-                        <webModule>
-                            <groupId>org.dieschnittstelle.ess</groupId>
-                            <artifactId>ejb-webapp</artifactId>
-                            <bundleFileName>org.dieschnittstelle.ess.ejb.webapp.war</bundleFileName>
-                            <unpack>true</unpack>
-                        </webModule>
-                        <ejbModule>
-                            <groupId>org.dieschnittstelle.ess</groupId>
-                            <artifactId>ejb-ejbmodule-crm</artifactId>
-                            <bundleFileName>org.dieschnittstelle.ess.ejb.ejbmodule.crm.jar</bundleFileName>
-                            <unpack>true</unpack>
-                        </ejbModule>
-                        <ejbModule>
-                            <groupId>org.dieschnittstelle.ess</groupId>
-                            <artifactId>ejb-ejbmodule-erp</artifactId>
-                            <bundleFileName>org.dieschnittstelle.ess.ejb.ejbmodule.erp.jar</bundleFileName>
-                            <unpack>true</unpack>
-                        </ejbModule>
-                        <jarModule>
-                            <groupId>org.dieschnittstelle.ess.shared</groupId>
-                            <artifactId>lib-entities-crm</artifactId>
-                            <bundleDir>lib</bundleDir>
-                            <bundleFileName>org.dieschnittstelle.ess.entities.crm.jar</bundleFileName>
-                        </jarModule>
-                        <jarModule>
-                            <groupId>org.dieschnittstelle.ess.shared</groupId>
-                            <artifactId>lib-entities-erp</artifactId>
-                            <bundleDir>lib</bundleDir>
-                            <bundleFileName>org.dieschnittstelle.ess.entities.erp.jar</bundleFileName>
-                        </jarModule>
-                        <jarModule>
-                            <groupId>org.dieschnittstelle.ess.shared</groupId>
-                            <artifactId>lib-utils</artifactId>
-                            <bundleDir>lib</bundleDir>
-                            <bundleFileName>org.dieschnittstelle.ess.utils.jar</bundleFileName>
-                        </jarModule>
-                        <!-- we need to add the log4j 2 libraries -->
-                        <jarModule>
-                            <groupId>org.apache.logging.log4j</groupId>
-                            <artifactId>log4j-api</artifactId>
-                            <bundleDir>lib</bundleDir>
-                        </jarModule>
-                        <jarModule>
-                            <groupId>org.apache.logging.log4j</groupId>
-                            <artifactId>log4j-core</artifactId>
-                            <bundleDir>lib</bundleDir>
-                        </jarModule>
-                    </modules>
-                    <earName>org.dieschnittstelle.ess.ejb</earName>
-                    <finalName>org.dieschnittstelle.ess.ejb</finalName>
-                    <displayName>org.dieschnittstelle.ess.ejb</displayName>
-                    <!-- applicationXml identifies a file that will be included in the target as application.xml -->
-                    <!--<applicationXml>src/main/application/META-INF/jboss-deployment-structure.xml</applicationXml>-->
-                    <generateApplicationXml>true</generateApplicationXml>
+                    <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</feature-pack-location>
+                    <layers>
+                        <layer>jaxrs</layer>
+                        <layer>management</layer>
+                        <layer>datasources-web-server</layer>
+                        <layer>bean-validation</layer>
+                    </layers>
+                    <excluded-layers>
+                        <layer>deployment-scanner</layer>
+                    </excluded-layers>
+                    <plugin-options>
+                        <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
+                    </plugin-options>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <!-- we need to postprocess the regular output of maven's 'package' phase as the obligatorily generated application.xml conflicts with jboss-deployment-structure.xml and needs to be removed -->
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
-                        <configuration>
-                            <target>
-                                <property name="ant.earName" value="org.dieschnittstelle.ess.ejb" />
-                                <!-- the build may either be run from inside the project directory itself or as as multi-module build -->
-                                <property name="ant.projectName" value="org.dieschnittstelle.ess.ejb" />
-                                <echo message="RUNNING ANT in ${user.dir} for artifact ${project.build.finalName} with name ${ant.earName}"/>
-                                <!-- remove the application.xml file from the target directory -->
-                                <delete file="${user.dir}/../${ant.projectName}/target/${project.build.finalName}/META-INF/application.xml"/>
-                                <!-- remove the existing .ear file -->
-                                <delete file="${user.dir}/../${ant.projectName}/target/${project.build.finalName}.ear"/>
-                                <!-- create a jar file from the log4j propertie and add it to the lib directory -->
-                                <jar basedir="${user.dir}/../${ant.projectName}/src/main/resources/" destfile="${user.dir}/target/${project.build.finalName}/lib/log4j2.properties.jar"/>
-                                <!-- create the ear again -->
-                                <jar basedir="${user.dir}/../${ant.projectName}/target/${project.build.finalName}" destfile="${user.dir}/target/${ant.earName}.ear"/>
-                                <!-- and copy it using the default name (this is required in order for the multi-module build to succeed -->
-                                <copy file="${user.dir}/../${ant.projectName}/target/${ant.earName}.ear" tofile="${user.dir}/target/${project.build.finalName}.ear"/>
-                                <!-- and delete the ear again -->
-                                <delete file="${user.dir}/../${ant.projectName}/target/${project.build.finalName}.ear"/>
-                            </target>
-                        </configuration>
                         <goals>
-                            <goal>run</goal>
+                            <goal>package</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -128,11 +71,23 @@
     </build>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>javax</groupId>-->
+<!--            <artifactId>javaee-api</artifactId>-->
+<!--            <version>8.0</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>8.0</version>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>3.3</version>
+            <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>2.2.3</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
@@ -182,6 +137,17 @@
             <artifactId>log4j-core</artifactId>
             <version>2.11.1</version>
         </dependency>
+        <!-- see: https://stackoverflow.com/questions/36329001/unable-to-create-a-configuration-because-no-bean-validation-provider-could-be-f -->
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate</groupId>-->
+<!--            <artifactId>hibernate-validator</artifactId>-->
+<!--            <version>5.2.4.Final</version>-->
+<!--        </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>org.hibernate</groupId>-->
+<!--                    <artifactId>hibernate-entitymanager</artifactId>-->
+<!--                    <version>5.2.4.Final</version>-->
+<!--                </dependency>-->
     </dependencies>
 
 </project>

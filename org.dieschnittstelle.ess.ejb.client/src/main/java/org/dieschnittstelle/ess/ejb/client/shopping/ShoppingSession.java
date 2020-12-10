@@ -3,10 +3,10 @@ package org.dieschnittstelle.ess.ejb.client.shopping;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTrackingRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CustomerTrackingRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTracking;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CustomerTracking;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.cart.ShoppingCart;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.Customer;
@@ -24,11 +24,11 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 	/*
 	 * the three beans that are used
 	 */
-	private ShoppingCartRemote shoppingCart;
+	private ShoppingCart shoppingCart;
 
-	private CustomerTrackingRemote customerTracking;
+	private CustomerTracking customerTracking;
 
-	private CampaignTrackingRemote campaignTracking;
+	private CampaignTracking campaignTracking;
 
 	/**
 	 * the customer

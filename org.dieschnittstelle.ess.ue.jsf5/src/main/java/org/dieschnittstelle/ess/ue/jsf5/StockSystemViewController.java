@@ -2,19 +2,9 @@ package org.dieschnittstelle.ess.ue.jsf5;
 
 import java.util.*;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessLocal;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessStateless;
-import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemLocal;
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
-import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.dieschnittstelle.ess.entities.erp.StockItem;
 import org.apache.log4j.Logger;
 

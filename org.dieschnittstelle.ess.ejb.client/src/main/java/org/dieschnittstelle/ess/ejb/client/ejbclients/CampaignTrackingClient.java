@@ -2,17 +2,17 @@ package org.dieschnittstelle.ess.ejb.client.ejbclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTrackingRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTracking;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
 import org.dieschnittstelle.ess.ejb.client.Constants;
 
-public class CampaignTrackingClient implements CampaignTrackingRemote {
+public class CampaignTrackingClient implements CampaignTracking {
 
-	private CampaignTrackingRemote ejbProxy;
+	private CampaignTracking ejbProxy;
 	
 	public CampaignTrackingClient() throws Exception {
-		ejbProxy = EJBProxyFactory.getInstance().getProxy(CampaignTrackingRemote.class,Constants.CAMPAIGN_TRACKING_BEAN_URI);
+		ejbProxy = EJBProxyFactory.getInstance().getProxy(CampaignTracking.class,Constants.CAMPAIGN_TRACKING_BEAN_URI);
 	}
 	
 	@Override

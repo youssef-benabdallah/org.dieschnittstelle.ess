@@ -2,17 +2,17 @@ package org.dieschnittstelle.ess.ejb.client.ejbclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.ejb.client.Constants;
 
-public class TouchpointAccessClient implements TouchpointAccessRemote {
+public class TouchpointAccessClient implements TouchpointAccess {
 	
-	private TouchpointAccessRemote ejbProxy;
+	private TouchpointAccess ejbProxy;
 	
 	public TouchpointAccessClient() throws Exception {
-		this.ejbProxy = EJBProxyFactory.getInstance().getProxy(TouchpointAccessRemote.class,Constants.TOUCHPOINT_ACCESS_BEAN_URI);
+		this.ejbProxy = EJBProxyFactory.getInstance().getProxy(TouchpointAccess.class,Constants.TOUCHPOINT_ACCESS_BEAN_URI);
 	}
 	
 	

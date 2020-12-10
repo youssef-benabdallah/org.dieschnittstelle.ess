@@ -5,15 +5,14 @@ import org.dieschnittstelle.ess.ejb.client.ejbclients.*;
 import org.dieschnittstelle.ess.ejb.client.shopping.ShoppingBusinessDelegate;
 import org.dieschnittstelle.ess.ejb.client.shopping.ShoppingSession;
 import org.dieschnittstelle.ess.ejb.client.shopping.ShoppingSessionClient;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTrackingRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUDRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUDRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTracking;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUD;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUD;
+import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystem;
+import org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUD;
 import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
-import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 
 import java.util.Collection;
@@ -50,12 +49,12 @@ public class TotalUsecase {
 	private boolean useShoppingSessionClient = false /*true*/;
 
 	// declare the attributes that will be instantiated with the ejb clients - note that the attributes use the remote interface types
-	private ProductCRUDRemote productCRUD;
-	private TouchpointAccessRemote touchpointAccess;
-	private StockSystemRemote stockSystem;
-	private CustomerCRUDRemote customerCRUD;
-	private CampaignTrackingRemote campaignTracking;
-	private CustomerTransactionCRUDRemote transactionCRUD;
+	private ProductCRUD productCRUD;
+	private TouchpointAccess touchpointAccess;
+	private StockSystem stockSystem;
+	private CustomerCRUD customerCRUD;
+	private CampaignTracking campaignTracking;
+	private CustomerTransactionCRUD transactionCRUD;
 
 	public TotalUsecase() throws Exception {
 		instantiateClients();
@@ -87,12 +86,7 @@ public class TotalUsecase {
 	public void instantiateClients() throws Exception {
 		// instantiate the clients
 		productCRUD = new ProductCRUDClient();
-		if (async) {
-			touchpointAccess = new TouchpointAccessClientAsync();
-		}
-		else {
-			touchpointAccess = new TouchpointAccessClient();
-		}
+		touchpointAccess = new TouchpointAccessClient();
 		stockSystem = new StockSystemClient();
 		customerCRUD = new CustomerCRUDClient();
 		campaignTracking = new CampaignTrackingClient();
@@ -220,25 +214,9 @@ public class TotalUsecase {
 		trans = transactionCRUD
 				.readAllTransactionsForCustomer(Constants.CUSTOMER_1);
 		logger.info("transactions for customer are: " + trans);
-		trans = transactionCRUD.readAllTransactionsForTouchpointAndCustomer(
-				Constants.TOUCHPOINT_1, Constants.CUSTOMER_1);
-		logger.info("transactions for touchpoint and customer are: " + trans);
-		// now try to read out the transactions by obtaining the customer
-		// and retrieving getTransactions()
-		trans = Constants.CUSTOMER_1.getTransactions();
-		logger.info("transactions on local customer object are: " + trans);
-
-		Customer cust = customerCRUD.readCustomer(Constants.CUSTOMER_1.getId());
-		logger.info("read remote customer object: " + cust);
-
-		try {
-			trans = cust.getTransactions();
-			logger.info("read transactions from remote object: " + trans);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("\nNote: a LazyInitializationException is intended here. See UE JPA1 for further information.\n");
-		}
+//		trans = transactionCRUD.readAllTransactionsForTouchpointAndCustomer(
+//				Constants.TOUCHPOINT_1, Constants.CUSTOMER_1);
+//		logger.info("transactions for touchpoint and customer are: " + trans);
 
 	}
 

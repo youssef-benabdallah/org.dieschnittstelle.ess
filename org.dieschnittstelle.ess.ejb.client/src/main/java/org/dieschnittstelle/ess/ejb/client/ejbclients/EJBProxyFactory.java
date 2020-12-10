@@ -4,19 +4,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpStatus;
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.ejb.client.Constants;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
-import org.jboss.resteasy.annotations.ClientResponseType;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.client.ClientResponseContext;
 import javax.ws.rs.client.ClientResponseFilter;
 import java.io.*;
@@ -127,9 +121,6 @@ public class EJBProxyFactory {
     // when instantiating the factory, we specify whether ejb proxies or rest service proxies shall be created
     private boolean useWebAPIAsDefault;
 
-    // this is the jndi context to be used
-    private Context jndiContext;
-
     // this is the client-side representation of the web api, which gives access to the different services offered via this api
     private ResteasyWebTarget webAPI;
 
@@ -153,9 +144,6 @@ public class EJBProxyFactory {
         }
 
         try {
-            // we both instantiate the jndiContext and the webAPI
-            this.jndiContext = new InitialContext();
-
             // this is the webAPI instantiation - here, we hard-code the baseUrl for the webAPI, could be passed as an argument, though
             ResteasyClient client = new ResteasyClientBuilder().register(new LoggingFilter()).build();
             this.webAPI = client.target(webAPIBaseUrl);
@@ -175,14 +163,7 @@ public class EJBProxyFactory {
         T proxy;
 
         try {
-            if (useWebAPI) {
-                proxy = this.webAPI.proxy(ejbInterface);
-            } else {
-                if (!ejbUri.startsWith("ejb:")) {
-                    throw new EJBProxyException("malformed ejbUri: " + ejbUri + ". It needs to start with: \"ejb:\"");
-                }
-                proxy = (T) this.jndiContext.lookup(ejbUri);
-            }
+            proxy = this.webAPI.proxy(ejbInterface);
         } catch (Exception e) {
             throw new EJBProxyException("got exception trying to create a " + (useWebAPI ? " web service " : " EJB ") + " proxy for interface " + ejbInterface + ": " + e, e);
         }

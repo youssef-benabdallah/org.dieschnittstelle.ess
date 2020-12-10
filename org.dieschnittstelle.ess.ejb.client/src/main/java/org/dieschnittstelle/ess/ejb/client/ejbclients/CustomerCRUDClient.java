@@ -1,15 +1,15 @@
 package org.dieschnittstelle.ess.ejb.client.ejbclients;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUD;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.ejb.client.Constants;
 
-public class CustomerCRUDClient implements CustomerCRUDRemote {
+public class CustomerCRUDClient implements CustomerCRUD {
 
-	private CustomerCRUDRemote ejbProxy;
+	private CustomerCRUD ejbProxy;
 
 	public CustomerCRUDClient() throws Exception {
-		ejbProxy = EJBProxyFactory.getInstance().getProxy(CustomerCRUDRemote.class,Constants.CUSTOMER_CRUD_BEAN_URI);
+		ejbProxy = EJBProxyFactory.getInstance().getProxy(CustomerCRUD.class,Constants.CUSTOMER_CRUD_BEAN_URI);
 	}
 
 	@Override

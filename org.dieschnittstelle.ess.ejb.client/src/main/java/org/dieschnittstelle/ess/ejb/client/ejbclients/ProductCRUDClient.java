@@ -3,12 +3,12 @@ package org.dieschnittstelle.ess.ejb.client.ejbclients;
 import java.util.List;
 
 import org.dieschnittstelle.ess.ejb.client.Constants;
-import org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUDRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUD;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 
-public class ProductCRUDClient implements ProductCRUDRemote {
+public class ProductCRUDClient implements ProductCRUD {
 
-	private ProductCRUDRemote ejbProxy;
+	private ProductCRUD ejbProxy;
 
 	public ProductCRUDClient() throws Exception {
 		// TODO: obtain a proxy specifying the ejb interface and uri. Let all subsequent methods use the proxy.

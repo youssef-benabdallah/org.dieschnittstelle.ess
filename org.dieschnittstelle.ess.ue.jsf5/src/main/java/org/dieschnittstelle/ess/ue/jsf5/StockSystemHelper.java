@@ -7,10 +7,10 @@ import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTrackingRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUDRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTracking;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUD;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Address;
 import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
@@ -20,7 +20,7 @@ import org.dieschnittstelle.ess.entities.crm.Gender;
 import org.dieschnittstelle.ess.entities.crm.MobileTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote;
-import org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUDRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUD;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.entities.erp.ProductBundle;
@@ -93,17 +93,17 @@ public class StockSystemHelper {
 	// declare the attributes that will be instantiated with the ejb clients
 	// TODO: use your StockSystemRemote and ProductCRUDRemote EJB interfaces that have been developed in the exercises for JPA - the names for ejbs and interfaces used here are the ones from the demos, change where necessary
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.erp/ProductCRUDStateless!org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud.ProductCRUDRemote")
-	private ProductCRUDRemote productCRUD;
+	private ProductCRUD productCRUD;
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/TouchpointAccessStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessRemote")
-	private TouchpointAccessRemote touchpointAccess;
+	private TouchpointAccess touchpointAccess;
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.erp/StockSystemSingleton!org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote")
 	private StockSystemRemote stockSystem;
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/CustomerCRUDStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDRemote")
-	private CustomerCRUDRemote customerCRUD;
+	private CustomerCRUD customerCRUD;
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/CampaignTrackingSingleton!org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTrackingRemote")
-	private CampaignTrackingRemote campaignTracking;
+	private CampaignTracking campaignTracking;
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/CustomerTransactionCRUDStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUDRemote")
-	private CustomerTransactionCRUDRemote transactionCRUD;
+	private CustomerTransactionCRUD transactionCRUD;
 
 	public void createProducts() {
 		// create products

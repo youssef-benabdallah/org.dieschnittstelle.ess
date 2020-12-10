@@ -20,7 +20,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessLocal;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDLocal;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
@@ -55,7 +55,7 @@ public class ShoppingSessionViewController implements Serializable {
 	 * for accessing touchpoints we use a EJB client
 	 */
 	@Resource(mappedName = "java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/TouchpointAccessStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessLocal")
-	private TouchpointAccessLocal touchpointAccess;
+	private TouchpointAccess touchpointAccess;
 
 	/**
 	 * this is the touchpoint selected by the user

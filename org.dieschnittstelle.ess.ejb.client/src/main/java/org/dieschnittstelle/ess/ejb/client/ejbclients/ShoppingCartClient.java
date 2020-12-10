@@ -2,14 +2,14 @@ package org.dieschnittstelle.ess.ejb.client.ejbclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartRESTService;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.cart.ShoppingCartRESTService;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.cart.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.ejb.client.Constants;
 
-public class ShoppingCartClient implements ShoppingCartRemote {
+public class ShoppingCartClient implements ShoppingCart {
 
-	private ShoppingCartRemote ejbProxy;
+	private ShoppingCart ejbProxy;
 
 	private ShoppingCartRESTService serviceProxy;
 
@@ -22,7 +22,7 @@ public class ShoppingCartClient implements ShoppingCartRemote {
 
 		// we will use the ejb if ejbs shall be used by default
 		if (!EJBProxyFactory.getInstance().usesWebAPIAsDefault()) {
-			this.ejbProxy = EJBProxyFactory.getInstance().getProxy(ShoppingCartRemote.class, Constants.SHOPPING_CART_BEAN_URI, false);
+			this.ejbProxy = EJBProxyFactory.getInstance().getProxy(ShoppingCart.class, Constants.SHOPPING_CART_BEAN_URI, false);
 		}
 		else {
 			this.serviceProxy = EJBProxyFactory.getInstance().getProxy(ShoppingCartRESTService.class,null,true);

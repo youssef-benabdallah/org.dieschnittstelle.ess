@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRESTService;
-import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystemRemote;
+import org.dieschnittstelle.ess.ejb.ejbmodule.erp.StockSystem;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 
-public class StockSystemClient implements StockSystemRemote {
+public class StockSystemClient implements StockSystem {
 
-	private StockSystemRemote ejbProxy;
+	private StockSystem ejbProxy;
 
 	private StockSystemRESTService serviceProxy;
 	

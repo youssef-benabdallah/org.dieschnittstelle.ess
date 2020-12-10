@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartLocal;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.cart.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.apache.log4j.Logger;
 
@@ -31,7 +31,7 @@ public class ShoppingCartModel implements Serializable {
 	 * show by-reference vs. by-value semantics of local vs. remote!
 	 */
 	@EJB(lookup="java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/ShoppingCartStateful!org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartLocal")
-	private ShoppingCartLocal shoppingCart;
+	private ShoppingCart shoppingCart;
 	
 //	using the remote interface the call-by-value behaviour is very obvious...
 //	@EJB(lookup="java:global/org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/ShoppingCartStateful!ShoppingCartRemote")

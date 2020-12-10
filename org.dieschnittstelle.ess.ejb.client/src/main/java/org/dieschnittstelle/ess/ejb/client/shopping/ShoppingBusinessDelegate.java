@@ -1,6 +1,6 @@
 package org.dieschnittstelle.ess.ejb.client.shopping;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingException;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
