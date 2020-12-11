@@ -11,6 +11,7 @@ import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessImpl;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUD;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDImpl;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUDImpl;
+import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.cart.ShoppingCartRESTServiceImpl;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -37,6 +38,7 @@ public class RESTWebAPIRoot extends Application {
 				CustomerCRUDImpl.class,
 				CustomerTransactionCRUDImpl.class,
 				CustomerTrackingImpl.class,
-				CampaignTrackingImplSingleton.class));
+				CampaignTrackingImplSingleton.class,
+				ShoppingCartRESTServiceImpl.class));
 	}
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
@@ -17,11 +18,8 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
 /**
  * tracks the execution of a compaign
  */
-@Singleton
-/*
- * UE EJB1: kommentieren Sie die @Startup Annotation aus
- */
 @Logged
+@ApplicationScoped
 public class CampaignTrackingImplSingleton implements CampaignTracking {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(CampaignTrackingImplSingleton.class);

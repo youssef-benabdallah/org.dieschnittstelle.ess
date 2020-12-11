@@ -37,7 +37,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.microprofile.openapi:microprofile-openapi-api:1.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.microprofile.rest.client:microprofile-rest-client-api:1.4.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.microprofile.opentracing:microprofile-opentracing-api:1.3" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.persistence:jakarta.persistence-api:2.2.3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.persistence:jakarta.persistence-api:2.2.3" level="project" />
     <orderEntry type="module" module-name="ejb-ejbmodule-crm" />
     <orderEntry type="library" name="Maven: javax.jws:javax.jws-api:1.1" level="project" />
     <orderEntry type="module" module-name="ejb-ejbmodule-erp" />

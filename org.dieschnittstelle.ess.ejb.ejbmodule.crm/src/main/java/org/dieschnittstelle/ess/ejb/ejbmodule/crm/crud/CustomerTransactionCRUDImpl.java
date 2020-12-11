@@ -3,10 +3,12 @@ package org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud;
 import java.util.Collection;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
@@ -15,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 @Logged
+@RequestScoped
+@Transactional
 public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, CustomerTransactionCRUDLocal {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager

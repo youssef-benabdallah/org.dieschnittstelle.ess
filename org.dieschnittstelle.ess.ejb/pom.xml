@@ -40,7 +40,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- this is for running the application in wildfly -->
+            <!-- this is for running the application in wildfly, see https://docs.wildfly.org/21/Bootable_Guide.html -->
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-jar-maven-plugin</artifactId>
@@ -51,6 +51,10 @@
                         <layer>management</layer>
                         <layer>datasources-web-server</layer>
                         <layer>bean-validation</layer>
+                        <layer>jpa</layer>
+                        <layer>datasources</layer>
+                        <layer>h2-datasource</layer>
+                        <layer>transactions</layer>
                     </layers>
                     <excluded-layers>
                         <layer>deployment-scanner</layer>
@@ -88,6 +92,7 @@
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>2.2.3</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
@@ -137,17 +142,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.11.1</version>
         </dependency>
-        <!-- see: https://stackoverflow.com/questions/36329001/unable-to-create-a-configuration-because-no-bean-validation-provider-could-be-f -->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-validator</artifactId>-->
-<!--            <version>5.2.4.Final</version>-->
-<!--        </dependency>-->
-<!--                <dependency>-->
-<!--                    <groupId>org.hibernate</groupId>-->
-<!--                    <artifactId>hibernate-entitymanager</artifactId>-->
-<!--                    <version>5.2.4.Final</version>-->
-<!--                </dependency>-->
     </dependencies>
 
 </project>

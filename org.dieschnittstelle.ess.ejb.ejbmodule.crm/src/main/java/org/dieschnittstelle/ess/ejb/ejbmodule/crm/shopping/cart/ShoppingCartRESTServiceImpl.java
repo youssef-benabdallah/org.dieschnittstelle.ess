@@ -4,12 +4,15 @@ import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.EntityManagerProvider;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,8 +20,9 @@ import java.util.List;
  *
  * actually, this is a CRUD ejb that uses the entity manager for persisting shopping cart instances. Note, however, that the ShoppingCart class itself is not exposed via the REST interface
  */
-@Singleton
+@ApplicationScoped
 @Logged
+@Transactional
 public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
 
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ShoppingCartRESTServiceImpl.class);
@@ -27,8 +31,10 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
     @EntityManagerProvider.CRMDataAccessor
     private EntityManager em;
 
-    // here, the value of the env-entry idle-timeout specified in ejb-jar.xml will be injected
-    @Resource(name = "idle-timeout")
+    // the values for this property a provided by the microprofile config file
+    // which is part of the web application project, see https://rieckpil.de/whatis-eclipse-microprofile-config/
+//    @Inject
+    @ConfigProperty(name = "shoppingcart.idletimeoutms", defaultValue = "3600000")
     private long idleTimeout;
 
     public ShoppingCartRESTServiceImpl() {
@@ -37,6 +43,7 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
 
     @Override
     public long createNewCart() {
+        logger.info("createNewCart(): idleTimeout is: " + this.idleTimeout);
         ShoppingCartEntity sc = new ShoppingCartEntity();
         em.persist(sc);
         return sc.getId();

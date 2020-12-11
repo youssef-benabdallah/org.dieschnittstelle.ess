@@ -2,10 +2,12 @@ package org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
@@ -15,6 +17,8 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
 import static org.dieschnittstelle.ess.utils.Utils.show;
 
 @Logged
+@RequestScoped
+@Transactional
 public class TouchpointCRUDImpl implements TouchpointCRUD {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager

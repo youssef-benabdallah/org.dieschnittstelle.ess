@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.ejb.ejbmodule.crm;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -18,6 +19,7 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
 @WebService(targetNamespace = "http://dieschnittstelle.org/ess/jws", serviceName = "TouchpointAccessWebService", endpointInterface = "org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @Logged
+@RequestScoped
 public class TouchpointAccessImpl implements TouchpointAccess {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager

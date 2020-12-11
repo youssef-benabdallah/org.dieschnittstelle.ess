@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUDLocal;
@@ -17,6 +18,7 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
  * allows read/write access to a customer's shopping history
  */
 @Logged
+@RequestScoped
 public class CustomerTrackingImpl implements CustomerTracking {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager

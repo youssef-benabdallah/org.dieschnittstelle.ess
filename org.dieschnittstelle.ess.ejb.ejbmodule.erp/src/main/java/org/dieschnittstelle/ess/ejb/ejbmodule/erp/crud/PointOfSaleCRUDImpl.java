@@ -2,9 +2,11 @@ package org.dieschnittstelle.ess.ejb.ejbmodule.erp.crud;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +15,9 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
 /**
  * very rudimentary implementation without any logging... 
  */
+@RequestScoped
 @Logged
+@Transactional
 public class PointOfSaleCRUDImpl implements PointOfSaleCRUD {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(PointOfSaleCRUDImpl.class);
