@@ -4,31 +4,26 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.bas/bas.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.bas/bas.iml" group="2_BAS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications/build-all-modules.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications/build-all-modules.iml" group="0_SHARED" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ejb/build-ejb.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ejb/build-ejb.iml" group="7_EJB+JPA+ADD+PAT" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jrs/build-jrs.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jrs/build-jrs.iml" group="4_JRS" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jsf/build-jsf.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jsf/build-jsf.iml" group="11_JSF" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/build-jws.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/build-jws.iml" group="5_JWS" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip/build-mip.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip/build-mip.iml" group="7_MIP+JPA+ADD+PAT" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ser/build-ser.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ser/build-ser.iml" group="3_SER" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.client/ejb-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.client/ejb-client.iml" group="7_EJB+JPA+ADD+PAT" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ejb/ejb-earapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ejb/ejb-earapp.iml" group="7_EJB+JPA+ADD+PAT" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.ejbmodule.crm/ejb-ejbmodule-crm.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.ejbmodule.crm/ejb-ejbmodule-crm.iml" group="7_EJB+JPA+ADD+PAT" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.ejbmodule.erp/ejb-ejbmodule-erp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.ejbmodule.erp/ejb-ejbmodule-erp.iml" group="7_EJB+JPA+ADD+PAT" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.webapp/ejb-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.webapp/ejb-webapp.iml" group="7_EJB+JPA+ADD+PAT" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.api/jrs-api.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.api/jrs-api.iml" group="4_JRS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client/jrs-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client/jrs-client.iml" group="4_JRS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/jrs-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/jrs-webapp.iml" group="4_JRS" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jsf.cdi/jsf-cdi-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jsf.cdi/jsf-cdi-webapp.iml" group="11_JSF" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jsf/jsf-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jsf/jsf-webapp.iml" group="11_JSF" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/jws-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/jws-client.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws/jws-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jws/jws-webapp.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.lib.entities.crm/lib-entities-crm.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.lib.entities.crm/lib-entities-crm.iml" group="0_SHARED" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.lib.entities.erp/lib-entities-erp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.lib.entities.erp/lib-entities-erp.iml" group="0_SHARED" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.lib.utils/lib-utils.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.lib.utils/lib-utils.iml" group="0_SHARED" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip/mip-app.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.mip/mip-app.iml" group="7_MIP+JPA+ADD+PAT" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.client/mip-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.client/mip-client.iml" group="7_MIP+JPA+ADD+PAT" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.crm/mip-components-crm.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.crm/mip-components-crm.iml" group="7_MIP+JPA+ADD+PAT" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.erp/mip-components-erp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.erp/mip-components-erp.iml" group="7_MIP+JPA+ADD+PAT" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.webapp/mip-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.webapp/mip-webapp.iml" group="7_MIP+JPA+ADD+PAT" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ser.client/ser-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ser.client/ser-client.iml" group="3_SER" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ser/ser-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ser/ser-webapp.iml" group="3_SER" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add2/ue-add2.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add2/ue-add2.iml" group="9_ADD" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add3/ue-add3.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add3/ue-add3.iml" group="9_ADD" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jsf5/ue-jsf5.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jsf5/ue-jsf5.iml" group="11_JSF" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/ue-jws4.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/ue-jws4.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws5/ue-jws5.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws5/ue-jws5.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.wsv.client/wsv-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.wsv.client/wsv-client.iml" group="6_WSV" />

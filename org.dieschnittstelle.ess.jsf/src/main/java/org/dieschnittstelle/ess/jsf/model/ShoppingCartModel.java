@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.shopping.cart.ShoppingCart;
+import org.dieschnittstelle.ess.mip.components.crm.shopping.cart.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.apache.log4j.Logger;
 

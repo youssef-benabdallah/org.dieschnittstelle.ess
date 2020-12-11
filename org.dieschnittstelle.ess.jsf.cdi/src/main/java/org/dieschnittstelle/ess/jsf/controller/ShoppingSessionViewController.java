@@ -20,7 +20,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess;
+import org.dieschnittstelle.ess.mip.components.crm.TouchpointAccess;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDLocal;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;

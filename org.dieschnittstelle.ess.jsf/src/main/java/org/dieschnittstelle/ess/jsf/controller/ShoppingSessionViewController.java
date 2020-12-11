@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.jsf.controller;
 
 import org.apache.log4j.Logger;
-import org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccess;
+import org.dieschnittstelle.ess.mip.components.crm.TouchpointAccess;
 import org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDLocal;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
