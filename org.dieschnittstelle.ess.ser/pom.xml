@@ -27,28 +27,37 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- this is for running the application in wildfly, see https://docs.wildfly.org/21/Bootable_Guide.html -->
+<!--            &lt;!&ndash; this is for running the application in wildfly, see https://docs.wildfly.org/21/Bootable_Guide.html &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.wildfly.plugins</groupId>-->
+<!--                <artifactId>wildfly-jar-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</feature-pack-location>-->
+<!--                    <layers>-->
+<!--                    </layers>-->
+<!--                    <excluded-layers>-->
+<!--                        <layer>deployment-scanner</layer>-->
+<!--                    </excluded-layers>-->
+<!--                    <plugin-options>-->
+<!--                        <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>-->
+<!--                    </plugin-options>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>package</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-jar-maven-plugin</artifactId>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>8.0.0-M2</version>
                 <configuration>
-                    <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</feature-pack-location>
-                    <layers>
-                    </layers>
-                    <excluded-layers>
-                        <layer>deployment-scanner</layer>
-                    </excluded-layers>
-                    <plugin-options>
-                        <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
-                    </plugin-options>
+                    <context>ROOT</context>
+                    <tomeeClassifier>microprofile</tomeeClassifier>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>package</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

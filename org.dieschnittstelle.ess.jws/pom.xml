@@ -56,6 +56,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- tomee plugin, TODO: handle jax-ws service within tomee -->
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>8.0.0-M2</version>
+                <configuration>
+                    <context>ROOT</context>
+                    <tomeeClassifier>microprofile</tomeeClassifier>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
