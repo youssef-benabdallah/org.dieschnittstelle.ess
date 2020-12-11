@@ -29,14 +29,16 @@ public class RESTWebAPIRoot extends Application {
 		logger.info("<constructor>");
 	}
 
-	@Override
-	public Set<Class<?>> getClasses() {
-		return new HashSet(Arrays.asList(
-				TouchpointAccessImpl.class,
-				CustomerCRUDImpl.class,
-				CustomerTransactionCRUDImpl.class,
-				CustomerTrackingImpl.class,
-				CampaignTrackingImplSingleton.class,
-				ShoppingCartRESTServiceImpl.class));
-	}
+// explicit declaration of resource implementation does not seem to be necessary
+//	@Override
+//	public Set<Class<?>> getClasses() {
+//		return new HashSet(Arrays.asList(
+//				TouchpointAccessImpl.class,
+//				CustomerCRUDImpl.class,
+//				CustomerTransactionCRUDImpl.class,
+//				CustomerTrackingImpl.class,
+//				CampaignTrackingImplSingleton.class,
+//				ShoppingCartRESTServiceImpl.class));
+//	}
+
 }
