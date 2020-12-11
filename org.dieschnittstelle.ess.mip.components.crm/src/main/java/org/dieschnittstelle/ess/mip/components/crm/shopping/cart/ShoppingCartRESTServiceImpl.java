@@ -31,6 +31,7 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
     // the values for this property a provided by the microprofile config file
     // which is part of the web application project, see https://rieckpil.de/whatis-eclipse-microprofile-config/
 //    @Inject
+    // TODO MP: handle property injection
     @ConfigProperty(name = "shoppingcart.idletimeoutms", defaultValue = "3600000")
     private long idleTimeout;
 

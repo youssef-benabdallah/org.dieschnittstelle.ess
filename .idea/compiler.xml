@@ -29,6 +29,7 @@
         <module name="demo-lib-entities-erp" />
         <module name="demo-jrs-api" />
         <module name="lib-esa-utils" />
+        <module name="lib-utils" />
         <module name="org.dieschnittstelle.ess.jws.client" />
         <module name="wsv-client" />
         <module name="demo-lib-entities-crm" />
@@ -76,6 +77,7 @@
       <module name="demo-ser-webapp" target="1.8" />
       <module name="demo-ue-add2" target="1.8" />
       <module name="demo-wsv-client" target="1.8" />
+      <module name="ess-deployment" target="1.8" />
       <module name="jrs-api" target="1.8" />
       <module name="jrs-client" target="1.8" />
       <module name="jrs-webapp" target="1.8" />

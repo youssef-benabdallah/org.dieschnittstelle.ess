@@ -8,12 +8,16 @@
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/src/main/webapp/WEB-INF/jboss-web.xml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/src/main/webapp/WEB-INF/jboss-web.xml" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws/src/main/webapp/WEB-INF/jboss-web.xml" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.lib.entities.crm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.lib.entities.erp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.lib.utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.crm/src/main/java" charset="UTF-8" />
@@ -21,6 +25,7 @@
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.erp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.erp/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.webapp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip.webapp/src/main/webapp/WEB-INF/jboss-web.xml" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.mip/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ser.client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ser.client/src/main/resources" charset="UTF-8" />
@@ -32,6 +37,7 @@
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add3/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/src/main/webapp/WEB-INF/jboss-web.xml" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws5/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws5/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/org.dieschnittstelle.ess.wsv.client/src/main/java" charset="UTF-8" />

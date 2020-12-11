@@ -3,6 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.dieschnittstelle.ess</groupId>
+        <artifactId>ess-deployment</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <groupId>org.dieschnittstelle.ess</groupId>
     <artifactId>mip-app</artifactId>
@@ -11,23 +16,6 @@
     <packaging>war</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- these are the settings from the wildfly examples -->
-        <version.bootable.jar>3.0.0.Beta1-SNAPSHOT</version.bootable.jar>
-        <version.wildfly>21.0.0.Final</version.wildfly>
-        <version.jkube>1.0.1</version.jkube>
-        <plugin.fork.embedded>true</plugin.fork.embedded>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        <version.microprofile.bom>${version.wildfly}</version.microprofile.bom>
-        <version.server.bom>${version.wildfly}</version.server.bom>
-        <version.org.wildfly.arquillian>3.0.0.Final</version.org.wildfly.arquillian>
-        <version.org.jboss.arquillian.junit>1.6.0.Final</version.org.jboss.arquillian.junit>
-        <version.junit>4.13.1</version.junit>
-        <version.org.jboss.shrinkwrap.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap.shrinkwrap>
     </properties>
 
     <build>
@@ -48,6 +36,7 @@
                     <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</feature-pack-location>
                     <layers>
                         <layer>jaxrs</layer>
+                        <layer>webservices</layer>
                         <layer>management</layer>
                         <layer>datasources-web-server</layer>
                         <layer>bean-validation</layer>
@@ -75,12 +64,6 @@
     </build>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>javax</groupId>-->
-<!--            <artifactId>javaee-api</artifactId>-->
-<!--            <version>8.0</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>

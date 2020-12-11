@@ -39,7 +39,7 @@
     <orderEntry type="module" module-name="lib-entities-crm" />
     <orderEntry type="module" module-name="lib-entities-erp" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.3" level="project" />
-    <orderEntry type="library" name="Maven: org.dieschnittstelle.ess.shared:lib-utils:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="lib-utils" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
