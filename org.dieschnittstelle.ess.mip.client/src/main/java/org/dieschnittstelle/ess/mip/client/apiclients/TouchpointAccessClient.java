@@ -2,8 +2,8 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.crm.CrmException;
-import org.dieschnittstelle.ess.mip.components.crm.TouchpointAccess;
+import org.dieschnittstelle.ess.mip.components.crm.api.CrmException;
+import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 
 public class TouchpointAccessClient implements TouchpointAccess {

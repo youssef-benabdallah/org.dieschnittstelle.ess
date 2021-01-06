@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerTransactionCRUD;
+import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;

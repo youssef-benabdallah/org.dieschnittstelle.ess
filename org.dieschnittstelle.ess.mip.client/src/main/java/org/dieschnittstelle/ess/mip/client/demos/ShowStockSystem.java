@@ -7,7 +7,7 @@ import static org.dieschnittstelle.ess.mip.client.Constants.TOUCHPOINT_2;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
-import org.dieschnittstelle.ess.mip.components.crm.CrmException;
+import org.dieschnittstelle.ess.mip.components.crm.api.CrmException;
 import org.dieschnittstelle.ess.mip.client.apiclients.StockSystemClient;
 import org.dieschnittstelle.ess.utils.Utils;
 import org.dieschnittstelle.ess.mip.client.apiclients.ProductCRUDClient;

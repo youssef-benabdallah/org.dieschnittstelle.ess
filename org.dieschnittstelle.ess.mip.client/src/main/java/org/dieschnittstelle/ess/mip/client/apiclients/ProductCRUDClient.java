@@ -3,7 +3,7 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 import java.util.List;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.components.erp.crud.ProductCRUD;
+import org.dieschnittstelle.ess.mip.components.erp.crud.api.ProductCRUD;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 
 public class ProductCRUDClient implements ProductCRUD {

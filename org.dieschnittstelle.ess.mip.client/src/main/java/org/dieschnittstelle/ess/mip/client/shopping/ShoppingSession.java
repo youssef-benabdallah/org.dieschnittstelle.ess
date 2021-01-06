@@ -3,10 +3,10 @@ package org.dieschnittstelle.ess.mip.client.shopping;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.CampaignTracking;
-import org.dieschnittstelle.ess.mip.components.crm.CustomerTracking;
-import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCart;
-import org.dieschnittstelle.ess.mip.components.shopping.ShoppingException;
+import org.dieschnittstelle.ess.mip.components.crm.api.CampaignTracking;
+import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
+import org.dieschnittstelle.ess.mip.components.shopping.api.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.Customer;

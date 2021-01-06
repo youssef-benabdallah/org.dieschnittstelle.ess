@@ -2,8 +2,8 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCartRESTService;
-import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCart;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartRESTService;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 
 public class ShoppingCartClient implements ShoppingCart {

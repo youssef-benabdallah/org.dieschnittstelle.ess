@@ -1,12 +1,12 @@
-package org.dieschnittstelle.ess.mip.client.shopping;
+package org.dieschnittstelle.ess.mip.components.shopping.api;
 
-import org.dieschnittstelle.ess.mip.components.shopping.api.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 
-public interface ShoppingBusinessDelegate {
-	
+// TODO: PAT1: this is the interface to be provided as a stateful ejb if ejb access is used
+public interface ShoppingSessionFacadeRemote {
+
 	public void setTouchpoint(AbstractTouchpoint touchpoint);
 	
 	public void setCustomer(Customer customer);
@@ -14,5 +14,5 @@ public interface ShoppingBusinessDelegate {
 	public void addProduct(AbstractProduct product, int units);
 	
 	public void purchase() throws ShoppingException;
-
+	
 }

@@ -2,7 +2,7 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.crm.CustomerTracking;
+import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 
 public class CustomerTrackingClient implements CustomerTracking {

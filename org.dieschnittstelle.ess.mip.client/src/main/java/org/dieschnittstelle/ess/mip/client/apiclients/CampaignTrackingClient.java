@@ -2,7 +2,7 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.crm.CampaignTracking;
+import org.dieschnittstelle.ess.mip.components.crm.api.CampaignTracking;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
 
