@@ -2,8 +2,8 @@ package org.dieschnittstelle.ess.mip.client.ejbclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.crm.shopping.cart.ShoppingCartRESTService;
-import org.dieschnittstelle.ess.mip.components.crm.shopping.cart.ShoppingCart;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCartRESTService;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.mip.client.Constants;
 

@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
 import org.dieschnittstelle.ess.mip.components.crm.crud.TouchpointCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
@@ -33,7 +32,7 @@ public class TouchpointAccessImpl implements TouchpointAccess {
 
 	@Override
 	public AbstractTouchpoint createTouchpointAndPointOfSale(
-			AbstractTouchpoint touchpoint) throws ShoppingException {
+			AbstractTouchpoint touchpoint) throws CrmException {
 //		logProductBundleKlass();
 
 		// we first create the posCRUD

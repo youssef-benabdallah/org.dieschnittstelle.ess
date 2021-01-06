@@ -7,7 +7,8 @@ import static org.dieschnittstelle.ess.mip.client.Constants.TOUCHPOINT_2;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.client.ejbclients.EJBProxyFactory;
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.mip.components.crm.CrmException;
+import org.dieschnittstelle.ess.mip.components.shopping.ShoppingException;
 import org.dieschnittstelle.ess.mip.client.ejbclients.StockSystemClient;
 import org.dieschnittstelle.ess.utils.Utils;
 import org.dieschnittstelle.ess.mip.client.ejbclients.ProductCRUDClient;
@@ -90,7 +91,7 @@ public class ShowStockSystem {
 
 			System.out.println("\n***************** created touchpoints\n");
 		}
-		catch (ShoppingException e) {
+		catch (CrmException e) {
 			throw new RuntimeException("createTouchpoints(): got exception: " + e,e);
 		}
 	}

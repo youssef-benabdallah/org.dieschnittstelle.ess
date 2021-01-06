@@ -39,6 +39,7 @@
         <module name="ue-add2" />
         <module name="ue-jws4" />
         <module name="ue-add3" />
+        <module name="mip-components-shopping" />
         <module name="demo-jws-client" />
         <module name="jrs-client" />
         <module name="demo-wsv-client" />
@@ -92,6 +93,7 @@
       <module name="mip-client" target="1.9" />
       <module name="mip-components-crm" target="1.8" />
       <module name="mip-components-erp" target="1.8" />
+      <module name="mip-components-shopping" target="1.8" />
       <module name="mip-webapp" target="1.8" />
       <module name="ser-client" target="1.8" />
       <module name="ser-webapp" target="1.8" />

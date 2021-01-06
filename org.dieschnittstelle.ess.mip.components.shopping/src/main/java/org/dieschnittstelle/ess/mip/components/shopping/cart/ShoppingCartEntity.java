@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.components.crm.shopping.cart;
+package org.dieschnittstelle.ess.mip.components.shopping.cart;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -53,9 +53,10 @@
     <orderEntry type="library" name="Maven: com.github.fge:btf:1.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.ws.rs:javax.ws.rs-api:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.dieschnittstelle.ess:ejb-ejbmodule-crm:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="mip-components-erp" />
+    <orderEntry type="module" module-name="mip-components-crm" />
     <orderEntry type="library" name="Maven: javax.jws:javax.jws-api:1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.dieschnittstelle.ess:ejb-ejbmodule-erp:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="mip-components-shopping" />
     <orderEntry type="module" module-name="lib-entities-erp" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />

@@ -26,12 +26,12 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>javax.ejb</groupId>
-            <artifactId>javax.ejb-api</artifactId>
-            <version>3.2</version>
-            <scope>runtime</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax.ejb</groupId>-->
+<!--            <artifactId>javax.ejb-api</artifactId>-->
+<!--            <version>3.2</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -71,12 +71,17 @@
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>ejb-ejbmodule-crm</artifactId>
+            <artifactId>mip-components-erp</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>ejb-ejbmodule-erp</artifactId>
+            <artifactId>mip-components-crm</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dieschnittstelle.ess</groupId>
+            <artifactId>mip-components-shopping</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

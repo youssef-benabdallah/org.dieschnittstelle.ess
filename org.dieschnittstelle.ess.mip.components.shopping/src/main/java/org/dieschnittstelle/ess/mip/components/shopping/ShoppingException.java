@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.components.crm.shopping;
+package org.dieschnittstelle.ess.mip.components.shopping;
 
 public class ShoppingException extends Exception {
 	

@@ -1,7 +1,7 @@
-package org.dieschnittstelle.ess.mip.components.crm.shopping.cart;
+package org.dieschnittstelle.ess.mip.components.shopping.cart;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.crud.EntityManagerProvider;
+import org.dieschnittstelle.ess.mip.components.shopping.EntityManagerProvider;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -25,7 +25,7 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ShoppingCartRESTServiceImpl.class);
 
     @Inject
-    @EntityManagerProvider.CRMDataAccessor
+    @EntityManagerProvider.ShoppingDataAccessor
     private EntityManager em;
 
     // the values for this property a provided by the microprofile config file

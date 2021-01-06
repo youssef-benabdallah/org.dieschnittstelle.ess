@@ -2,7 +2,6 @@ package org.dieschnittstelle.ess.mip.components.crm;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 
 import javax.jws.WebService;
@@ -16,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 public interface TouchpointAccess {
 
 	@POST
-	public AbstractTouchpoint createTouchpointAndPointOfSale(AbstractTouchpoint touchpoint) throws ShoppingException;
+	public AbstractTouchpoint createTouchpointAndPointOfSale(AbstractTouchpoint touchpoint) throws CrmException;
 
 	@GET
 	public List<AbstractTouchpoint> readAllTouchpoints();

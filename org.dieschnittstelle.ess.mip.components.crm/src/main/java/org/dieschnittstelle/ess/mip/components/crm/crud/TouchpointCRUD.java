@@ -2,12 +2,12 @@ package org.dieschnittstelle.ess.mip.components.crm.crud;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.mip.components.crm.CrmException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 
 public interface TouchpointCRUD {
 
-	public AbstractTouchpoint createTouchpoint(AbstractTouchpoint Touchpoint) throws ShoppingException;
+	public AbstractTouchpoint createTouchpoint(AbstractTouchpoint Touchpoint) throws CrmException;
 
 	public AbstractTouchpoint readTouchpoint(long id);
 

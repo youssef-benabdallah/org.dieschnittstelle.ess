@@ -41,6 +41,7 @@
         <module>../org.dieschnittstelle.ess.jws.client</module> -->
         <module>../org.dieschnittstelle.ess.mip.components.erp</module>
         <module>../org.dieschnittstelle.ess.mip.components.crm</module>
+        <module>../org.dieschnittstelle.ess.mip.components.shopping</module>
         <module>../org.dieschnittstelle.ess.mip.webapp</module>
         <module>../org.dieschnittstelle.ess.mip</module>
         <module>../org.dieschnittstelle.ess.mip.client</module>

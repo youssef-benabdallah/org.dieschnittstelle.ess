@@ -1,6 +1,6 @@
 package org.dieschnittstelle.ess.mip.client.shopping;
 
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.mip.components.shopping.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;

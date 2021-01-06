@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.mip.components.crm.CrmException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
@@ -31,14 +31,13 @@ public class TouchpointCRUDImpl implements TouchpointCRUD {
 	 * TODO ADD1: run CreateTouchpointsAccessingCRUD in the client project with the @TransactionAttribute commented in - what happens?
 	 */
 	@Override
-	public AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint) throws ShoppingException {
+	public AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint) throws CrmException {
 
 		/*
 		 * TODO ADD1: swap true/false
 		 */		
 		if (/*true*/false) {
-			throw new RuntimeException(new ShoppingException(
-					ShoppingException.ShoppingSessionExceptionReason.UNKNOWN));
+			throw new RuntimeException(new CrmException("Exception provoked by implementation!"));
 		} else {
 			em.persist(touchpoint);
 			return touchpoint;

@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.components.crm.shopping;
+package org.dieschnittstelle.ess.mip.components.shopping;
 
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;

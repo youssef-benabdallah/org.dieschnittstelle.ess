@@ -5,7 +5,8 @@ import org.dieschnittstelle.ess.mip.client.shopping.ShoppingBusinessDelegate;
 import org.dieschnittstelle.ess.mip.client.shopping.ShoppingSession;
 import org.dieschnittstelle.ess.mip.client.shopping.ShoppingSessionClient;
 import org.dieschnittstelle.ess.mip.components.crm.CampaignTracking;
-import org.dieschnittstelle.ess.mip.components.crm.shopping.ShoppingException;
+import org.dieschnittstelle.ess.mip.components.crm.CrmException;
+import org.dieschnittstelle.ess.mip.components.shopping.ShoppingException;
 import org.dieschnittstelle.ess.mip.components.crm.TouchpointAccess;
 import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerCRUD;
 import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerTransactionCRUD;
@@ -32,6 +33,10 @@ public class TotalUsecase {
 			(new TotalUsecase()).runAll();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+		if (true) {
+			throw new RuntimeException("Separate shopping service and use api vs. impl!");
 		}
 	}
 
@@ -113,7 +118,7 @@ public class TotalUsecase {
 
 			System.out.println("\n***************** created touchpoints\n");
 		}
-		catch (ShoppingException e) {
+		catch (CrmException e) {
 			throw new RuntimeException("createTouchpoints(): got exception " + e,e);
 		}
 	}

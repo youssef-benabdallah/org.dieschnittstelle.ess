@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
-	<persistence-unit name="crm_PU">
+	<persistence-unit name="shopping_PU">
 		<!-- the specified datasource will be provided by the jpa-ds.xml file
 		     in WEB-INF that is part of the webapp component -->
 		<jta-data-source>java:/crm_erp_DS</jta-data-source>
@@ -11,15 +11,8 @@
 		<!-- <jar-file>lib/somejar.jar</jar-file> -->
 		<!-- <class>com.example.SomeClass</class> -->
 		<!-- as we are using different PUs within a single deployment, we list the classes for each PU -->
-		<class>org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint</class>
-		<class>org.dieschnittstelle.ess.entities.crm.Address</class>
-		<class>org.dieschnittstelle.ess.entities.crm.CampaignExecution</class>
-		<class>org.dieschnittstelle.ess.entities.crm.Customer</class>
-		<class>org.dieschnittstelle.ess.entities.crm.CustomerTransaction</class>
-		<class>org.dieschnittstelle.ess.entities.crm.Location</class>
-		<class>org.dieschnittstelle.ess.entities.crm.MobileTouchpoint</class>
+		<class>org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCartEntity</class>
 		<class>org.dieschnittstelle.ess.entities.crm.ShoppingCartItem</class>
-		<class>org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 		</properties>

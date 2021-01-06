@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.components.crm.shopping.cart;
+package org.dieschnittstelle.ess.mip.components.shopping.cart;
 
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 

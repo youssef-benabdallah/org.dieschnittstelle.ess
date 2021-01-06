@@ -4,16 +4,6 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.CampaignTrackingImplSingleton;
-import org.dieschnittstelle.ess.mip.components.crm.CustomerTrackingImpl;
-import org.dieschnittstelle.ess.mip.components.crm.TouchpointAccessImpl;
-import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerCRUDImpl;
-import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerTransactionCRUDImpl;
-import org.dieschnittstelle.ess.mip.components.crm.shopping.cart.ShoppingCartRESTServiceImpl;
-
-import java.util.Arrays;
-import java.util.Set;
-import java.util.HashSet;
 
 /*
  * Note that in order for the webapi to work correctly, the option
