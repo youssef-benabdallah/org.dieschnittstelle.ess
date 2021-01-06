@@ -8,11 +8,11 @@ import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 
 public class ProductCRUDClient implements ProductCRUD {
 
-	private ProductCRUD ejbProxy;
+	private ProductCRUD serviceProxy;
 
 	public ProductCRUDClient() throws Exception {
 		// TODO: obtain a proxy specifying the ejb interface and uri. Let all subsequent methods use the proxy.
-//		this.ejbProxy = EJBProxyFactory.getInstance().getProxy(null,"");
+//		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(null);
 	}
 
 	public AbstractProduct createProduct(AbstractProduct prod) {
@@ -22,29 +22,29 @@ public class ProductCRUDClient implements ProductCRUD {
 		return prod;
 
 		// TODO: KOMMENTIEREN SIE DEN FOLGENDEN CODE, INKLUSIVE DER ID ZUWEISUNG, EIN
-//		AbstractProduct created = ejbProxy.createProduct(prod);
+//		AbstractProduct created = serviceProxy.createProduct(prod);
 //		// as a side-effect we set the id of the created product on the argument before returning
 //		prod.setId(created.getId());
 //		return created;
 	}
 
 	public List<AbstractProduct> readAllProducts() {
-//		return ejbProxy.readAllProducts();
+//		return serviceProxy.readAllProducts();
 		return null;
 	}
 
 	public AbstractProduct updateProduct(AbstractProduct update) {
-//		return ejbProxy.updateProduct(update);
+//		return serviceProxy.updateProduct(update);
 		return null;
 	}
 
 	public AbstractProduct readProduct(long productID) {
-//		return ejbProxy.readProduct(productID);
+//		return serviceProxy.readProduct(productID);
 		return null;
 	}
 
 	public boolean deleteProduct(long productID) {
-//		return ejbProxy.deleteProduct(productID);
+//		return serviceProxy.deleteProduct(productID);
 		return false;
 	}
 

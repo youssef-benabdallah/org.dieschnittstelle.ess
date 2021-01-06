@@ -25,7 +25,7 @@ import java.util.Properties;
  * does some checks on the uris and interfaces
  * realised as singleton
  */
-public class EJBProxyFactory {
+public class ServiceProxyFactory {
 
     /*
      * this filter logs the raw response body data
@@ -54,16 +54,16 @@ public class EJBProxyFactory {
         }
     }
 
-    protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(EJBProxyFactory.class);
+    protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ServiceProxyFactory.class);
 
     // some custom runtime exception
-    private static class EJBProxyException extends RuntimeException {
+    private static class ServiceProxyException extends RuntimeException {
 
-        public EJBProxyException(String msg) {
+        public ServiceProxyException(String msg) {
             super(msg);
         }
 
-        public EJBProxyException(String msg, Throwable cause) {
+        public ServiceProxyException(String msg, Throwable cause) {
             super(msg, cause);
         }
 
@@ -71,31 +71,31 @@ public class EJBProxyFactory {
 
     private static Properties essClientProperties = new Properties();
 
-    public static final String PROPERTY_USE_WEB_API_AS_DEFAULT = "ess.ejb.client.useWebAPIAsDefault";
-    public static final String PROPERTY_WEB_API_BASE_URL = "ess.ejb.client.webAPIBaseUrl";
+    public static final String PROPERTY_USE_WEB_API_AS_DEFAULT = "ess.mip.client.useWebAPIAsDefault";
+    public static final String PROPERTY_WEB_API_BASE_URL = "ess.mip.client.webAPIBaseUrl";
 
     static {
         try {
-            essClientProperties.load(EJBProxyFactory.class.getClassLoader().getResourceAsStream("ess-ejb-client.properties"));
+            essClientProperties.load(ServiceProxyFactory.class.getClassLoader().getResourceAsStream("ess-mip-client.properties"));
             logger.info("initialise(): loaded properties: " + essClientProperties);
         }
         catch (Exception e) {
-            throw new EJBProxyException("<static initialiser> got exception trying to read client properties: " + e,e);
+            throw new ServiceProxyException("<static initialiser> got exception trying to read client properties: " + e,e);
         }
     }
 
     // the instance
-    private static EJBProxyFactory instance;
+    private static ServiceProxyFactory instance;
 
     // public method for initialising the factory
     public static void initialise(String webAPIBaseUrl,boolean useWebAPI) {
         logger.info("initialise(): useWebAPIAsDefault: " + useWebAPI);
         logger.info("initialise(): webAPIBaseUrl: " + webAPIBaseUrl);
         if (instance != null) {
-            logger.warn("initialise() was called on EJBProxyFactory, but there already exists an instance. Will not overwrite it.");
+            logger.warn("initialise() was called on ServiceProxyFactory, but there already exists an instance. Will not overwrite it.");
             return;
         }
-        instance = new EJBProxyFactory(webAPIBaseUrl,useWebAPI);
+        instance = new ServiceProxyFactory(webAPIBaseUrl,useWebAPI);
     }
 
     public static void initialise(boolean useWebAPI) {
@@ -109,9 +109,9 @@ public class EJBProxyFactory {
 
 
     // this gives us the instance
-    public static EJBProxyFactory getInstance() {
+    public static ServiceProxyFactory getInstance() {
         if (instance == null) {
-            throw new EJBProxyException("getInstance() was invoked, but no instance has been created yet. Need to call initialise() before");
+            throw new ServiceProxyException("getInstance() was invoked, but no instance has been created yet. Need to call initialise() before");
         }
         return instance;
     }
@@ -122,12 +122,12 @@ public class EJBProxyFactory {
     // this is the client-side representation of the web api, which gives access to the different services offered via this api
     private ResteasyWebTarget webAPI;
 
-    private EJBProxyFactory(String webAPIBaseUrl,boolean useWebAPIAsDefault) {
+    private ServiceProxyFactory(String webAPIBaseUrl, boolean useWebAPIAsDefault) {
         this.useWebAPIAsDefault = useWebAPIAsDefault;
 
         // we check whether polymorphism is handled for products and touchpoints
         if (useWebAPIAsDefault && !AbstractTouchpoint.class.isAnnotationPresent(JsonTypeInfo.class)) {
-            throw new EJBProxyException("access to web api cannot be supported as polymorphism is not handled sufficiently. Check annotations on AbstractTouchpoint! Remember to also restart the server-side application once changes have been made.");
+            throw new ServiceProxyException("access to web api cannot be supported as polymorphism is not handled sufficiently. Check annotations on AbstractTouchpoint! Remember to also restart the server-side application once changes have been made.");
         } else if (useWebAPIAsDefault && !AbstractProduct.class.isAnnotationPresent(JsonTypeInfo.class)) {
             logger.warn("NOTE THAT AbstractProduct might need to be prepared for polymorphism in order for WebAPI access to work overall correctly. Remember to also restart the server-side application once changes have been made.");
         } else {
@@ -135,10 +135,10 @@ public class EJBProxyFactory {
         }
 
         if (useWebAPIAsDefault) {
-            System.out.println("\n%%%%%%%%%%%% EJBProxyFactory: EJBs will be accessed via REST API %%%%%%%%%%%\n\n");
+            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: services will be accessed via REST API %%%%%%%%%%%\n\n");
         }
         else {
-            System.out.println("\n%%%%%%%%%%%% EJBProxyFactory: EJBs will be accessed via EJB proxies %%%%%%%%%%%\n\n");
+            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: services will be accessed via EJB proxies %%%%%%%%%%%\n\n");
         }
 
         try {
@@ -146,27 +146,31 @@ public class EJBProxyFactory {
             ResteasyClient client = new ResteasyClientBuilder().register(new LoggingFilter()).build();
             this.webAPI = client.target(webAPIBaseUrl);
         } catch (Exception e) {
-            throw new EJBProxyException("got exception trying to instantiate proxy factory: " + e, e);
+            throw new ServiceProxyException("got exception trying to instantiate proxy factory: " + e, e);
         }
 
     }
 
     // use the default setting for whether ejb or rest service proxies shall be created
-    public <T> T getProxy(Class<T> ejbInterface, String ejbUri) {
-        return getProxy(ejbInterface, ejbUri, this.useWebAPIAsDefault);
+    public <T> T getProxy(Class<T> serviceInterface) {
+        return getProxy(serviceInterface, "", this.useWebAPIAsDefault);
+    }
+
+    public <T> T getProxy(Class<T> serviceInterface, String ejbUri) {
+        return getProxy(serviceInterface, ejbUri, this.useWebAPIAsDefault);
     }
 
     // allow to specify what kind of proxy shall be created
-    public <T> T getProxy(Class<T> ejbInterface, String ejbUri, boolean useWebAPI) {
+    public <T> T getProxy(Class<T> serviceInterface, String ejbUri, boolean useWebAPI) {
         T proxy;
 
         try {
-            proxy = this.webAPI.proxy(ejbInterface);
+            proxy = this.webAPI.proxy(serviceInterface);
         } catch (Exception e) {
-            throw new EJBProxyException("got exception trying to create a " + (useWebAPI ? " web service " : " EJB ") + " proxy for interface " + ejbInterface + ": " + e, e);
+            throw new ServiceProxyException("got exception trying to create a " + (useWebAPI ? " web service " : " EJB ") + " proxy for interface " + serviceInterface + ": " + e, e);
         }
 
-        logger.info("getProxy(): returning proxy for " + ejbInterface + ": " + proxy);
+        logger.info("getProxy(): returning proxy for " + serviceInterface + ": " + proxy);
 
         return proxy;
     }

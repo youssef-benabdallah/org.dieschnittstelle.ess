@@ -1,12 +1,12 @@
 package org.dieschnittstelle.ess.mip.client.demos;
 
 import org.dieschnittstelle.ess.mip.client.TotalUsecase;
-import org.dieschnittstelle.ess.mip.client.ejbclients.EJBProxyFactory;
+import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
 
 public class CreateTouchpoints {
 
 	public static void main(String[] args) {
-		EJBProxyFactory.initialise();
+		ServiceProxyFactory.initialise();
 
 		try {
 			TotalUsecase uc = new TotalUsecase();

@@ -26,18 +26,6 @@
     </build>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>javax.ejb</groupId>-->
-<!--            <artifactId>javax.ejb-api</artifactId>-->
-<!--            <version>3.2</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.0.1.Final</version>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

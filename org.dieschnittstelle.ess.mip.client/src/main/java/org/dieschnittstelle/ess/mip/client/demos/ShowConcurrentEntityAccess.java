@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.mip.client.demos;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.client.ejbclients.EJBProxyFactory;
+import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.mip.client.Constants;
 import org.dieschnittstelle.ess.mip.client.ejbclients.CustomerCRUDClient;
@@ -13,7 +13,7 @@ public class ShowConcurrentEntityAccess {
 			.getLogger(ShowConcurrentEntityAccess.class);
 
 	public static void main(String[] args) {
-		EJBProxyFactory.initialise();
+		ServiceProxyFactory.initialise();
 
 		try {
 			

@@ -2,7 +2,7 @@ package org.dieschnittstelle.ess.mip.client.junit;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
 import org.dieschnittstelle.ess.mip.client.TotalUsecase;
-import org.dieschnittstelle.ess.mip.client.ejbclients.EJBProxyFactory;
+import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.mip.client.ejbclients.StockSystemClient;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class TestShoppingSession {
 	
 	@Before
 	public void prepareContext() throws Exception {
-		EJBProxyFactory.initialise();
+		ServiceProxyFactory.initialise();
 
 		Constants.resetEntities();
 		stockSystemClient = new StockSystemClient();

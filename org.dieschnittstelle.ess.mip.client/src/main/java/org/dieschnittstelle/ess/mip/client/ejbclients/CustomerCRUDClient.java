@@ -2,24 +2,23 @@ package org.dieschnittstelle.ess.mip.client.ejbclients;
 
 import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerCRUD;
 import org.dieschnittstelle.ess.entities.crm.Customer;
-import org.dieschnittstelle.ess.mip.client.Constants;
 
 public class CustomerCRUDClient implements CustomerCRUD {
 
-	private CustomerCRUD ejbProxy;
+	private CustomerCRUD serviceProxy;
 
 	public CustomerCRUDClient() throws Exception {
-		ejbProxy = EJBProxyFactory.getInstance().getProxy(CustomerCRUD.class,Constants.CUSTOMER_CRUD_BEAN_URI);
+		serviceProxy = ServiceProxyFactory.getInstance().getProxy(CustomerCRUD.class);
 	}
 
 	@Override
 	public Customer readCustomerForEmail(String email) {
-		return ejbProxy.readCustomerForEmail(email);
+		return serviceProxy.readCustomerForEmail(email);
 	}
 
 	@Override
 	public Customer createCustomer(Customer customer) {
-		Customer created = ejbProxy.createCustomer(customer);
+		Customer created = serviceProxy.createCustomer(customer);
 		
 		// as a side-effect, we set the id on the customer object
 		customer.setId(created.getId());
@@ -31,22 +30,22 @@ public class CustomerCRUDClient implements CustomerCRUD {
 
 	@Override
 	public Customer readCustomer(long id) {
-		return ejbProxy.readCustomer(id);
+		return serviceProxy.readCustomer(id);
 	}
 
 	@Override
 	public Customer updateCustomer(Customer customer) {
-		return ejbProxy.updateCustomer(customer);
+		return serviceProxy.updateCustomer(customer);
 	}
 
 	@Override
 	public Customer updateCustomerWithSleep(Customer customer, long sleep) {
-		return ejbProxy.updateCustomerWithSleep(customer, sleep);
+		return serviceProxy.updateCustomerWithSleep(customer, sleep);
 	}
 
 	@Override
 	public boolean deleteCustomer(int id) {
-		return ejbProxy.deleteCustomer(id);
+		return serviceProxy.deleteCustomer(id);
 	}
 
 }

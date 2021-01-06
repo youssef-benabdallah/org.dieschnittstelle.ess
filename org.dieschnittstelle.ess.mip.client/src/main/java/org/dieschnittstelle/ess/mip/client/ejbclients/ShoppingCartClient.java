@@ -9,8 +9,6 @@ import org.dieschnittstelle.ess.mip.client.Constants;
 
 public class ShoppingCartClient implements ShoppingCart {
 
-	private ShoppingCart ejbProxy;
-
 	private ShoppingCartRESTService serviceProxy;
 
 	// if we are using the REST service rather than the stateful ejb, we will manage the "session id"
@@ -21,33 +19,16 @@ public class ShoppingCartClient implements ShoppingCart {
 	public ShoppingCartClient() throws Exception {
 
 		// we will use the ejb if ejbs shall be used by default
-		if (!EJBProxyFactory.getInstance().usesWebAPIAsDefault()) {
-			this.ejbProxy = EJBProxyFactory.getInstance().getProxy(ShoppingCart.class, Constants.SHOPPING_CART_BEAN_URI, false);
-		}
-		else {
-			this.serviceProxy = EJBProxyFactory.getInstance().getProxy(ShoppingCartRESTService.class,null,true);
-			// a client will be instantiated for each new shopping cart, i.e. we will obtain a cart id here
-			this.shoppingCartEntityId = this.serviceProxy.createNewCart();
-		}
+		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(ShoppingCartRESTService.class);
 	}
 
 	@Override
 	public void addItem(ShoppingCartItem product) {
-		if (ejbProxy != null) {
-			ejbProxy.addItem(product);
-		}
-		else {
-			serviceProxy.addItem(this.shoppingCartEntityId,product);
-		}
+		serviceProxy.addItem(this.shoppingCartEntityId,product);
 	}
 
 	public List<ShoppingCartItem> getItems() {
-		if (ejbProxy != null) {
-			return ejbProxy.getItems();
-		}
-		else {
-			return serviceProxy.getItems(this.shoppingCartEntityId);
-		}
+		return serviceProxy.getItems(this.shoppingCartEntityId);
 	}
 
 	public long getShoppingCartEntityId() {

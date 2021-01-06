@@ -8,23 +8,22 @@ import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
-import org.dieschnittstelle.ess.mip.client.Constants;
 
 public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(CustomerTransactionCRUDClient.class);
 
-	private CustomerTransactionCRUD ejbProxy;
+	private CustomerTransactionCRUD serviceProxy;
 	
 	public CustomerTransactionCRUDClient() throws Exception {
-		this.ejbProxy = EJBProxyFactory.getInstance().getProxy(CustomerTransactionCRUD.class,Constants.TRANSACTIONS_CRUD_BEAN_URI);
+		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(CustomerTransactionCRUD.class);
 	}
 	
 	@Override
 	public Collection<CustomerTransaction> readAllTransactionsForTouchpoint(
 			AbstractTouchpoint touchpoint) {
 		try {
-			return ejbProxy.readAllTransactionsForTouchpoint(touchpoint);
+			return serviceProxy.readAllTransactionsForTouchpoint(touchpoint);
 		}
 		catch (Exception e) {
 			logger.warn("readAllTransactionsForTouchpoint(): got exception: " + e + ". Look at server-side log for further information");
@@ -36,7 +35,7 @@ public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 	public Collection<CustomerTransaction> readAllTransactionsForCustomer(
 			Customer customer) {
 		try {
-			return ejbProxy.readAllTransactionsForCustomer(customer);
+			return serviceProxy.readAllTransactionsForCustomer(customer);
 		}
 		catch (Exception e) {
 			logger.warn("readAllTransactionsForCustomer(): got exception: " + e + ". Look at server-side log for further information");

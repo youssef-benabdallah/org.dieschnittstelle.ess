@@ -5,7 +5,7 @@ import java.util.List;
 import static org.dieschnittstelle.ess.mip.client.Constants.*;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.client.ejbclients.EJBProxyFactory;
+import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.mip.client.ejbclients.ProductCRUDClient;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
@@ -20,7 +20,7 @@ public class TestProductCRUD {
 
 	@Before
 	public void prepareContext() throws Exception {
-		EJBProxyFactory.initialise();
+		ServiceProxyFactory.initialise();
 
 		client = new ProductCRUDClient();
 		Constants.resetEntities();

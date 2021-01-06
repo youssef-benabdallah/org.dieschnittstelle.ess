@@ -6,9 +6,8 @@ import static org.dieschnittstelle.ess.mip.client.Constants.TOUCHPOINT_1;
 import static org.dieschnittstelle.ess.mip.client.Constants.TOUCHPOINT_2;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.client.ejbclients.EJBProxyFactory;
+import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.mip.components.crm.CrmException;
-import org.dieschnittstelle.ess.mip.components.shopping.ShoppingException;
 import org.dieschnittstelle.ess.mip.client.ejbclients.StockSystemClient;
 import org.dieschnittstelle.ess.utils.Utils;
 import org.dieschnittstelle.ess.mip.client.ejbclients.ProductCRUDClient;
@@ -21,7 +20,7 @@ public class ShowStockSystem {
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ShowStockSystem.class);
 
 	public static void main(String[] args) {
-		EJBProxyFactory.initialise();
+		ServiceProxyFactory.initialise();
 
 		try {
 			(new ShowStockSystem()).runAll();
