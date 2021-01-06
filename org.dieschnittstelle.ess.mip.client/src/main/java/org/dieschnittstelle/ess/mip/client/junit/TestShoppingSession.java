@@ -2,8 +2,8 @@ package org.dieschnittstelle.ess.mip.client.junit;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
 import org.dieschnittstelle.ess.mip.client.TotalUsecase;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
-import org.dieschnittstelle.ess.mip.client.ejbclients.StockSystemClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
+import org.dieschnittstelle.ess.mip.client.apiclients.StockSystemClient;
 import org.junit.Before;
 import org.junit.Test;
 

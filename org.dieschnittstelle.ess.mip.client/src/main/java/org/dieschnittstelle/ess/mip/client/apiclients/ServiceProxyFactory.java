@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.client.ejbclients;
+package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.commons.io.IOUtils;

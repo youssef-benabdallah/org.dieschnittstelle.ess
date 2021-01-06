@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.mip.client.demos;
 
 import org.dieschnittstelle.ess.mip.client.TotalUsecase;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
 
 public class CreateTouchpoints {
 

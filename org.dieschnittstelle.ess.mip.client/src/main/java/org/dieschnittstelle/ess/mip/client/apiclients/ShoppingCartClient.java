@@ -1,11 +1,10 @@
-package org.dieschnittstelle.ess.mip.client.ejbclients;
+package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
 import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCartRESTService;
 import org.dieschnittstelle.ess.mip.components.shopping.cart.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
-import org.dieschnittstelle.ess.mip.client.Constants;
 
 public class ShoppingCartClient implements ShoppingCart {
 
@@ -20,6 +19,8 @@ public class ShoppingCartClient implements ShoppingCart {
 
 		// we will use the ejb if ejbs shall be used by default
 		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(ShoppingCartRESTService.class);
+		// a client will be instantiated for each new shopping cart, i.e. we will obtain a cart id here
+		this.shoppingCartEntityId = this.serviceProxy.createNewCart();
 	}
 
 	@Override

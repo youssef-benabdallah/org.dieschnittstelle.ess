@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.client.ejbclients;
+package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.ArrayList;
 import java.util.List;

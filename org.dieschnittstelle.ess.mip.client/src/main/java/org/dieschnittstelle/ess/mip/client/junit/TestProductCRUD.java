@@ -5,8 +5,8 @@ import java.util.List;
 import static org.dieschnittstelle.ess.mip.client.Constants.*;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ProductCRUDClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
+import org.dieschnittstelle.ess.mip.client.apiclients.ProductCRUDClient;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
 import org.junit.Before;

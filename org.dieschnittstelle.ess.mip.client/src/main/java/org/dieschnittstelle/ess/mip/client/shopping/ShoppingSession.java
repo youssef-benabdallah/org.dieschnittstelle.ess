@@ -11,9 +11,9 @@ import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
-import org.dieschnittstelle.ess.mip.client.ejbclients.CampaignTrackingClient;
-import org.dieschnittstelle.ess.mip.client.ejbclients.CustomerTrackingClient;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ShoppingCartClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.CampaignTrackingClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.CustomerTrackingClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.ShoppingCartClient;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
 

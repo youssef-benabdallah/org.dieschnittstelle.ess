@@ -5,10 +5,10 @@ import static org.dieschnittstelle.ess.mip.client.Constants.*;
 import java.util.List;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ProductCRUDClient;
-import org.dieschnittstelle.ess.mip.client.ejbclients.StockSystemClient;
-import org.dieschnittstelle.ess.mip.client.ejbclients.TouchpointAccessClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
+import org.dieschnittstelle.ess.mip.client.apiclients.ProductCRUDClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.StockSystemClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.TouchpointAccessClient;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.junit.Before;
 import org.junit.Test;

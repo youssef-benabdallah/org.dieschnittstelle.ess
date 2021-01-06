@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.mip.client.demos;
 
 import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.client.ejbclients.ServiceProxyFactory;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.mip.components.crm.crud.TouchpointCRUD;
 
 /* demonstrate direct access to the CRUD layer */

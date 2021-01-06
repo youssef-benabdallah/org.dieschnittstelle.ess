@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.client.ejbclients;
+package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import org.dieschnittstelle.ess.mip.components.crm.crud.CustomerCRUD;
 import org.dieschnittstelle.ess.entities.crm.Customer;

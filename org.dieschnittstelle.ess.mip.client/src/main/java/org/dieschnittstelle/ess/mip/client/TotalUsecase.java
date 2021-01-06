@@ -13,7 +13,7 @@ import org.dieschnittstelle.ess.mip.components.erp.StockSystem;
 import org.dieschnittstelle.ess.mip.components.erp.crud.ProductCRUD;
 import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
-import org.dieschnittstelle.ess.mip.client.ejbclients.*;
+import org.dieschnittstelle.ess.mip.client.apiclients.*;
 
 import java.util.Collection;
 
