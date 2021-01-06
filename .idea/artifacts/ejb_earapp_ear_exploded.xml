@@ -8,10 +8,10 @@
       </element>
       <element id="dir-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.mip/src/main/application" />
       <element id="archive" name="org.dieschnittstelle.ess.ejb.ejbmodule.crm.jar">
-        <element id="module-output" name="mip-components-crm" />
+        <element id="module-output" name="mip-components-crm-impl" />
       </element>
       <element id="archive" name="org.dieschnittstelle.ess.ejb.ejbmodule.erp.jar">
-        <element id="module-output" name="mip-components-erp" />
+        <element id="module-output" name="mip-components-erp-impl" />
       </element>
       <element id="directory" name="lib">
         <element id="archive" name="org.dieschnittstelle.ess.entities.crm.jar">

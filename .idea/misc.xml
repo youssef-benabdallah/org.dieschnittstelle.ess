@@ -82,6 +82,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.lib.utils/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.shopping/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.crm.api/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.erp.api/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.shopping.api/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

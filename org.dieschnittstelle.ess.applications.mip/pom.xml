@@ -30,9 +30,12 @@
         <module>../org.dieschnittstelle.ess.lib.utils</module>
         <module>../org.dieschnittstelle.ess.lib.entities.erp</module>
         <module>../org.dieschnittstelle.ess.lib.entities.crm</module>
-        <module>../org.dieschnittstelle.ess.mip.components.erp</module>
-        <module>../org.dieschnittstelle.ess.mip.components.crm</module>
-        <module>../org.dieschnittstelle.ess.mip.components.shopping</module>
+        <module>../org.dieschnittstelle.ess.mip.components.erp.api</module>
+        <module>../org.dieschnittstelle.ess.mip.components.crm.api</module>
+        <module>../org.dieschnittstelle.ess.mip.components.shopping.api</module>
+        <module>../org.dieschnittstelle.ess.mip.components.erp.impl</module>
+        <module>../org.dieschnittstelle.ess.mip.components.crm.impl</module>
+        <module>../org.dieschnittstelle.ess.mip.components.shopping.impl</module>
         <module>../org.dieschnittstelle.ess.mip.webapp</module>
         <module>../org.dieschnittstelle.ess.mip</module>
         <module>../org.dieschnittstelle.ess.mip.client</module>

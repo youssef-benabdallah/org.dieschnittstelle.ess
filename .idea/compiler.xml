@@ -11,21 +11,24 @@
         <module name="mip-client" />
         <module name="demo-ejb-ejbmodule-crm" />
         <module name="mip-webapp" />
+        <module name="mip-components-crm (1)" />
         <module name="demo-ser-webapp" />
         <module name="demo-ser-client" />
+        <module name="mip-components-erp-impl" />
+        <module name="mip-components-crm-impl" />
         <module name="demo-jrs-webapp" />
         <module name="ser-webapp" />
         <module name="org.dieschnittstelle.ess.ue.jws4" />
+        <module name="mip-components-shopping-impl" />
         <module name="jws-webapp" />
-        <module name="mip-components-crm" />
         <module name="bas" />
         <module name="ser-client" />
-        <module name="mip-components-erp" />
         <module name="demo-bas" />
         <module name="jws-client" />
         <module name="demo-jrs-client" />
         <module name="mip-app" />
         <module name="jrs-webapp" />
+        <module name="mip-components-crm-api" />
         <module name="demo-lib-entities-erp" />
         <module name="demo-jrs-api" />
         <module name="lib-esa-utils" />
@@ -39,8 +42,10 @@
         <module name="ue-add2" />
         <module name="ue-jws4" />
         <module name="ue-add3" />
-        <module name="mip-components-shopping" />
+        <module name="mip-components-shopping-api" />
+        <module name="mip-components-erp-api" />
         <module name="demo-jws-client" />
+        <module name="mip-components-erp (1)" />
         <module name="jrs-client" />
         <module name="demo-wsv-client" />
         <module name="lib-entities-erp" />
@@ -91,9 +96,14 @@
       <module name="lib-utils" target="1.8" />
       <module name="mip-app" target="1.8" />
       <module name="mip-client" target="1.9" />
-      <module name="mip-components-crm" target="1.8" />
-      <module name="mip-components-erp" target="1.8" />
-      <module name="mip-components-shopping" target="1.8" />
+      <module name="mip-components-crm (1)" target="1.5" />
+      <module name="mip-components-crm-api" target="1.8" />
+      <module name="mip-components-crm-impl" target="1.8" />
+      <module name="mip-components-erp (1)" target="1.8" />
+      <module name="mip-components-erp-api" target="1.8" />
+      <module name="mip-components-erp-impl" target="1.8" />
+      <module name="mip-components-shopping-api" target="1.8" />
+      <module name="mip-components-shopping-impl" target="1.8" />
       <module name="mip-webapp" target="1.8" />
       <module name="ser-client" target="1.8" />
       <module name="ser-webapp" target="1.8" />

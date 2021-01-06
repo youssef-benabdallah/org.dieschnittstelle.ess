@@ -52,17 +52,32 @@
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-erp</artifactId>
+            <artifactId>mip-components-erp-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-crm</artifactId>
+            <artifactId>mip-components-crm-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-shopping</artifactId>
+            <artifactId>mip-components-shopping-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dieschnittstelle.ess</groupId>
+            <artifactId>mip-components-erp-impl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dieschnittstelle.ess</groupId>
+            <artifactId>mip-components-crm-impl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dieschnittstelle.ess</groupId>
+            <artifactId>mip-components-shopping-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

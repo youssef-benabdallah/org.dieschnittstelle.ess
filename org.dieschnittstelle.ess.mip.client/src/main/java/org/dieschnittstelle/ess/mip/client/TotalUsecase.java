@@ -33,10 +33,6 @@ public class TotalUsecase {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		if (true) {
-			throw new RuntimeException("Separate shopping service and use api vs. impl!");
-		}
 	}
 
 	// for demonstrating async ejb / ejb clients
