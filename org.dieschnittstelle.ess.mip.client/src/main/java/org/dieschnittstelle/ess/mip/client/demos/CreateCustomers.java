@@ -15,8 +15,6 @@ public class CreateCustomers {
 		try {
 			CustomerCRUDClient customerCRUD = new CustomerCRUDClient();
 			// this is for testing simplest, non polymorphic access to the rest api, therefore we remove the adress
-			CUSTOMER_1.setAddress(null);
-			CUSTOMER_2.setAddress(null);
 			customerCRUD.createCustomer(CUSTOMER_1);
 			customerCRUD.createCustomer(CUSTOMER_2);
 			show("read created customer for id " + CUSTOMER_1.getId() + ": " + customerCRUD.readCustomer(CUSTOMER_1.getId()));
