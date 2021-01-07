@@ -23,8 +23,10 @@
 			<!-- hibernate/wildfly automatic schema generation -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<!-- openjpa/tomee automatic schema generation, see https://stackoverflow.com/questions/10677950/ddl-generation-and-general-persistence-xml-settings-openjpa, http://openjpa.apache.org/faq.html -->
+			<!-- note that we need to use the action 'drop' rather than 'dropDB' because otherwise for each of the
+			     the three schemata the complete db will be droped on schema creation... -->
 			<property name="openjpa.jdbc.SynchronizeMappings"
-					  value="buildSchema(foreignKeys=true,schemaAction='dropDB,add')"/>
+					  value="buildSchema(foreignKeys=true,schemaAction='drop,add')"/>
 			<property name="openjpa.jdbc.SchemaFactory"
 					  value="native(foreignKeys=true)" />
 			<property name="openjpa.jdbc.MappingDefaults"
