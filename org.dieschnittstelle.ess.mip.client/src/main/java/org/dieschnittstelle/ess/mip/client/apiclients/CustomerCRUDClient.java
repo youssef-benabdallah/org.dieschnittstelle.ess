@@ -23,8 +23,11 @@ public class CustomerCRUDClient implements CustomerCRUD {
 		// as a side-effect, we set the id on the customer object
 		customer.setId(created.getId());
 		// we also set the id of the address, which might have been initially created, as a side-effect
-		customer.getAddress().setId(created.getAddress().getId());
-		
+		// avoid errors in case no address is specified
+		if (customer.getAddress() != null) {
+			customer.getAddress().setId(created.getAddress().getId());
+		}
+
 		return created;
 	}
 

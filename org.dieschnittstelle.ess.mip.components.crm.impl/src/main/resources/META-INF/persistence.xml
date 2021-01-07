@@ -13,7 +13,6 @@
 		<!-- as we are using different PUs within a single deployment, we list the classes for each PU -->
 		<class>org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint</class>
 		<class>org.dieschnittstelle.ess.entities.crm.Address</class>
-		<class>org.dieschnittstelle.ess.entities.crm.CampaignExecution</class>
 		<class>org.dieschnittstelle.ess.entities.crm.Customer</class>
 		<class>org.dieschnittstelle.ess.entities.crm.CustomerTransaction</class>
 		<class>org.dieschnittstelle.ess.entities.crm.Location</class>
@@ -21,7 +20,15 @@
 		<class>org.dieschnittstelle.ess.entities.crm.ShoppingCartItem</class>
 		<class>org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint</class>
 		<properties>
+			<!-- hibernate/wildfly automatic schema generation -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<!-- openjpa/tomee automatic schema generation, see https://stackoverflow.com/questions/10677950/ddl-generation-and-general-persistence-xml-settings-openjpa, http://openjpa.apache.org/faq.html -->
+			<property name="openjpa.jdbc.SynchronizeMappings"
+					  value="buildSchema(foreignKeys=true,schemaAction='dropDB,add')"/>
+			<property name="openjpa.jdbc.SchemaFactory"
+					  value="native(foreignKeys=true)" />
+			<property name="openjpa.jdbc.MappingDefaults"
+					  value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict"/>
 		</properties>
 	</persistence-unit>
 </persistence>

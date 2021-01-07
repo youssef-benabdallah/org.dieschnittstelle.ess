@@ -64,6 +64,7 @@
       <module name="build-jsf" target="1.8" />
       <module name="build-jws" target="1.8" />
       <module name="build-mip" target="1.8" />
+      <module name="build-mip (1)" target="1.5" />
       <module name="build-ser" target="1.8" />
       <module name="demo-bas" target="1.8" />
       <module name="demo-build-ejb" target="1.8" />

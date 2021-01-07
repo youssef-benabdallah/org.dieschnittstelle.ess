@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jrs/build-jrs.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jrs/build-jrs.iml" group="4_JRS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/build-jws.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/build-jws.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip/build-mip.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip/build-mip.iml" group="7_MIP+JPA+ADD+PAT" />
+      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip.tomee/build-mip-tomee.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip.tomee/build-mip-tomee.iml" group="7_MIP+JPA+ADD+PAT"/>
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ser/build-ser.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ser/build-ser.iml" group="3_SER" />
       <module fileurl="file://$PROJECT_DIR$/ess-deployment.iml" filepath="$PROJECT_DIR$/ess-deployment.iml" group="0_SHARED" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.api/jrs-api.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.api/jrs-api.iml" group="4_JRS" />
