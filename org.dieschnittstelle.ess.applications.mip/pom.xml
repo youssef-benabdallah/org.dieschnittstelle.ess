@@ -38,6 +38,7 @@
         <module>../org.dieschnittstelle.ess.mip.components.shopping.impl</module>
         <module>../org.dieschnittstelle.ess.mip.webapp</module>
         <module>../org.dieschnittstelle.ess.mip</module>
+        <module>../org.dieschnittstelle.ess.mip.tomee</module>
         <module>../org.dieschnittstelle.ess.mip.client</module>
     </modules>
     

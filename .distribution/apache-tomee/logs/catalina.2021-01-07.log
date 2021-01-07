@@ -1,0 +1,154 @@
+07-Jan-2021 18:39:42.380 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke 
+ Server Version:        Apache Tomcat/9.0.20
+07-Jan-2021 18:39:42.381 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Server built:          May 3 2019 22:26:00 UTC
+07-Jan-2021 18:39:42.381 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Server version number: 9.0.20.0
+07-Jan-2021 18:39:42.381 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke OS Name:               Mac OS X
+07-Jan-2021 18:39:42.381 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke OS Version:            10.15.7
+07-Jan-2021 18:39:42.381 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Architektur:          x86_64
+07-Jan-2021 18:39:42.381 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Java Home:             /Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home
+07-Jan-2021 18:39:42.382 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke JVM Version:           13.0.2+8
+07-Jan-2021 18:39:42.382 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke JVM Hersteller:            Oracle Corporation
+07-Jan-2021 18:39:42.382 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke 
+ CATALINA_BASE:         /Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee
+07-Jan-2021 18:39:42.382 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke CATALINA_HOME:         /Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee
+07-Jan-2021 18:39:42.394 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+07-Jan-2021 18:39:42.394 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+07-Jan-2021 18:39:42.394 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+07-Jan-2021 18:39:42.394 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Command line argument: -Djava.util.logging.config.file=/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/conf/logging.properties
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -javaagent:/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/lib/openejb-javaagent.jar
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dorg.apache.catalina.STRICT_SERVLET_COMPLIANCE=false
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dopenejb.session.manager=org.apache.tomee.catalina.session.QuickSessionManager
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dtomee.remote.support=true
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dopenejb.system.apps=false
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dtomee.noshutdownhook=true
+07-Jan-2021 18:39:42.395 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dtomee.jsp-development=true
+07-Jan-2021 18:39:42.396 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dignore.endorsed.dirs=
+07-Jan-2021 18:39:42.396 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dcatalina.base=/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee
+07-Jan-2021 18:39:42.396 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Dcatalina.home=/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee
+07-Jan-2021 18:39:42.396 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Command line argument: -Djava.io.tmpdir=/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/temp
+07-Jan-2021 18:39:42.396 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/master/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+07-Jan-2021 18:39:42.646 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Initialisiere ProtocolHandler["http-nio-8080"]
+07-Jan-2021 18:39:42.693 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Initialisiere ProtocolHandler["ajp-nio-8009"]
+07-Jan-2021 18:39:42.846 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'tomee.remote.support=true'
+07-Jan-2021 18:39:42.860 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'openejb.jdbc.datasource-creator=org.apache.tomee.jdbc.TomEEDataSourceCreator'
+07-Jan-2021 18:39:42.933 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> ********************************************************************************
+07-Jan-2021 18:39:42.933 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> OpenEJB http://tomee.apache.org/
+07-Jan-2021 18:39:42.933 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> Startup: Thu Jan 07 18:39:42 CET 2021
+07-Jan-2021 18:39:42.933 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> Copyright 1999-2018 (C) Apache OpenEJB Project, All Rights Reserved.
+07-Jan-2021 18:39:42.934 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> Version: 8.0.0-M3
+07-Jan-2021 18:39:42.934 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> Build date: 20190523
+07-Jan-2021 18:39:42.934 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> Build time: 12:13
+07-Jan-2021 18:39:42.934 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> ********************************************************************************
+07-Jan-2021 18:39:42.934 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> openejb.home = /Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee
+07-Jan-2021 18:39:42.934 INFO [main] org.apache.openejb.OpenEJB$Instance.<init> openejb.base = /Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee
+07-Jan-2021 18:39:42.935 INFO [main] org.apache.openejb.cdi.CdiBuilder.initializeOWB Created new singletonService org.apache.openejb.cdi.ThreadSingletonServiceImpl@65b104b9
+07-Jan-2021 18:39:42.937 INFO [main] org.apache.openejb.cdi.CdiBuilder.initializeOWB Succeeded in installing singleton service
+07-Jan-2021 18:39:42.955 INFO [main] org.apache.openejb.config.ConfigurationFactory.init TomEE configuration file is '/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/conf/tomee.xml'
+07-Jan-2021 18:39:42.982 INFO [main] org.apache.openejb.config.ConfigurationFactory.configureService Configuring Service(id=Tomcat Security Service, type=SecurityService, provider-id=Tomcat Security Service)
+07-Jan-2021 18:39:42.983 INFO [main] org.apache.openejb.config.ConfigurationFactory.configureService Configuring Service(id=Default Transaction Manager, type=TransactionManager, provider-id=Default Transaction Manager)
+07-Jan-2021 18:39:42.986 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'openejb.system.apps=false'
+07-Jan-2021 18:39:42.986 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'openejb.deployments.classpath=false'
+07-Jan-2021 18:39:42.988 INFO [main] org.apache.openejb.assembler.classic.Assembler.createRecipe Creating TransactionManager(id=Default Transaction Manager)
+07-Jan-2021 18:39:43.021 INFO [main] org.apache.openejb.assembler.classic.Assembler.createRecipe Creating SecurityService(id=Tomcat Security Service)
+07-Jan-2021 18:39:43.096 INFO [main] org.apache.openejb.server.ServiceManager.initServer Creating ServerService(id=cxf-rs)
+07-Jan-2021 18:39:43.279 INFO [main] org.apache.openejb.server.SimpleServiceManager.start   ** Bound Services **
+07-Jan-2021 18:39:43.280 INFO [main] org.apache.openejb.server.SimpleServiceManager.printRow   NAME                 IP              PORT  
+07-Jan-2021 18:39:43.280 INFO [main] org.apache.openejb.server.SimpleServiceManager.start -------
+07-Jan-2021 18:39:43.280 INFO [main] org.apache.openejb.server.SimpleServiceManager.start Ready!
+07-Jan-2021 18:39:43.280 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'tomee.noshutdownhook=true'
+07-Jan-2021 18:39:43.280 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Server initialization in [1.117] milliseconds
+07-Jan-2021 18:39:43.304 INFO [main] org.apache.tomee.catalina.OpenEJBNamingContextListener.bindResource Importing a Tomcat Resource with id 'UserDatabase' of type 'org.apache.catalina.UserDatabase'.
+07-Jan-2021 18:39:43.304 INFO [main] org.apache.openejb.assembler.classic.Assembler.createRecipe Creating Resource(id=UserDatabase)
+07-Jan-2021 18:39:43.316 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Starting service [Catalina]
+07-Jan-2021 18:39:43.316 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Starting Servlet engine: [Apache Tomcat/9.0.20]
+07-Jan-2021 18:39:43.332 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Deploying web application archive [/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/webapps/ROOT.war]
+07-Jan-2021 18:39:43.337 INFO [main] org.apache.tomee.catalina.TomcatWebAppBuilder.init ------------------------- localhost -> /
+07-Jan-2021 18:39:43.339 INFO [main] org.apache.openejb.util.JarExtractor.extract Extracting jar: /Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/webapps/ROOT.war
+07-Jan-2021 18:39:43.384 INFO [main] org.apache.openejb.util.JarExtractor.extract Extracted path: /Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/webapps/ROOT
+07-Jan-2021 18:39:43.385 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'openejb.session.manager=org.apache.tomee.catalina.session.QuickSessionManager'
+07-Jan-2021 18:39:43.506 INFO [main] org.apache.openejb.util.OptionsLog.info Using 'tomee.mp.scan=all'
+07-Jan-2021 18:39:43.732 SEVERE [main] jdk.internal.reflect.NativeMethodAccessorImpl.invoke Fehler beim deployen des Web-Applikationsarchivs [/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/webapps/ROOT.war]
+	java.lang.IllegalStateException: Error starting child
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:716)
+		at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:690)
+		at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:705)
+		at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:978)
+		at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1849)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+		at org.apache.catalina.startup.HostConfig.deployWARs(HostConfig.java:773)
+		at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:427)
+		at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1576)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:309)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:423)
+		at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:366)
+		at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:929)
+		at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+		at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+		at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+		at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+		at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+		at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:932)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.startup.Catalina.start(Catalina.java:633)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+		at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:344)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:475)
+	Caused by: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]]
+		at org.apache.catalina.util.LifecycleBase.handleSubClassException(LifecycleBase.java:440)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:198)
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:713)
+		... 37 more
+	Caused by: org.apache.tomee.catalina.TomEERuntimeException: org.apache.openejb.OpenEJBException: Unable to create annotation scanner for web module : Unsupported class file major version 57
+		at org.apache.tomee.catalina.TomcatWebAppBuilder.loadApplication(TomcatWebAppBuilder.java:2354)
+		at org.apache.tomee.catalina.TomcatWebAppBuilder.startInternal(TomcatWebAppBuilder.java:1197)
+		at org.apache.tomee.catalina.TomcatWebAppBuilder.configureStart(TomcatWebAppBuilder.java:1130)
+		at org.apache.tomee.catalina.GlobalListenerSupport.lifecycleEvent(GlobalListenerSupport.java:134)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+		at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5048)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		... 38 more
+	Caused by: org.apache.openejb.OpenEJBException: Unable to create annotation scanner for web module : Unsupported class file major version 57
+		at org.apache.openejb.config.DeploymentLoader.addWebModule(DeploymentLoader.java:886)
+		at org.apache.openejb.config.DeploymentLoader.load(DeploymentLoader.java:233)
+		at org.apache.tomee.catalina.TomcatWebAppBuilder.loadApplication(TomcatWebAppBuilder.java:2352)
+		... 44 more
+	Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 57
+		at org.apache.xbean.asm7.ClassReader.<init>(ClassReader.java:184)
+		at org.apache.xbean.asm7.ClassReader.<init>(ClassReader.java:166)
+		at org.apache.xbean.asm7.ClassReader.<init>(ClassReader.java:152)
+		at org.apache.xbean.asm7.ClassReader.<init>(ClassReader.java:273)
+		at org.apache.xbean.finder.AnnotationFinder.readClassDef(AnnotationFinder.java:1167)
+		at org.apache.xbean.finder.AnnotationFinder.<init>(AnnotationFinder.java:145)
+		at org.apache.xbean.finder.AnnotationFinder.<init>(AnnotationFinder.java:158)
+		at org.apache.openejb.config.FinderFactory$OpenEJBAnnotationFinder.<init>(FinderFactory.java:546)
+		at org.apache.openejb.config.FinderFactory.newFinder(FinderFactory.java:267)
+		at org.apache.openejb.config.FinderFactory.create(FinderFactory.java:80)
+		at org.apache.openejb.config.FinderFactory.createFinder(FinderFactory.java:69)
+		at org.apache.openejb.config.DeploymentLoader.addWebModule(DeploymentLoader.java:878)
+		... 46 more
+07-Jan-2021 18:39:43.733 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Deployment of web application archive [/Users/master/Documents/jkwrite/bht/runtime/workspaces/essworkspace_s21/org.dieschnittstelle.ess/.distribution/apache-tomee/webapps/ROOT.war] has finished in [400] ms
+07-Jan-2021 18:39:43.743 INFO [main] org.apache.catalina.core.StandardContext.setClassLoaderProperty Unable to set the web application class loader property [clearReferencesRmiTargets] to [true] as the property does not exist.
+07-Jan-2021 18:39:43.743 INFO [main] org.apache.catalina.core.StandardContext.setClassLoaderProperty Unable to set the web application class loader property [clearReferencesObjectStreamClassCaches] to [true] as the property does not exist.
+07-Jan-2021 18:39:43.743 INFO [main] org.apache.catalina.core.StandardContext.setClassLoaderProperty Unable to set the web application class loader property [clearReferencesObjectStreamClassCaches] to [true] as the property does not exist.
+07-Jan-2021 18:39:43.743 INFO [main] org.apache.catalina.core.StandardContext.setClassLoaderProperty Unable to set the web application class loader property [clearReferencesThreadLocals] to [true] as the property does not exist.
+07-Jan-2021 18:39:43.763 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Starting ProtocolHandler ["http-nio-8080"]
+07-Jan-2021 18:39:43.767 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Starting ProtocolHandler ["ajp-nio-8009"]
+07-Jan-2021 18:39:43.769 INFO [main] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke Server startup in [488] milliseconds
