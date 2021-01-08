@@ -71,7 +71,7 @@ public class TouchpointCRUDImpl implements TouchpointCRUD {
 
 		show("entity manager is: " + this.em);
 
-		Query query = em.createQuery("SELECT t FROM AbstractTouchpoint AS t");
+		Query query = em.createQuery("SELECT t FROM AbstractTouchpoint t");
 
 		List<AbstractTouchpoint> tps = (List<AbstractTouchpoint>) query
 				.getResultList();

@@ -19,6 +19,10 @@ import java.util.List;
 @Logged
 @RequestScoped
 @Transactional
+/*
+ * MIP: in contrast to hibernate, openjpa implementation does not accept id comparison for entity attributes in jpql queries.
+ * comparison must be done for the id attribute of the entity attribute
+ */
 public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, CustomerTransactionCRUDLocal {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager
@@ -76,7 +80,7 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	public List<CustomerTransaction> readAllTransactionsForCustomer(
 			Customer customer) {
 		Query query = em
-				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer = "
+				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer.id = "
 						+ customer.getId());
 		logger.info("readAllTransactionsForCustomer(): created query: " + query);
 
@@ -98,9 +102,9 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	public List<CustomerTransaction> readAllTransactionsForTouchpointAndCustomer(
 			AbstractTouchpoint touchpoint, Customer customer) {
 		Query query = em
-				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer = "
+				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer.id = "
 						+ customer.getId()
-						+ " AND t.touchpoint = "
+						+ " AND t.touchpoint.id = "
 						+ touchpoint.getId());
 		logger.info("readAllTransactionsForTouchpointAndCustomer(): created query: "
 				+ query);

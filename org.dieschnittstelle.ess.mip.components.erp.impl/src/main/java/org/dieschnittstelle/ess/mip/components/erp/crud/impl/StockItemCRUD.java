@@ -46,8 +46,7 @@ public interface StockItemCRUD {
     public StockItem updateStockItem(StockItem item);
 
     /*
-     * here you can create a simple Query using em.createQuery() - see readAllPointsOfSale()
-     * in PointOfSaleCRUDStateless as an example
+     * here you can create a simple Query using em.createQuery() - see readAllTransactionsForCustomer() in .crm.crud.impl.CustomerTransactionCRUDImpl as an example
      */
     public List<StockItem> readAllStockItems();
 

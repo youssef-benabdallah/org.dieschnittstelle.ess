@@ -76,7 +76,7 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
         logger.info("removeIdleCarts(): idleTimeout is set to: " + idleTimeout);
 
         // read all carts
-        for (ShoppingCartEntity scart : (List<ShoppingCartEntity>)em.createQuery("SELECT c FROM ShoppingCartStateful AS c").getResultList()) {
+        for (ShoppingCartEntity scart : (List<ShoppingCartEntity>)em.createQuery("SELECT c FROM ShoppingCartStateful c").getResultList()) {
             if (System.currentTimeMillis() - scart.getLastUpdated() > idleTimeout) {
                 logger.info("ShoppingCart has exceeded idle time. Will remove it: " + scart.getId());
                 deleteCart(scart.getId());
