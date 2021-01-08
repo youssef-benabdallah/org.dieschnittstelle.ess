@@ -10,13 +10,12 @@
     </parent>
 
     <groupId>org.dieschnittstelle.ess</groupId>
-    <artifactId>mip-ms-crm-tomee</artifactId>
+    <artifactId>mip-ms-shopping-tomee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!-- MP: use war packaging -->
     <packaging>war</packaging>
 
     <properties>
-        <maven.tomcat.port>8081</maven.tomcat.port>
     </properties>
 
     <build>
@@ -45,9 +44,9 @@
                 <configuration>
                     <context>ROOT</context>
                     <tomeeClassifier>microprofile</tomeeClassifier>
-                    <tomeeHttpPort>7081</tomeeHttpPort>
-                    <tomeeAjpPort>7010</tomeeAjpPort>
-                    <tomeeShutdownPort>7006</tomeeShutdownPort>
+                    <tomeeHttpPort>7083</tomeeHttpPort>
+                    <tomeeAjpPort>7012</tomeeAjpPort>
+                    <tomeeShutdownPort>7008</tomeeShutdownPort>
                 </configuration>
             </plugin>
         </plugins>
@@ -81,7 +80,13 @@
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-crm-impl</artifactId>
+            <artifactId>mip-components-shopping-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dieschnittstelle.ess</groupId>
+            <artifactId>mip-components-shopping-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>

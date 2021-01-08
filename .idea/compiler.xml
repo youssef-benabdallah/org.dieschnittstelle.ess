@@ -18,10 +18,12 @@
         <module name="bas" />
         <module name="ser-client" />
         <module name="demo-jrs-client" />
+        <module name="mip-ms-shopping-tomee" />
         <module name="mip-components-crm-api" />
         <module name="mip-ms-crm-tomee" />
         <module name="lib-utils" />
         <module name="mip-app-tomee" />
+        <module name="mip-ms-erp-tomee" />
         <module name="demo-ejb-client" />
         <module name="mip-components-erp-api" />
         <module name="jrs-client" />
@@ -114,9 +116,11 @@
       <module name="mip-components-shopping-impl" target="1.8" />
       <module name="mip-ms-crm-tomee" target="1.8" />
       <module name="mip-ms-erp" target="1.8" />
+      <module name="mip-ms-erp-tomee" target="1.8" />
       <module name="mip-ms-shared-webapp" target="1.8" />
       <module name="mip-ms-shared-webapp-crm" target="1.8" />
       <module name="mip-ms-shopping" target="1.8" />
+      <module name="mip-ms-shopping-tomee" target="1.8" />
       <module name="mip-webapp" target="1.8" />
       <module name="ser-client" target="1.8" />
       <module name="ser-webapp" target="1.8" />

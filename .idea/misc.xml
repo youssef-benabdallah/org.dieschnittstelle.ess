@@ -91,6 +91,8 @@
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm/deployment/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm.tomee/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shared.webapp/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.erp.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shopping.tomee/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
