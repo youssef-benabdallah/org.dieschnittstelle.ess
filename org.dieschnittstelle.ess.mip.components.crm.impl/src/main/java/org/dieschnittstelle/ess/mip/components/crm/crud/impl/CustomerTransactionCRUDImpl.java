@@ -77,7 +77,7 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	public Collection<CustomerTransaction> readAllTransactionsForCustomer(
 			Customer customer) {
 		Query query = em
-				.createQuery("SELECT t FROM CustomerTransaction AS t WHERE t.customer = "
+				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer = "
 						+ customer.getId());
 		logger.info("readAllTransactionsForCustomer(): created query: " + query);
 
@@ -91,10 +91,15 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	}
 
 	@Override
+	public Collection<CustomerTransaction> readAllTransactions() {
+		return em.createQuery("SELECT t FROM CustomerTransaction t").getResultList();
+	}
+
+	@Override
 	public List<CustomerTransaction> readAllTransactionsForTouchpointAndCustomer(
 			AbstractTouchpoint touchpoint, Customer customer) {
 		Query query = em
-				.createQuery("SELECT t FROM CustomerTransaction AS t WHERE t.customer = "
+				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer = "
 						+ customer.getId()
 						+ " AND t.touchpoint = "
 						+ touchpoint.getId());

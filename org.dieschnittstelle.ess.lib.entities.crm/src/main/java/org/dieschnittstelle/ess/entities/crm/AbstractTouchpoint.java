@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.json.bind.annotation.JsonbTypeDeserializer;
+import javax.json.bind.annotation.JsonbTypeSerializer;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -27,9 +29,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.GenericCRUDEntity;
-import org.dieschnittstelle.ess.utils.jsonb.PolymorphicDeserialiser;
+import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
 
-import static org.dieschnittstelle.ess.utils.jsonb.PolymorphicDeserialiser.KLASSNAME_PROPERTY;
+import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLASSNAME_PROPERTY;
 
 /**
  * this is an abstraction over different touchpoints (with pos being the most
@@ -55,7 +57,9 @@ import static org.dieschnittstelle.ess.utils.jsonb.PolymorphicDeserialiser.KLASS
 // jrs/jackson annotations
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonbTypeDeserializer(PolymorphicDeserialiser.class)
+// jsonb annotations
+@JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
+@JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
 public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEntity {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(AbstractTouchpoint.class);
@@ -121,8 +125,9 @@ public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEnt
 		this.name = name;
 	}
 
-	// this annotation must be set on accessor methods rather than on the attributes themselves
+	// here, this annotation must be set on accessor methods rather than on the attributes themselves
 	@JsonIgnore
+	@JsonbTransient
 	public Collection<Customer> getCustomers() {
 		return customers;
 	}
@@ -145,6 +150,7 @@ public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEnt
 	}
 
 	@JsonIgnore
+	@JsonbTransient
 	public Collection<CustomerTransaction> getTransactions() {
 		return transactions;
 	}

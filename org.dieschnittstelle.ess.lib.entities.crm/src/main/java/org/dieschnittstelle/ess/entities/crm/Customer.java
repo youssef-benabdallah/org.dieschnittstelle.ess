@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -73,6 +74,7 @@ public class Customer implements Serializable {
 	@ManyToMany(mappedBy="customers")
 	// we ignore this attribute as it will cause trouble when reading a customer via the rest service due to lazy loading being enabled by default
 	@JsonIgnore
+	@JsonbTransient
 	private Collection<AbstractTouchpoint> touchpoints = new HashSet<AbstractTouchpoint>();
 
 	@ManyToOne
@@ -85,6 +87,7 @@ public class Customer implements Serializable {
 	//@OneToMany(mappedBy="customer", fetch=FetchType.EAGER)
 	// we also ignore this attribute (could be commented once eager loading is active)
 	@JsonIgnore
+	@JsonbTransient
 	private Collection<CustomerTransaction> transactions;
 	
 	public void addTouchpoint(AbstractTouchpoint touchpoint) {

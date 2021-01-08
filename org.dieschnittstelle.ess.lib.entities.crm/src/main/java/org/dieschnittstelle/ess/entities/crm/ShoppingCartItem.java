@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.entities.crm;
 
 import java.io.Serializable;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -45,6 +46,7 @@ public class ShoppingCartItem implements Serializable {
 	
 	@Transient
 	@JsonIgnore
+	@JsonbTransient
 	private AbstractProduct productObj;
 	
 	public ShoppingCartItem() {

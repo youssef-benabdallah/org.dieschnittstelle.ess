@@ -24,4 +24,7 @@ public interface CustomerTransactionCRUD {
 	@Path("/read-for-customer")
 	public Collection<CustomerTransaction> readAllTransactionsForCustomer(Customer customer);
 
+	@GET
+	public Collection<CustomerTransaction> readAllTransactions();
+
 }

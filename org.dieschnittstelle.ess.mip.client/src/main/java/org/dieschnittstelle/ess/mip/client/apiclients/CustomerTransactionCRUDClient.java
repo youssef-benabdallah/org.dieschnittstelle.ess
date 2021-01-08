@@ -43,4 +43,9 @@ public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 		}
 	}
 
+	@Override
+	public Collection<CustomerTransaction> readAllTransactions() {
+		return serviceProxy.readAllTransactions();
+	}
+
 }

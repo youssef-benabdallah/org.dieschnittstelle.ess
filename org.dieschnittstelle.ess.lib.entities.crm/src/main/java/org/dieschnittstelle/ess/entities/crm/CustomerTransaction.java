@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbDateFormat;
+import javax.json.bind.annotation.JsonbTypeAdapter;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +40,7 @@ public class CustomerTransaction implements Serializable {
 	private long id;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonbDateFormat(JsonbDateFormat.TIME_IN_MILLIS)
 	private Date date;
 
 	@ManyToOne
