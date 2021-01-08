@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
+import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
 
 public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 

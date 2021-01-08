@@ -1,12 +1,12 @@
 package org.dieschnittstelle.ess.mip.components.crm.crud.api;
 
-import java.util.List;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/transactions")
 @Consumes({MediaType.APPLICATION_JSON})
@@ -25,5 +25,6 @@ public interface CustomerTransactionCRUD {
 
 	@GET
 	public List<CustomerTransaction> readAllTransactions();
+
 
 }

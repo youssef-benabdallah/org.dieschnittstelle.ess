@@ -1,6 +1,5 @@
 package org.dieschnittstelle.ess.mip.components.crm.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +12,7 @@ import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionC
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 /**
@@ -29,9 +29,11 @@ public class CustomerTrackingImpl implements CustomerTracking {
 	 * we use the local interface to the CustomerTransactionCRUD
 	 */
 	@Inject
-	private CustomerTransactionCRUDLocal customerTransactionCRUD;
-	
-	
+	private CustomerTransactionCRUD customerTransactionCRUD;
+
+	@Inject
+	private CustomerTransactionCRUDLocal customerTransactionCRUDLocal;
+
 	public CustomerTrackingImpl() {
 		logger.info("<constructor>: " + this);
 	}
@@ -44,7 +46,7 @@ public class CustomerTrackingImpl implements CustomerTracking {
 			item.setId(0);
 		}
 		
-		customerTransactionCRUD.createTransaction(transaction);
+		customerTransactionCRUDLocal.createTransaction(transaction);
 	}
 
 	public List<CustomerTransaction> readAllTransactions() {

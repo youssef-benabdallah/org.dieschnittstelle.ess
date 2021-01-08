@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.json.bind.serializer.DeserializationContext;
 import javax.json.bind.serializer.JsonbDeserializer;
 import javax.json.bind.serializer.JsonbSerializer;
@@ -81,7 +82,8 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
             Map<String,Object> intermediateObj = new HashMap<>();
             intermediateObj.put(KLASSNAME_PROPERTY,t.getClass());
             for (Method m : collectGetters(t.getClass())) {
-                    intermediateObj.put(getFieldnameForGetter(m.getName()), m.invoke(t));
+                String fieldname = getFieldnameForGetter(m.getName());
+                intermediateObj.put(fieldname, m.invoke(t));
             }
             logger.info("serialise(): created intermediate map object: " + intermediateObj);
             serializationContext.serialize(intermediateObj,jsonGenerator);
@@ -98,7 +100,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
         else {
             List methods = Arrays.asList(klass.getDeclaredMethods())
                     .stream()
-                    .filter(m -> Modifier.isPublic(m.getModifiers()) &&  m.getParameterCount() == 0 && m.getName().startsWith("get") || m.getName().startsWith("is"))
+                    .filter(m -> Modifier.isPublic(m.getModifiers()) &&  m.getParameterCount() == 0 && !m.isAnnotationPresent(JsonbTransient.class) && m.getName().startsWith("get") || m.getName().startsWith("is"))
                     .collect(Collectors.toList());
             methods.addAll(collectGetters(klass.getSuperclass()));
             return methods;

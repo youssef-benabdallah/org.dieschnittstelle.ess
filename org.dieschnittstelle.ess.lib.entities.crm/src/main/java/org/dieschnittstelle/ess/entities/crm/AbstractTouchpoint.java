@@ -90,10 +90,12 @@ public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEnt
 	 */
 	@XmlTransient
 	@ManyToMany
+	@JsonbTransient
 	private Collection<Customer> customers = new HashSet<Customer>();
 	
 	@XmlTransient
 	@OneToMany(mappedBy="touchpoint")
+	@JsonbTransient
 	private Collection<CustomerTransaction> transactions;
 
 

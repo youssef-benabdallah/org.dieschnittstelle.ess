@@ -1,22 +1,20 @@
 package org.dieschnittstelle.ess.mip.components.crm.crud.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.Customer;
+import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
+import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUDLocal;
+import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
+import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.dieschnittstelle.ess.entities.crm.Customer;
-import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
-import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
-import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUDLocal;
-import org.dieschnittstelle.ess.utils.interceptors.Logged;
+import java.util.ArrayList;
+import java.util.List;
 
 @Logged
 @RequestScoped
