@@ -1,7 +1,6 @@
 package org.dieschnittstelle.ess.mip.components.crm.crud.api;
 
-import java.util.Collection;
-
+import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -18,13 +17,13 @@ public interface CustomerTransactionCRUD {
 	// a get request passing an id via a query parameter)
 	@PUT
 	@Path("/read-for-touchpoint")
-	public Collection<CustomerTransaction> readAllTransactionsForTouchpoint(AbstractTouchpoint touchpoint);
+	public List<CustomerTransaction> readAllTransactionsForTouchpoint(AbstractTouchpoint touchpoint);
 
 	@PUT
 	@Path("/read-for-customer")
-	public Collection<CustomerTransaction> readAllTransactionsForCustomer(Customer customer);
+	public List<CustomerTransaction> readAllTransactionsForCustomer(Customer customer);
 
 	@GET
-	public Collection<CustomerTransaction> readAllTransactions();
+	public List<CustomerTransaction> readAllTransactions();
 
 }

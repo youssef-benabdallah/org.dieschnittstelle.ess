@@ -48,8 +48,7 @@ public class CustomerTrackingImpl implements CustomerTracking {
 	}
 
 	public List<CustomerTransaction> readAllTransactions() {
-		//return transactions;
-		return new ArrayList<CustomerTransaction>();
+		return customerTransactionCRUD.readAllTransactions();
 	}
 
 	@PostConstruct

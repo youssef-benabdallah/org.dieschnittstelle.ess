@@ -1,5 +1,6 @@
 package org.dieschnittstelle.ess.mip.components.crm.crud.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	}
 
 	@Override
-	public Collection<CustomerTransaction> readAllTransactionsForTouchpoint(
+	public List<CustomerTransaction> readAllTransactionsForTouchpoint(
 			AbstractTouchpoint touchpoint) {
 		// check the transactions on the touchpoint
 		logger.info("readAllTransactionsForTouchpoint(): before merge transactions are: "
@@ -63,7 +64,7 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 		logger.info("touchpoint queried.");
 
 		// now read out the transactions
-		Collection<CustomerTransaction> trans = touchpoint.getTransactions();
+		List<CustomerTransaction> trans = new ArrayList<>(touchpoint.getTransactions());
 		logger.info("readAllTransactionsForTouchpoint(): transactions are: "
 				+ trans);
 		logger.info("readAllTransactionsForTouchpoint(): class is: "
@@ -74,7 +75,7 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	}
 
 	@Override
-	public Collection<CustomerTransaction> readAllTransactionsForCustomer(
+	public List<CustomerTransaction> readAllTransactionsForCustomer(
 			Customer customer) {
 		Query query = em
 				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer = "
@@ -91,7 +92,7 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 	}
 
 	@Override
-	public Collection<CustomerTransaction> readAllTransactions() {
+	public List<CustomerTransaction> readAllTransactions() {
 		return em.createQuery("SELECT t FROM CustomerTransaction t").getResultList();
 	}
 

@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
@@ -20,7 +20,7 @@ public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 	}
 	
 	@Override
-	public Collection<CustomerTransaction> readAllTransactionsForTouchpoint(
+	public List<CustomerTransaction> readAllTransactionsForTouchpoint(
 			AbstractTouchpoint touchpoint) {
 		try {
 			return serviceProxy.readAllTransactionsForTouchpoint(touchpoint);
@@ -32,7 +32,7 @@ public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 	}
 
 	@Override
-	public Collection<CustomerTransaction> readAllTransactionsForCustomer(
+	public List<CustomerTransaction> readAllTransactionsForCustomer(
 			Customer customer) {
 		try {
 			return serviceProxy.readAllTransactionsForCustomer(customer);
@@ -44,7 +44,7 @@ public class CustomerTransactionCRUDClient implements CustomerTransactionCRUD {
 	}
 
 	@Override
-	public Collection<CustomerTransaction> readAllTransactions() {
+	public List<CustomerTransaction> readAllTransactions() {
 		return serviceProxy.readAllTransactions();
 	}
 
