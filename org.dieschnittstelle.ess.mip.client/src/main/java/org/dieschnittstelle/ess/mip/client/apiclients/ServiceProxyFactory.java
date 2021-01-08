@@ -14,13 +14,12 @@ import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientResponseContext;
 import javax.ws.rs.client.ClientResponseFilter;
 import java.io.*;
-import java.util.Properties;
+import java.util.*;
 
 /*
  * Created by master on 17.02.17.
  *
- * creates ejb proxies given a uri and a remote interface
- * alternatively creates a rest service proxy for the interface
+ * creates a rest service proxy for the interface
  *
  * does some checks on the uris and interfaces
  * realised as singleton
@@ -57,7 +56,7 @@ public class ServiceProxyFactory {
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ServiceProxyFactory.class);
 
     // some custom runtime exception
-    private static class ServiceProxyException extends RuntimeException {
+    public static class ServiceProxyException extends RuntimeException {
 
         public ServiceProxyException(String msg) {
             super(msg);
@@ -71,8 +70,27 @@ public class ServiceProxyFactory {
 
     private static Properties essClientProperties = new Properties();
 
-    public static final String PROPERTY_USE_WEB_API_AS_DEFAULT = "ess.mip.client.useWebAPIAsDefault";
-    public static final String PROPERTY_WEB_API_BASE_URL = "ess.mip.client.webAPIBaseUrl";
+    // a list of service id prefixes and the baseurls for the services, which will be read from the properties
+    private static class ServiceRegistryItem {
+        private String serviceIdprefix;
+        private ResteasyWebTarget servicebase;
+
+        public ServiceRegistryItem(String serviceIdprefix, ResteasyWebTarget servicebase) {
+            this.serviceIdprefix = serviceIdprefix;
+            this.servicebase = servicebase;
+        }
+
+        public boolean match(Class serviceInterface) {
+            return serviceInterface.getName().startsWith(this.serviceIdprefix);
+        }
+
+        @Override
+        public String toString() {
+            return "<" + this.serviceIdprefix + ": " + this.servicebase.getUri() + ">";
+        }
+    }
+
+    public static final String PROPERTY_WEB_API_BASE_URL_PREFIX = "ess.mip.client.apiclients.baseurl.";
 
     static {
         try {
@@ -88,25 +106,13 @@ public class ServiceProxyFactory {
     private static ServiceProxyFactory instance;
 
     // public method for initialising the factory
-    public static void initialise(String webAPIBaseUrl,boolean useWebAPI) {
-        logger.info("initialise(): useWebAPIAsDefault: " + useWebAPI);
-        logger.info("initialise(): webAPIBaseUrl: " + webAPIBaseUrl);
+    public static void initialise() {
         if (instance != null) {
             logger.warn("initialise() was called on ServiceProxyFactory, but there already exists an instance. Will not overwrite it.");
             return;
         }
-        instance = new ServiceProxyFactory(webAPIBaseUrl,useWebAPI);
+        instance = new ServiceProxyFactory();
     }
-
-    public static void initialise(boolean useWebAPI) {
-        initialise(essClientProperties.getProperty(PROPERTY_WEB_API_BASE_URL),useWebAPI);
-    }
-
-    // alternative initialisation which will result in properties (base url and web api default usage) being read from a configuration file
-    public static void initialise() {
-        initialise(Boolean.valueOf(essClientProperties.getProperty(PROPERTY_USE_WEB_API_AS_DEFAULT,"false")));
-    }
-
 
     // this gives us the instance
     public static ServiceProxyFactory getInstance() {
@@ -116,35 +122,29 @@ public class ServiceProxyFactory {
         return instance;
     }
 
-    // when instantiating the factory, we specify whether ejb proxies or rest service proxies shall be created
-    private boolean useWebAPIAsDefault;
-
     // this is the client-side representation of the web api, which gives access to the different services offered via this api
-    private ResteasyWebTarget webAPI;
+    private List<ServiceRegistryItem> serviceRegistry = new ArrayList<>();
 
-    private ServiceProxyFactory(String webAPIBaseUrl, boolean useWebAPIAsDefault) {
-        this.useWebAPIAsDefault = useWebAPIAsDefault;
-
+    private ServiceProxyFactory() {
         // we check whether polymorphism is handled for products and touchpoints
-        if (useWebAPIAsDefault && !AbstractTouchpoint.class.isAnnotationPresent(JsonTypeInfo.class)) {
+        if (!AbstractTouchpoint.class.isAnnotationPresent(JsonTypeInfo.class)) {
             throw new ServiceProxyException("access to web api cannot be supported as polymorphism is not handled sufficiently. Check annotations on AbstractTouchpoint! Remember to also restart the server-side application once changes have been made.");
-        } else if (useWebAPIAsDefault && !AbstractProduct.class.isAnnotationPresent(JsonTypeInfo.class)) {
+        } else if (!AbstractProduct.class.isAnnotationPresent(JsonTypeInfo.class)) {
             logger.warn("NOTE THAT AbstractProduct might need to be prepared for polymorphism in order for WebAPI access to work overall correctly. Remember to also restart the server-side application once changes have been made.");
         } else {
             logger.info("consistency check of datamodel classes succeeded. Both ejb and web api access should work.");
         }
 
-        if (useWebAPIAsDefault) {
-            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: services will be accessed via REST API %%%%%%%%%%%\n\n");
-        }
-        else {
-            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: services will be accessed via EJB proxies %%%%%%%%%%%\n\n");
-        }
+//        if (useWebAPIAsDefault) {
+        System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: services will be accessed via REST API %%%%%%%%%%%\n\n");
+//        }
+//        else {
+//            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: services will be accessed via EJB proxies %%%%%%%%%%%\n\n");
+//        }
 
         try {
-            // this is the webAPI instantiation - here, we hard-code the baseUrl for the webAPI, could be passed as an argument, though
-            ResteasyClient client = new ResteasyClientBuilder().register(new LoggingFilter()).build();
-            this.webAPI = client.target(webAPIBaseUrl);
+            createServiceRegistry();
+            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: service registry has been created %%%%%%%%%%%\n" + this.serviceRegistry + "\n");
         } catch (Exception e) {
             throw new ServiceProxyException("got exception trying to instantiate proxy factory: " + e, e);
         }
@@ -153,19 +153,21 @@ public class ServiceProxyFactory {
 
     // use the default setting for whether ejb or rest service proxies shall be created
     public <T> T getProxy(Class<T> serviceInterface) {
-        return getProxy(serviceInterface, "", this.useWebAPIAsDefault);
+        return getProxy(serviceInterface, "");
     }
 
     public <T> T getProxy(Class<T> serviceInterface, String ejbUri) {
-        return getProxy(serviceInterface, ejbUri, this.useWebAPIAsDefault);
+        return getProxy(serviceInterface, ejbUri, true);
     }
 
-    // allow to specify what kind of proxy shall be created
+    /*
+     * allow to specify what kind of proxy shall be created
+     */
     public <T> T getProxy(Class<T> serviceInterface, String ejbUri, boolean useWebAPI) {
         T proxy;
 
         try {
-            proxy = this.webAPI.proxy(serviceInterface);
+            proxy = this.lookupServiceBaseurl(serviceInterface).proxy(serviceInterface);
         } catch (Exception e) {
             throw new ServiceProxyException("got exception trying to create a " + (useWebAPI ? " web service " : " EJB ") + " proxy for interface " + serviceInterface + ": " + e, e);
         }
@@ -175,9 +177,31 @@ public class ServiceProxyFactory {
         return proxy;
     }
 
-    // we make transparent whether we use the webAPI as default or not
-    public boolean usesWebAPIAsDefault() {
-        return this.useWebAPIAsDefault;
+    /*
+     * this creates the service registry using a single client instance, from which the web targets will be created
+     */
+    public void createServiceRegistry() {
+        ResteasyClient client = new ResteasyClientBuilder().register(new LoggingFilter()).build();
+
+        // we iterate over the properties and create the registry. Note that more specific base url assignments need
+        // to precede less specific ones, therefore we sort the matching property in ascending order of their length
+        essClientProperties.stringPropertyNames()
+                .stream()
+                .filter(prop -> prop.startsWith(PROPERTY_WEB_API_BASE_URL_PREFIX))
+                .sorted(Comparator.comparingInt(String::length).reversed())
+                .forEach(prop -> {
+                    serviceRegistry.add(new ServiceRegistryItem(prop.substring(PROPERTY_WEB_API_BASE_URL_PREFIX.length()),client.target(String.valueOf(essClientProperties.getProperty(prop)))));
+                });
+    }
+
+    public ResteasyWebTarget lookupServiceBaseurl(Class serviceInterface) {
+        // we return the first matching item
+        for (ServiceRegistryItem registryItem : serviceRegistry) {
+            if (registryItem.match(serviceInterface)) {
+                return registryItem.servicebase;
+            }
+        }
+        throw new ServiceProxyException("Could not find baseurl for service interface " + serviceInterface + ". No matching baseurl found in service registry: " + serviceRegistry);
     }
 
 }

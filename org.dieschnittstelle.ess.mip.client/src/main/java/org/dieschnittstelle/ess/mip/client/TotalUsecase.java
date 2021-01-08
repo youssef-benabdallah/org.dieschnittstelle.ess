@@ -26,7 +26,7 @@ public class TotalUsecase {
 
 	public static void main(String[] args) {
 		// here, we will use ejb proxies for accessing the server-side components
-		ServiceProxyFactory.initialise(true);
+		ServiceProxyFactory.initialise();
 
 		try {
 			(new TotalUsecase()).runAll();
@@ -62,7 +62,7 @@ public class TotalUsecase {
 	
 	public void runAll() {
 
-		System.out.println("\n%%%%%%%%%%%% TotalUsecase: " + (this.provokeErrorOnPurchase ? "ShoppingException will be provoked (ADD4)" : "will run regularly") + ", using " + (ServiceProxyFactory.getInstance().usesWebAPIAsDefault() ? "WebAPI clients" :"EJB clients") + " for accessing server-side components; " + (this.useShoppingSessionClient ? "remote purchase service will be used (PAT)" : "will use local ShoppingSession implementation") + " %%%%%%%%%%%\n\n");
+		System.out.println("\n%%%%%%%%%%%% TotalUsecase: " + (this.provokeErrorOnPurchase ? "ShoppingException will be provoked (ADD4)" : "will run regularly") + ", using " + (true ? "WebAPI clients" :"EJB clients") + " for accessing server-side components; " + (this.useShoppingSessionClient ? "remote purchase service will be used (PAT)" : "will use local ShoppingSession implementation") + " %%%%%%%%%%%\n\n");
 
 		if (this.stepping) step();
 

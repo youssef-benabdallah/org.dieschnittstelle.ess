@@ -19,6 +19,7 @@
         <module name="ser-client" />
         <module name="demo-jrs-client" />
         <module name="mip-components-crm-api" />
+        <module name="mip-ms-crm-tomee" />
         <module name="lib-utils" />
         <module name="mip-app-tomee" />
         <module name="demo-ejb-client" />
@@ -41,6 +42,7 @@
         <module name="demo-lib-entities-erp" />
         <module name="demo-jrs-api" />
         <module name="lib-esa-utils" />
+        <module name="mip-ms-shared-webapp" />
         <module name="org.dieschnittstelle.ess.jws.client" />
         <module name="wsv-client" />
         <module name="demo-lib-entities-crm" />
@@ -110,6 +112,11 @@
       <module name="mip-components-erp-impl" target="1.8" />
       <module name="mip-components-shopping-api" target="1.8" />
       <module name="mip-components-shopping-impl" target="1.8" />
+      <module name="mip-ms-crm-tomee" target="1.8" />
+      <module name="mip-ms-erp" target="1.8" />
+      <module name="mip-ms-shared-webapp" target="1.8" />
+      <module name="mip-ms-shared-webapp-crm" target="1.8" />
+      <module name="mip-ms-shopping" target="1.8" />
       <module name="mip-webapp" target="1.8" />
       <module name="ser-client" target="1.8" />
       <module name="ser-webapp" target="1.8" />
