@@ -93,6 +93,11 @@
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shared.webapp/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.erp.tomee/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shopping.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.app.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.app.wildfly/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm.app.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.erp.app.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shopping.app.tomee/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

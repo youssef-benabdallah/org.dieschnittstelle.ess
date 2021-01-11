@@ -18,16 +18,15 @@
         <module name="bas" />
         <module name="ser-client" />
         <module name="demo-jrs-client" />
-        <module name="mip-ms-shopping-tomee" />
         <module name="mip-components-crm-api" />
-        <module name="mip-ms-crm-tomee" />
         <module name="lib-utils" />
         <module name="mip-app-tomee" />
-        <module name="mip-ms-erp-tomee" />
         <module name="demo-ejb-client" />
         <module name="mip-components-erp-api" />
+        <module name="mip-ms-crm-app-tomee" />
         <module name="jrs-client" />
         <module name="demo-ue-add2" />
+        <module name="mip-ms-erp-app-tomee" />
         <module name="jrs-api" />
         <module name="demo-ejb-earapp" />
         <module name="mip-webapp" />
@@ -37,13 +36,14 @@
         <module name="demo-jrs-webapp" />
         <module name="ser-webapp" />
         <module name="mip-app (1)" />
+        <module name="mip-app-wildfly" />
         <module name="demo-bas" />
         <module name="jws-client" />
-        <module name="mip-app" />
         <module name="jrs-webapp" />
         <module name="demo-lib-entities-erp" />
         <module name="demo-jrs-api" />
         <module name="lib-esa-utils" />
+        <module name="mip-ms-shopping-app-tomee" />
         <module name="mip-ms-shared-webapp" />
         <module name="org.dieschnittstelle.ess.jws.client" />
         <module name="wsv-client" />
@@ -102,9 +102,9 @@
       <module name="lib-entities-crm" target="1.8" />
       <module name="lib-entities-erp" target="1.8" />
       <module name="lib-utils" target="1.8" />
-      <module name="mip-app" target="1.8" />
       <module name="mip-app (1)" target="1.8" />
       <module name="mip-app-tomee" target="1.8" />
+      <module name="mip-app-wildfly" target="1.8" />
       <module name="mip-client" target="1.9" />
       <module name="mip-components-crm (1)" target="1.5" />
       <module name="mip-components-crm-api" target="1.8" />
@@ -114,13 +114,13 @@
       <module name="mip-components-erp-impl" target="1.8" />
       <module name="mip-components-shopping-api" target="1.8" />
       <module name="mip-components-shopping-impl" target="1.8" />
-      <module name="mip-ms-crm-tomee" target="1.8" />
+      <module name="mip-ms-crm-app-tomee" target="1.8" />
       <module name="mip-ms-erp" target="1.8" />
-      <module name="mip-ms-erp-tomee" target="1.8" />
+      <module name="mip-ms-erp-app-tomee" target="1.8" />
       <module name="mip-ms-shared-webapp" target="1.8" />
       <module name="mip-ms-shared-webapp-crm" target="1.8" />
       <module name="mip-ms-shopping" target="1.8" />
-      <module name="mip-ms-shopping-tomee" target="1.8" />
+      <module name="mip-ms-shopping-app-tomee" target="1.8" />
       <module name="mip-webapp" target="1.8" />
       <module name="ser-client" target="1.8" />
       <module name="ser-webapp" target="1.8" />

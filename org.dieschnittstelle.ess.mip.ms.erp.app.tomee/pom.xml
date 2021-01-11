@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>org.dieschnittstelle.ess</groupId>
-    <artifactId>mip-app</artifactId>
+    <artifactId>mip-ms-erp-app-tomee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!-- MP: use war packaging -->
     <packaging>war</packaging>
@@ -28,37 +28,26 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!-- this is for running the application in wildfly, see https://docs.wildfly.org/21/Bootable_Guide.html -->
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-jar-maven-plugin</artifactId>
-                <configuration>
-                    <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</feature-pack-location>
-                    <layers>
-                        <layer>jaxrs</layer>
-                        <layer>webservices</layer>
-                        <layer>management</layer>
-                        <layer>datasources-web-server</layer>
-                        <layer>bean-validation</layer>
-                        <layer>jpa</layer>
-                        <layer>datasources</layer>
-                        <layer>h2-datasource</layer>
-                        <layer>transactions</layer>
-                    </layers>
-                    <excluded-layers>
-                        <layer>deployment-scanner</layer>
-                    </excluded-layers>
-                    <plugin-options>
-                        <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
-                    </plugin-options>
-                </configuration>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>8.0.0-M3</version>
                 <executions>
                     <execution>
+                        <id>executable-jar</id>
                         <goals>
-                            <goal>package</goal>
+                            <goal>exec</goal>
                         </goals>
+                        <phase>package</phase>
                     </execution>
                 </executions>
+                <configuration>
+                    <context>ROOT</context>
+                    <tomeeClassifier>microprofile</tomeeClassifier>
+                    <tomeeHttpPort>7082</tomeeHttpPort>
+                    <tomeeAjpPort>7011</tomeeAjpPort>
+                    <tomeeShutdownPort>7007</tomeeShutdownPort>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -79,7 +68,13 @@
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-crm-impl</artifactId>
+            <artifactId>mip-components-crm-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dieschnittstelle.ess</groupId>
+            <artifactId>mip-components-erp-api</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
@@ -91,9 +86,9 @@
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-shopping-impl</artifactId>
+            <artifactId>mip-ms-shared-webapp</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
+            <type>war</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess.shared</groupId>
@@ -111,12 +106,6 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-webapp</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>war</type>
-        </dependency>
-        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
@@ -130,6 +119,12 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.11.1</version>
+        </dependency>
+        <!-- we provide the h2 database resources for the driver -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.186</version>
         </dependency>
     </dependencies>
 

@@ -4,8 +4,8 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -31,7 +31,7 @@
     <orderEntry type="module" module-name="mip-components-crm-api" />
     <orderEntry type="library" name="Maven: javax.jws:javax.jws-api:1.1" level="project" />
     <orderEntry type="module" module-name="mip-components-erp-api" />
-    <orderEntry type="module" module-name="mip-components-crm-impl" />
+    <orderEntry type="module" module-name="mip-components-erp-impl" />
     <orderEntry type="module" module-name="mip-ms-shared-webapp" />
     <orderEntry type="module" module-name="lib-entities-crm" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />

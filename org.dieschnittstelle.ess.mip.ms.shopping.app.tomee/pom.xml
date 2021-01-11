@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>org.dieschnittstelle.ess</groupId>
-    <artifactId>mip-ms-shopping-tomee</artifactId>
+    <artifactId>mip-ms-shopping-app-tomee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!-- MP: use war packaging -->
     <packaging>war</packaging>

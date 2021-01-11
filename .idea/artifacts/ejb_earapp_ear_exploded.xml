@@ -4,9 +4,9 @@
     <root id="root">
       <element id="javaee-facet-resources" facet="mip-app/javaeeApplication/JavaEE" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.mip/target/ejb-earapp-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.app.wildfly/target/ejb-earapp-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="dir-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.mip/src/main/application" />
+      <element id="dir-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.app.wildfly/src/main/application" />
       <element id="archive" name="org.dieschnittstelle.ess.ejb.ejbmodule.crm.jar">
         <element id="module-output" name="mip-components-crm-impl" />
       </element>

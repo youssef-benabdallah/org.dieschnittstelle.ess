@@ -10,12 +10,13 @@
     </parent>
 
     <groupId>org.dieschnittstelle.ess</groupId>
-    <artifactId>mip-ms-erp-tomee</artifactId>
+    <artifactId>mip-ms-crm-app-tomee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!-- MP: use war packaging -->
     <packaging>war</packaging>
 
     <properties>
+        <maven.tomcat.port>8081</maven.tomcat.port>
     </properties>
 
     <build>
@@ -44,9 +45,9 @@
                 <configuration>
                     <context>ROOT</context>
                     <tomeeClassifier>microprofile</tomeeClassifier>
-                    <tomeeHttpPort>7082</tomeeHttpPort>
-                    <tomeeAjpPort>7011</tomeeAjpPort>
-                    <tomeeShutdownPort>7007</tomeeShutdownPort>
+                    <tomeeHttpPort>7081</tomeeHttpPort>
+                    <tomeeAjpPort>7010</tomeeAjpPort>
+                    <tomeeShutdownPort>7006</tomeeShutdownPort>
                 </configuration>
             </plugin>
         </plugins>
@@ -80,7 +81,7 @@
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
-            <artifactId>mip-components-erp-impl</artifactId>
+            <artifactId>mip-components-crm-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
