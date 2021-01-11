@@ -10,15 +10,13 @@ import javax.transaction.Transactional;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUD;
+import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDLocal;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
-/**
- * very rudimentary implementation without any logging... 
- */
 @RequestScoped
 @Logged
 @Transactional
-public class PointOfSaleCRUDImpl implements PointOfSaleCRUD {
+public class PointOfSaleCRUDImpl implements PointOfSaleCRUD, PointOfSaleCRUDLocal {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(PointOfSaleCRUDImpl.class);
 
@@ -32,6 +30,8 @@ public class PointOfSaleCRUDImpl implements PointOfSaleCRUD {
 	@Override
 	//@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public PointOfSale createPointOfSale(PointOfSale pos) {
+		logger.info("createPointOfSale(): " + pos);
+
 		em.persist(pos);
 
 		return pos;

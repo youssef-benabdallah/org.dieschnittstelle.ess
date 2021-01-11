@@ -1,11 +1,18 @@
 package org.dieschnittstelle.ess.mip.components.erp.crud.api;
 
+import javax.inject.Qualifier;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.List;
 
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+@RegisterRestClient
 @Path("/pointsOfSale")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})

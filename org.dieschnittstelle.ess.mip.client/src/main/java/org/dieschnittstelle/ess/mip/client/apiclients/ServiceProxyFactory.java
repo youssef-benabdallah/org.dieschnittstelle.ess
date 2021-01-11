@@ -26,6 +26,9 @@ import java.util.*;
  */
 public class ServiceProxyFactory {
 
+    public static final String MONOLITHIC_DEPLOYMENT = "ml";
+    public static final String MICROSERVICES_DEPLOYMENT = "ms";
+
     /*
      * this filter logs the raw response body data
      */
@@ -107,11 +110,15 @@ public class ServiceProxyFactory {
 
     // public method for initialising the factory
     public static void initialise() {
+        initialise(MONOLITHIC_DEPLOYMENT);
+    }
+
+    public static void initialise(String deployment) {
         if (instance != null) {
             logger.warn("initialise() was called on ServiceProxyFactory, but there already exists an instance. Will not overwrite it.");
             return;
         }
-        instance = new ServiceProxyFactory();
+        instance = new ServiceProxyFactory(deployment);
     }
 
     // this gives us the instance
@@ -125,7 +132,7 @@ public class ServiceProxyFactory {
     // this is the client-side representation of the web api, which gives access to the different services offered via this api
     private List<ServiceRegistryItem> serviceRegistry = new ArrayList<>();
 
-    private ServiceProxyFactory() {
+    private ServiceProxyFactory(String deployment) {
         // we check whether polymorphism is handled for products and touchpoints
         if (!AbstractTouchpoint.class.isAnnotationPresent(JsonTypeInfo.class)) {
             throw new ServiceProxyException("access to web api cannot be supported as polymorphism is not handled sufficiently. Check annotations on AbstractTouchpoint! Remember to also restart the server-side application once changes have been made.");
@@ -143,8 +150,8 @@ public class ServiceProxyFactory {
 //        }
 
         try {
-            createServiceRegistry();
-            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: service registry has been created %%%%%%%%%%%\n" + this.serviceRegistry + "\n");
+            createServiceRegistry(deployment);
+            System.out.println("\n%%%%%%%%%%%% ServiceProxyFactory: service registry has been created for deployment " + deployment + " %%%%%%%%%%%\n" + this.serviceRegistry + "\n");
         } catch (Exception e) {
             throw new ServiceProxyException("got exception trying to instantiate proxy factory: " + e, e);
         }
@@ -180,17 +187,17 @@ public class ServiceProxyFactory {
     /*
      * this creates the service registry using a single client instance, from which the web targets will be created
      */
-    public void createServiceRegistry() {
+    public void createServiceRegistry(String deployment) {
         ResteasyClient client = new ResteasyClientBuilder().register(new LoggingFilter()).build();
 
         // we iterate over the properties and create the registry. Note that more specific base url assignments need
         // to precede less specific ones, therefore we sort the matching property in ascending order of their length
         essClientProperties.stringPropertyNames()
                 .stream()
-                .filter(prop -> prop.startsWith(PROPERTY_WEB_API_BASE_URL_PREFIX))
+                .filter(prop -> prop.startsWith(PROPERTY_WEB_API_BASE_URL_PREFIX + deployment + "."))
                 .sorted(Comparator.comparingInt(String::length).reversed())
                 .forEach(prop -> {
-                    serviceRegistry.add(new ServiceRegistryItem(prop.substring(PROPERTY_WEB_API_BASE_URL_PREFIX.length()),client.target(String.valueOf(essClientProperties.getProperty(prop)))));
+                    serviceRegistry.add(new ServiceRegistryItem(prop.substring((PROPERTY_WEB_API_BASE_URL_PREFIX + deployment + ".").length()),client.target(String.valueOf(essClientProperties.getProperty(prop)))));
                 });
     }
 
