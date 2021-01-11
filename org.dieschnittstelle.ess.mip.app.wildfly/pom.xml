@@ -44,6 +44,7 @@
                         <layer>datasources</layer>
                         <layer>h2-datasource</layer>
                         <layer>transactions</layer>
+                        <layer>microprofile-config</layer>
                     </layers>
                     <excluded-layers>
                         <layer>deployment-scanner</layer>
