@@ -11,7 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.List;
 
-public interface PointOfSaleCRUDLocal {
+public interface PointOfSaleCRUDxD {
 
 	public PointOfSale createPointOfSale(PointOfSale pos);
 

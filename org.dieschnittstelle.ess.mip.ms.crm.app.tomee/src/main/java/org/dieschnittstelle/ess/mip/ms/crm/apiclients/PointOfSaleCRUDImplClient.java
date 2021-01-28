@@ -3,17 +3,13 @@ package org.dieschnittstelle.ess.mip.ms.crm.apiclients;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUD;
-import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDLocal;
+import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDxD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
-import org.dieschnittstelle.ess.utils.interceptors.LoggedInterceptor;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.dieschnittstelle.ess.utils.Utils.show;
 
 /*
  * this qualifier is used to distinguish the dependencies to PointOfSaleCRUDImplClient from the level
@@ -22,7 +18,7 @@ import static org.dieschnittstelle.ess.utils.Utils.show;
  */
 @RequestScoped
 @Logged
-public class PointOfSaleCRUDImplClient implements PointOfSaleCRUDLocal {
+public class PointOfSaleCRUDImplClient implements PointOfSaleCRUDxD {
 
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(PointOfSaleCRUDImplClient.class);
 

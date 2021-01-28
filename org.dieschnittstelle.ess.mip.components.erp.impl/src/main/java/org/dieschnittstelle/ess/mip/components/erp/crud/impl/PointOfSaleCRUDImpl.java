@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUD;
-import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDLocal;
+import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDxD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 @RequestScoped
@@ -34,7 +34,7 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
  * rather than by annotation only as usage of it requires additional setup for wildfly in spite of the
  * fact that we do not need it here... well, it is only necessary to require the microprofile-config layer
  */
-public class PointOfSaleCRUDImpl implements PointOfSaleCRUD, PointOfSaleCRUDLocal {
+public class PointOfSaleCRUDImpl implements PointOfSaleCRUD, PointOfSaleCRUDxD {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(PointOfSaleCRUDImpl.class);
 

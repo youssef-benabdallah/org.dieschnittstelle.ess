@@ -12,10 +12,9 @@ import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.TouchpointCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
-import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUD;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDLocal;
+import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUDxD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 @WebService(targetNamespace = "http://dieschnittstelle.org/ess/jws", serviceName = "TouchpointAccessWebService", endpointInterface = "org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess")
@@ -31,7 +30,7 @@ public class TouchpointAccessImpl implements TouchpointAccess {
 	private TouchpointCRUD touchpointCRUD;
 
 	@Inject
-	private PointOfSaleCRUDLocal posCRUD;
+	private PointOfSaleCRUDxD posCRUD;
 
 	@Override
 	public AbstractTouchpoint createTouchpointAndPointOfSale(
