@@ -20,6 +20,11 @@ public class TouchpointAccessClient implements TouchpointAccess {
 	}
 
 	@Override
+	public AbstractTouchpoint readTouchpoint(long id) {
+		return null;
+	}
+
+	@Override
 	public AbstractTouchpoint createTouchpointAndPointOfSale(AbstractTouchpoint touchpoint) throws CrmException {
 		AbstractTouchpoint created = serviceProxy.createTouchpointAndPointOfSale(touchpoint);
 		touchpoint.setId(created.getId());
