@@ -13,7 +13,7 @@ import java.util.List;
 @Produces({MediaType.APPLICATION_JSON})
 public interface CustomerTransactionCRUD {
 
-	// as we take over the signature of the ejbs, we use put request passing the arguments as body (rather than
+	// as we take over the signature of the ejbs, we use put requests passing the arguments as body (rather than
 	// a get request passing an id via a query parameter)
 	@PUT
 	@Path("/read-for-touchpoint")

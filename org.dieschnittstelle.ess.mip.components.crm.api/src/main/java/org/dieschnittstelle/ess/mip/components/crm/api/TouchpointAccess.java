@@ -19,5 +19,9 @@ public interface TouchpointAccess {
 
 	@GET
 	public List<AbstractTouchpoint> readAllTouchpoints();
+
+	@GET
+	@Path("/{id}")
+	public AbstractTouchpoint readTouchpoint(@PathParam("id") long id);
 	
 }

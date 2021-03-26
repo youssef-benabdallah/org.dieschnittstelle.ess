@@ -5,13 +5,13 @@ import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import java.util.List;
 
 /**
- * TODO JPA3/4/6:
+ * TODO MIP3/4/6:
  * - declare the web api for this interface using JAX-RS
- * - implement the interface as an EJB of an appropriate type
- * - in the EJB implementation, delegate method invocations to the corresponding methods of the StockSystem EJB via the local interface
+ * - implement the interface as a CDI Bean
+ * - in the Bean implementation, delegate method invocations to the corresponding methods of the StockSystem Bean
  * - let the StockSystemClient in the client project access the web api via this interface - see ShoppingCartClient for an example
  */
-public interface StockSystemRESTService {
+public interface StockSystemService {
 
 	/**
 	 * adds some units of a product to the stock of a point of sale

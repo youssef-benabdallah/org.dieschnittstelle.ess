@@ -139,7 +139,7 @@ public class ServiceProxyFactory {
         } else if (!AbstractProduct.class.isAnnotationPresent(JsonTypeInfo.class)) {
             logger.warn("NOTE THAT AbstractProduct might need to be prepared for polymorphism in order for WebAPI access to work overall correctly. Remember to also restart the server-side application once changes have been made.");
         } else {
-            logger.info("consistency check of datamodel classes succeeded. Both ejb and web api access should work.");
+            logger.info("consistency check of datamodel classes succeeded.");
         }
 
 //        if (useWebAPIAsDefault) {
@@ -158,7 +158,6 @@ public class ServiceProxyFactory {
 
     }
 
-    // use the default setting for whether ejb or rest service proxies shall be created
     public <T> T getProxy(Class<T> serviceInterface) {
         return getProxy(serviceInterface, "");
     }

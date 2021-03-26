@@ -3,7 +3,7 @@ package org.dieschnittstelle.ess.mip.client;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.client.shopping.ShoppingBusinessDelegate;
 import org.dieschnittstelle.ess.mip.client.shopping.ShoppingSession;
-import org.dieschnittstelle.ess.mip.client.shopping.ShoppingSessionClient;
+import org.dieschnittstelle.ess.mip.client.shopping.PurchaseServiceClient;
 import org.dieschnittstelle.ess.mip.components.crm.api.CampaignTracking;
 import org.dieschnittstelle.ess.mip.components.crm.api.CrmException;
 import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
@@ -25,7 +25,6 @@ public class TotalUsecase {
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(TotalUsecase.class);
 
 	public static void main(String[] args) {
-		// here, we will use ejb proxies for accessing the server-side components
 		ServiceProxyFactory.initialise();
 
 		try {
@@ -35,7 +34,7 @@ public class TotalUsecase {
 		}
 	}
 
-	// for demonstrating async ejb / ejb clients
+	// this is not used currently
 	private boolean async = false;
 	
 	// declare the session as stepping or not
@@ -46,9 +45,9 @@ public class TotalUsecase {
 
 	// TODO: PAT1: set to true for testing purchase service
 	// TODO: ADD4: set to true for testing success-case for transactions and ShoppingException
-	private boolean useShoppingSessionClient = false /*true*/;
+	private boolean usePurchaseServiceClient = false /*true*/;
 
-	// declare the attributes that will be instantiated with the ejb clients - note that the attributes use the remote interface types
+	// declare the attributes that will be instantiated with the service clients
 	private ProductCRUD productCRUD;
 	private TouchpointAccess touchpointAccess;
 	private StockSystem stockSystem;
@@ -62,7 +61,7 @@ public class TotalUsecase {
 	
 	public void runAll() {
 
-		System.out.println("\n%%%%%%%%%%%% TotalUsecase: " + (this.provokeErrorOnPurchase ? "ShoppingException will be provoked (ADD4)" : "will run regularly") + ", using " + (true ? "WebAPI clients" :"EJB clients") + " for accessing server-side components; " + (this.useShoppingSessionClient ? "remote purchase service will be used (PAT)" : "will use local ShoppingSession implementation") + " %%%%%%%%%%%\n\n");
+		System.out.println("\n%%%%%%%%%%%% TotalUsecase: " + (this.provokeErrorOnPurchase ? "ShoppingException will be provoked (ADD4)" : "will run regularly") + ", using " + (true ? "WebAPI clients" :"EJB clients") + " for accessing server-side components; " + (this.usePurchaseServiceClient ? "remote purchase service will be used (PAT)" : "will use local ShoppingSession implementation") + " %%%%%%%%%%%\n\n");
 
 		if (this.stepping) step();
 
@@ -166,12 +165,12 @@ public class TotalUsecase {
 					// it can access the required beans
 					ShoppingBusinessDelegate session;
 
-					if (!useShoppingSessionClient) {
+					if (!usePurchaseServiceClient) {
 						session = new ShoppingSession();
 					}
 					else {
 						// for PAT1: use the ShoppingSessionClient as implementation of the business delegate
-						session = new ShoppingSessionClient();
+						session = new PurchaseServiceClient();
 					}
 					
 					// add a customer and a touchpoint
@@ -228,8 +227,8 @@ public class TotalUsecase {
 		this.provokeErrorOnPurchase = provoke;
 	}
 
-	public void setUseShoppingSessionClient(boolean use) {
-		this.useShoppingSessionClient = use;
+	public void setUsePurchaseServiceClient(boolean use) {
+		this.usePurchaseServiceClient = use;
 	}
 
 

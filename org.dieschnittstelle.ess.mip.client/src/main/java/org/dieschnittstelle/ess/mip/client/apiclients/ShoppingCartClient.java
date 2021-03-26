@@ -2,23 +2,21 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartRESTService;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartService;
 import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 
 public class ShoppingCartClient implements ShoppingCart {
 
-	private ShoppingCartRESTService serviceProxy;
+	private ShoppingCartService serviceProxy;
 
-	// if we are using the REST service rather than the stateful ejb, we will manage the "session id"
-	// (= the id of the ShoppingCart entity) manually. In case we use the stateful ejb this will be managed inside of
-	// the ejb proxy
+	// since we have been using the REST service rather than a stateful ejb, we will manage the "session id"
+	// (= the id of the ShoppingCart entity) manually. 
 	private long shoppingCartEntityId;
 
 	public ShoppingCartClient() throws Exception {
 
-		// we will use the ejb if ejbs shall be used by default
-		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(ShoppingCartRESTService.class);
+		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(ShoppingCartService.class);
 		// a client will be instantiated for each new shopping cart, i.e. we will obtain a cart id here
 		this.shoppingCartEntityId = this.serviceProxy.createNewCart();
 	}

@@ -18,4 +18,6 @@ public interface CustomerTransactionCRUDLocal /*extends CustomerTransactionCRUD*
 
     public List<CustomerTransaction> readAllTransactionsForTouchpointAndCustomer(AbstractTouchpoint touchpoint, Customer customer);
 
+    public List<CustomerTransaction> readAllTransactions();
+
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 
 /*
- * TODO EJB+JPA1/2/5:
- * this interface shall be implemented using a stateless EJB with an EntityManager.
- * See TouchpointCRUDStateless for an example EJB with a similar scope of functionality
+ * TODO MIP+JPA1/2/5:
+ * this interface shall be implemented using a RequestScoped CDI bean with an EntityManager.
+ * See TouchpointCRUDImpl for an example bean with a similar scope of functionality
  */
 
 public interface ProductCRUD {

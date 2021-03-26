@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 /**
@@ -22,7 +23,7 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
  */
 @Entity
 @Logged
-public class ShoppingCartEntity {
+public class ShoppingCartEntity implements ShoppingCart {
 
 	@Id
 	@GeneratedValue

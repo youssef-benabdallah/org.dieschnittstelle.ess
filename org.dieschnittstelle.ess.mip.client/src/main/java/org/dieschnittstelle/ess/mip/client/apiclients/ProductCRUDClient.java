@@ -11,7 +11,7 @@ public class ProductCRUDClient implements ProductCRUD {
 	private ProductCRUD serviceProxy;
 
 	public ProductCRUDClient() throws Exception {
-		// TODO: obtain a proxy specifying the ejb interface and uri. Let all subsequent methods use the proxy.
+		// TODO: obtain a proxy specifying the service interface. Let all subsequent methods use the proxy.
 //		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(null);
 	}
 

@@ -8,14 +8,14 @@ import java.util.List;
 
 /*
  * TODO MIP+JPA3/4/6:
- * this interface shall be implemented using a stateless EJB with an EntityManager.
+ * this interface shall be implemented using a RequestScoped bean with an EntityManager.
  * See the comments below for hints at how to implement the methods
  */
 public interface StockItemCRUD {
 
     /*
      * before this method can be implemented and executed successfully, make
-     * sure that the ProductCRUD EJB has been implemented and product
+     * sure that the ProductCRUD bean has been implemented and product
      * objects are persisted in the database.
      *
      * once you persist the item using the entity manager it is very likely that this will
@@ -46,14 +46,9 @@ public interface StockItemCRUD {
     public StockItem updateStockItem(StockItem item);
 
     /*
-     * here you can create a simple Query using em.createQuery() - see readAllTransactionsForCustomer() in .crm.crud.impl.CustomerTransactionCRUDImpl as an example
-     */
-    public List<StockItem> readAllStockItems();
-
-    /*
      * here you can create a Query using the id of the prod object -
 	 * see readAllTransactionsForTouchpointAndCustomer() in
-	 * CustomerTransactionCRUDStateless (in .ess.ejbmodule.crm) as an
+	 * CustomerTransactionCRUDImpl (in .ess.mip.components.crm) as an
 	 * example
      */
     public List<StockItem> readStockItemsForProduct(IndividualisedProductItem prod);

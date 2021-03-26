@@ -14,7 +14,7 @@
     <option name="TEST_OBJECT" value="class" />
     <option name="PARAMETERS" value="" />
     <method v="2">
-      <option name="Make" enabled="true" />
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.client/pom.xml" goal="clean install" />
     </method>
   </configuration>
 </component>

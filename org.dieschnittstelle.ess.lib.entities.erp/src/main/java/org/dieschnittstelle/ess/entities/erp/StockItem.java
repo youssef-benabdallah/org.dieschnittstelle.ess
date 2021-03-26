@@ -1,36 +1,33 @@
 package org.dieschnittstelle.ess.entities.erp;
 
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
-import javax.persistence.PostLoad;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.apache.logging.log4j.Logger;
 
 //@Entity
 @Table(name = "stock")
-@IdClass(ProductAtPosPK.class)
+// leave this commented out: The usage of IdClass is not working with OpenJPA, so we choose an alternative solution with an own id column
+//@IdClass(ProductAtPosPK.class)
 public class StockItem {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(StockItem.class);
 
-	@Id
+	// internally, we use an own id, but do not expose it to the users of this class,
+	// which will access instances by constraints on pos and/or product
+	private long id;
+
+	// leave this commented out	- it is related to the IdClass usage
+//	@Id
 	@ManyToOne
 	private PointOfSale pos;
 
-	@Id
+	// leave this commented out	- it is related to the IdClass usage
+//	@Id
 	@ManyToOne
 	private IndividualisedProductItem product;
 
 	private int price;
-	
+
 	private int units;
 
 	public StockItem() {
@@ -38,7 +35,7 @@ public class StockItem {
 	}
 
 	public StockItem(IndividualisedProductItem product,
-			PointOfSale pos, int units) {
+					 PointOfSale pos, int units) {
 		this.product = product;
 		this.pos = pos;
 		this.units = units;

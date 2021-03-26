@@ -12,7 +12,7 @@ import java.util.List;
 @Path("/shoppingcarts")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public interface ShoppingCartRESTService {
+public interface ShoppingCartService {
 
     @POST
     public long createNewCart();

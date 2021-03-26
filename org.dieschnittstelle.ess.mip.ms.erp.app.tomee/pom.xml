@@ -70,19 +70,16 @@
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-crm-api</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-erp-api</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-erp-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>

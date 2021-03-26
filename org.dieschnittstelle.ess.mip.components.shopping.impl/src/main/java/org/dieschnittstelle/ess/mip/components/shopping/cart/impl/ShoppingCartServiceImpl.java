@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.mip.components.shopping.cart.impl;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartRESTService;
+import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartService;
 import org.dieschnittstelle.ess.mip.components.shopping.impl.EntityManagerProvider;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
@@ -21,9 +21,9 @@ import java.util.List;
 @ApplicationScoped
 @Logged
 @Transactional
-public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
+public class ShoppingCartServiceImpl implements ShoppingCartService {
 
-    protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ShoppingCartRESTServiceImpl.class);
+    protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ShoppingCartServiceImpl.class);
 
     @Inject
     @EntityManagerProvider.ShoppingDataAccessor
@@ -36,7 +36,7 @@ public class ShoppingCartRESTServiceImpl implements ShoppingCartRESTService {
     @ConfigProperty(name = "shoppingcart.idletimeoutms", defaultValue = "3600000")
     private long idleTimeout;
 
-    public ShoppingCartRESTServiceImpl() {
+    public ShoppingCartServiceImpl() {
         logger.info("<constructor>");
     }
 

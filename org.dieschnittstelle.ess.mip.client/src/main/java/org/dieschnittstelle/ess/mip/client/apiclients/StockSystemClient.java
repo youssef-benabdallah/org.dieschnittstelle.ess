@@ -3,17 +3,17 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dieschnittstelle.ess.mip.components.erp.api.StockSystemRESTService;
+import org.dieschnittstelle.ess.mip.components.erp.api.StockSystemService;
 import org.dieschnittstelle.ess.mip.components.erp.api.StockSystem;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 
 public class StockSystemClient implements StockSystem {
 
-	private StockSystemRESTService serviceProxy;
+	private StockSystemService serviceProxy;
 
 	public StockSystemClient() throws Exception {
 		// TODO: remove the comments and complete the implementation
-//		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(null,null,true);
+//		this.serviceProxy = ServiceProxyFactory.getInstance().getProxy(null);
 	}
 
 	// TODO: uncomment the commented sections from all the following methods and remove the default return statements

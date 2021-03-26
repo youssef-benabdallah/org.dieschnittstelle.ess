@@ -82,19 +82,16 @@
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-crm-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-erp-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-shopping-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess.shared</groupId>

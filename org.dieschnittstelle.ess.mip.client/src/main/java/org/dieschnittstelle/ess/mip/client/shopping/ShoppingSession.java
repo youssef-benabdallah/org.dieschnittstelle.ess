@@ -122,7 +122,7 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 
 		for (ShoppingCartItem item : this.shoppingCart.getItems()) {
 
-			// TODO: ermitteln Sie das AbstractProduct für das gegebene ShoppingCartItem. Nutzen Sie dafür dessen erpProductId und die ProductCRUD EJB
+			// TODO: ermitteln Sie das AbstractProduct für das gegebene ShoppingCartItem. Nutzen Sie dafür dessen erpProductId und die ProductCRUD bean
 
 			if (item.isCampaign()) {
 				this.campaignTracking.purchaseCampaignAtTouchpoint(item.getErpProductId(), this.touchpoint,
@@ -132,7 +132,7 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 				// 2) fuer jedes ProductBundle das betreffende Produkt in der auf dem Bundle angegebenen Anzahl, multipliziert mit dem Wert von
 				// item.getUnits() aus dem Warenkorb,
 				// - hinsichtlich Verfuegbarkeit ueberpruefen, und
-				// - falls verfuegbar, aus dem Warenlager entfernen - nutzen Sie dafür die StockSystem EJB
+				// - falls verfuegbar, aus dem Warenlager entfernen - nutzen Sie dafür die StockSystem bean
 				// (Anm.: item.getUnits() gibt Ihnen Auskunft darüber, wie oft ein Produkt, im vorliegenden Fall eine Kampagne, im
 				// Warenkorb liegt)
 			} else {

@@ -7,15 +7,15 @@ import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.dieschnittstelle.ess.entities.erp.StockItem;
 
 /*
- * TODO EJB+JPA3/4/6:
- * this interface shall be implemented using a stateless EJB with an EntityManager.
+ * TODO MIP+JPA3/4/6:
+ * this interface shall be implemented using a RequestScoped CDI bean with an EntityManager.
  * See the comments below for hints at how to implement the methods
  */
 public interface StockItemCRUD {
 
     /*
      * before this method can be implemented and executed successfully, make
-     * sure that the ProductCRUD EJB has been implemented and product
+     * sure that the ProductCRUD Bean has been implemented and product
      * objects are persisted in the database.
      *
      * once you persist the item using the entity manager it is very likely that this will
@@ -53,7 +53,7 @@ public interface StockItemCRUD {
     /*
      * here you can create a Query using the id of the prod object -
 	 * see readAllTransactionsForTouchpointAndCustomer() in
-	 * CustomerTransactionCRUDStateless (in .ess.ejbmodule.crm) as an
+	 * CustomerTransactionCRUDImpl (in .mip.components.crm.impl) as an
 	 * example
      */
     public List<StockItem> readStockItemsForProduct(IndividualisedProductItem prod);

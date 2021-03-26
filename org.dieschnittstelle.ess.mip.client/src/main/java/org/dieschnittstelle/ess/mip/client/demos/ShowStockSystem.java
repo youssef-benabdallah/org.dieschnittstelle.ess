@@ -29,7 +29,7 @@ public class ShowStockSystem {
 		}
 	}
 	
-	// declare the attributes that will be instantiated with the ejb clients
+	// declare the attributes that will be instantiated with the service clients
 	private ProductCRUDClient productCRUD;
 	private StockSystemClient stockSystemClient;
 	private TouchpointAccessClient touchpointCRUD;
