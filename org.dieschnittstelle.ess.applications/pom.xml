@@ -36,7 +36,7 @@
         <module>../org.dieschnittstelle.ess.jrs.api</module>
         <module>../org.dieschnittstelle.ess.jrs</module>
         <module>../org.dieschnittstelle.ess.jrs.client</module>
-        <module>../org.dieschnittstelle.ess.jws</module>
+<!--        <module>../org.dieschnittstelle.ess.jws</module>-->
         <!-- this needs to be commented out as creation will fail as long as the server is not running
         <module>../org.dieschnittstelle.ess.jws.client</module> -->
         <module>../org.dieschnittstelle.ess.mip.components.erp.api</module>
@@ -48,7 +48,7 @@
         <module>../org.dieschnittstelle.ess.mip.webapp</module>
         <module>../org.dieschnittstelle.ess.mip.client</module>
         <!-- code skeletons -->
-        <module>../org.dieschnittstelle.ess.ue.jws4</module>
+<!--        <module>../org.dieschnittstelle.ess.ue.jws4</module>-->
     </modules>
     
 </project>
