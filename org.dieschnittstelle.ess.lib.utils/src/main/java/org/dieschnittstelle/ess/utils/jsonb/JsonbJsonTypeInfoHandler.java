@@ -1,6 +1,6 @@
 package org.dieschnittstelle.ess.utils.jsonb;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -18,12 +18,10 @@ import javax.json.bind.serializer.JsonbSerializer;
 import javax.json.bind.serializer.SerializationContext;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonParser;
-import javax.management.AttributeList;
-import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.dieschnittstelle.ess.utils.Utils.show;
 
 /*
  * this is our own implementation of the @JsonTypeInfo semantics from Jackson using
@@ -57,7 +55,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
         // however, as serialisation does not seem to appear possible without duplicating large part of
         // serialisation logic, we just embed the jackson processing here
 
-        String klassname = jsonObj.getString(KLASSNAME_PROPERTY);
+        String klassname = jsonObj.getString(lookupClassnameProperty((Class)rtType));
         logger.info("deserialise(): klassname is: " + klassname);
 
         try {
@@ -80,7 +78,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
             // any attribute name mappings... there seems to be no straightforward way to access the result
             // of default generation for the given object and simply add the klassname attribute...
             Map<String,Object> intermediateObj = new HashMap<>();
-            intermediateObj.put(KLASSNAME_PROPERTY,t.getClass());
+            intermediateObj.put(lookupClassnameProperty(t.getClass()),t.getClass());
             for (Method m : collectGetters(t.getClass())) {
                 String fieldname = getFieldnameForGetter(m.getName());
                 intermediateObj.put(fieldname, m.invoke(t));
@@ -116,5 +114,17 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
         }
     }
 
+    private String lookupClassnameProperty(Class klass) {
+        if (klass.isAnnotationPresent(JsonTypeInfo.class)) {
+            show("lookup classname property from annotated klass " + klass);
+            return ((JsonTypeInfo)klass.getAnnotation(JsonTypeInfo.class)).property();
+        }
+        else if (klass.getSuperclass() != null && klass.getSuperclass() != Object.class) {
+            return lookupClassnameProperty(klass.getSuperclass());
+        }
+        else {
+            throw new PolymorphicTypeException("Could not determine classname property from class " + klass);
+        }
+    }
 
 }
