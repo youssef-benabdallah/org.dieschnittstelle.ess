@@ -31,7 +31,7 @@
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>8.0.0-M3</version>
+                <version>${version.tomee}</version>
                 <executions>
                     <execution>
                         <id>executable-jar</id>
