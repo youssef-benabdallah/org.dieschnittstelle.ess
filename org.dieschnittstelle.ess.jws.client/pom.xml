@@ -35,7 +35,7 @@
                             <sourceRoot>${basedir}/target/generated-sources/jaxws</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>http://localhost:8080/org.dieschnittstelle.ess.jws/TouchpointCRUDWebService?wsdl</wsdl>
+                                    <wsdl>http://localhost:8080/TouchpointCRUDWebService?wsdl</wsdl>
                                     <!-- the following element references an additional binding file that provides further parameters to the sourcecode generation.
                                          here, we specify settings that will result in generating an asynchronous access variant -->
                                     <extraargs>

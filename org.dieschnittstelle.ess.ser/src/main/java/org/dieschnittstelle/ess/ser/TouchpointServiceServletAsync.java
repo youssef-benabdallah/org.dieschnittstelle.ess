@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +31,11 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 
 		logger.info("doGet()");
 
-		AsyncContext asyncCtx = request.startAsync();
-		RequestDispatcher dispatcher = asyncCtx.getRequest().getRequestDispatcher("/api/touchpoints");
+		// we need to check whether we are already running in an async context or whether a new one needs to be created
+		// in any case, dispatching needs to use the dispatch() method on the AsyncContext object rather than the request dispatcher
+		AsyncContext asyncContext = !request.isAsyncStarted()
+				? request.startAsync()
+				: request.getAsyncContext();
 
 		new Thread(()->{
 			logger.info("doGet(): sleeping...");
@@ -42,7 +47,7 @@ public class TouchpointServiceServletAsync extends HttpServlet {
 			}
 			logger.info("doGet(): continuing...");
 			try {
-				dispatcher.forward(asyncCtx.getRequest(), asyncCtx.getResponse());
+				asyncContext.dispatch("/api/touchpoints");
 			}
 			catch (Exception e) {
 				response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);

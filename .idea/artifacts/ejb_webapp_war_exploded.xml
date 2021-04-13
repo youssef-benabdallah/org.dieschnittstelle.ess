@@ -4,13 +4,13 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ejb-webapp" />
+          <element id="module-output" name="mip-webapp" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.ejb.webapp/target/ejb-webapp-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.webapp/target/ejb-webapp-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="ejb-webapp/web/Web" />
+      <element id="javaee-facet-resources" facet="mip-webapp/web/Web" />
     </root>
   </artifact>
 </component>

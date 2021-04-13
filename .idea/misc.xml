@@ -52,10 +52,8 @@
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.bas/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws5/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jsf5/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ejb/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jrs/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jsf/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ser/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications/pom.xml" />
@@ -80,7 +78,34 @@
         <option value="$PROJECT_DIR$/demo.org.dieschnittstelle.ess.ejb.ejbmodule.erp/pom.xml" />
         <option value="$PROJECT_DIR$/demo.org.dieschnittstelle.ess.ejb.runnable/pom.xml" />
         <option value="$PROJECT_DIR$/demo.org.dieschnittstelle.ess.ue.add2/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.lib.utils/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.shopping/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.crm.api/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.erp.api/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.components.shopping.api/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.mip.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm/deployment/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shared.webapp/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.erp.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shopping.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.app.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.app.wildfly/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.crm.app.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.erp.app.tomee/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shopping.app.tomee/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.jsf.cdi/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.jsf/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jsf5/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">

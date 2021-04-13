@@ -1,9 +1,11 @@
 package org.dieschnittstelle.ess.entities.crm;
 
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
 
 import java.io.Serializable;
 
+import javax.json.bind.annotation.JsonbTypeSerializer;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -26,6 +28,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(namespace = "http://dieschnittstelle.org/ess/entities/crm/ws")
 @Entity
 @DiscriminatorValue("stationary")
+@JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
 public class StationaryTouchpoint extends AbstractTouchpoint  implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(StationaryTouchpoint.class);

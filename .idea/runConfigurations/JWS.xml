@@ -1,69 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="JWS" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 20.0.1.Final" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="COMMON_VM_ARGUMENTS" value="-Dresteasy.preferJacksonOverJsonB=true -Dresteasy.jackson.deserialization.whitelist.allowIfBaseType.prefix=* -Dresteasy.jackson.deserialization.whitelist.allowIfSubType.prefix=*" />
-    <option name="UPDATING_POLICY" value="restart-server" />
-    <deployment>
-      <artifact name="jws-webapp:war">
-        <settings />
-      </artifact>
-    </deployment>
-    <server-settings>
-      <option name="SERVER" />
-      <option name="BINDING_SET_NAME" value="" />
-      <option name="DOMAIN" value="false" />
-      <option name="SERVER_GROUP" value="main-server-group" />
-      <option name="USERNAME" value="" />
-      <option name="CREDENTIAL_ALIAS" />
-    </server-settings>
-    <predefined_log_file enabled="true" id="JBoss" />
-    <RunnerSettings RunnerId="Debug">
-      <option name="DEBUG_PORT" value="58846" />
-    </RunnerSettings>
-    <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-      <option name="USE_ENV_VARIABLES" value="true" />
-      <STARTUP>
-        <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="" />
-        <option name="VM_PARAMETERS" value="" />
-        <option name="PROGRAM_PARAMETERS" value="" />
-      </STARTUP>
-      <SHUTDOWN>
-        <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="" />
-        <option name="VM_PARAMETERS" value="" />
-        <option name="PROGRAM_PARAMETERS" value="" />
-      </SHUTDOWN>
-    </ConfigurationWrapper>
-    <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-      <option name="USE_ENV_VARIABLES" value="true" />
-      <STARTUP>
-        <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="" />
-        <option name="VM_PARAMETERS" value="" />
-        <option name="PROGRAM_PARAMETERS" value="" />
-      </STARTUP>
-      <SHUTDOWN>
-        <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="" />
-        <option name="VM_PARAMETERS" value="" />
-        <option name="PROGRAM_PARAMETERS" value="" />
-      </SHUTDOWN>
-    </ConfigurationWrapper>
-    <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-      <option name="USE_ENV_VARIABLES" value="true" />
-      <STARTUP>
-        <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="" />
-        <option name="VM_PARAMETERS" value="" />
-        <option name="PROGRAM_PARAMETERS" value="" />
-      </STARTUP>
-      <SHUTDOWN>
-        <option name="USE_DEFAULT" value="true" />
-        <option name="SCRIPT" value="" />
-        <option name="VM_PARAMETERS" value="" />
-        <option name="PROGRAM_PARAMETERS" value="" />
-      </SHUTDOWN>
-    </ConfigurationWrapper>
+  <configuration default="false" name="JWS" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/org.dieschnittstelle.ess.jws/target/jws-webapp-1.0-SNAPSHOT-bootable.jar" />
+    <option name="VM_PARAMETERS" value="-Dresteasy.preferJacksonOverJsonB=true -Dresteasy.jackson.deserialization.whitelist.allowIfBaseType.prefix=* -Dresteasy.jackson.deserialization.whitelist.allowIfSubType.prefix=*" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/pom.xml" goal="clean install" />
     </method>

@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.entities.crm;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.json.bind.annotation.JsonbTransient;
 import java.io.Serializable;
 
 /**
@@ -65,6 +66,7 @@ public class CampaignExecution implements Serializable {
 	 * check whether the execution is valid
 	 */
 	@JsonIgnore
+	@JsonbTransient
 	public boolean isValid() {
 		return this.unitsLeft > 0
 				&& (duration == -1 || (System.currentTimeMillis() - startDate <= duration));

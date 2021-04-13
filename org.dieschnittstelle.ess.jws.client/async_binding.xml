@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bindings xmlns:xsd="http://www.w3.org/2001/XMLSchema"
           xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-          wsdlLocation="http://localhost:8080/org.dieschnittstelle.ess.jws/TouchpointCRUDWebService?wsdl"
+          wsdlLocation="http://localhost:8080/TouchpointCRUDWebService?wsdl"
           xmlns="http://java.sun.com/xml/ns/jaxws">
     <!-- note that we need to specify the wsdl here! -->
     <bindings node="wsdl:definitions">

@@ -36,22 +36,19 @@
         <module>../org.dieschnittstelle.ess.jrs.api</module>
         <module>../org.dieschnittstelle.ess.jrs</module>
         <module>../org.dieschnittstelle.ess.jrs.client</module>
-        <module>../org.dieschnittstelle.ess.jws</module>
+<!--        <module>../org.dieschnittstelle.ess.jws</module>-->
         <!-- this needs to be commented out as creation will fail as long as the server is not running
         <module>../org.dieschnittstelle.ess.jws.client</module> -->
-        <module>../org.dieschnittstelle.ess.ejb.ejbmodule.erp</module>
-        <module>../org.dieschnittstelle.ess.ejb.ejbmodule.crm</module>
-        <module>../org.dieschnittstelle.ess.ejb.webapp</module>
-        <!--<module>../org.dieschnittstelle.ess.ejbjrs.client</module>-->
-        <module>../org.dieschnittstelle.ess.ejb</module>
-        <module>../org.dieschnittstelle.ess.ejb.client</module>
-        <module>../org.dieschnittstelle.ess.jsf</module>
-        <module>../org.dieschnittstelle.ess.jsf.cdi</module>
+        <module>../org.dieschnittstelle.ess.mip.components.erp.api</module>
+        <module>../org.dieschnittstelle.ess.mip.components.crm.api</module>
+        <module>../org.dieschnittstelle.ess.mip.components.shopping.api</module>
+        <module>../org.dieschnittstelle.ess.mip.components.erp.impl</module>
+        <module>../org.dieschnittstelle.ess.mip.components.crm.impl</module>
+        <module>../org.dieschnittstelle.ess.mip.components.shopping.impl</module>
+        <module>../org.dieschnittstelle.ess.mip.webapp</module>
+        <module>../org.dieschnittstelle.ess.mip.client</module>
         <!-- code skeletons -->
-        <module>../org.dieschnittstelle.ess.ue.jws4</module>
-        <!-- this needs to be commented out as creation will fail as long as jws4 has not been realised and the server is not running
-        <module>../org.dieschnittstelle.ess.ue.jws5</module> -->
-        <module>../org.dieschnittstelle.ess.ue.jsf5</module>
+<!--        <module>../org.dieschnittstelle.ess.ue.jws4</module>-->
     </modules>
     
 </project>
