@@ -3,7 +3,7 @@ package org.dieschnittstelle.ess.mip.components.erp.crud.impl;
 import java.util.List;
 
 import javax.annotation.Priority;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import javax.interceptor.Interceptor;
@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
-@RequestScoped
+@ApplicationScoped
 @Logged
 @Transactional
 /*
