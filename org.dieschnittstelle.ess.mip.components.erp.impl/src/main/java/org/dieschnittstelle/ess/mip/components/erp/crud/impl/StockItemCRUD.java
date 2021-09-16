@@ -32,11 +32,7 @@ public interface StockItemCRUD {
     public StockItem createStockItem(StockItem item);
 
     /*
-     * use the find() method of the EntityManager and pass it the
-     * of the object to be read and the unique identifier of StockItem,
-     * which is an instance of the primary key class ProductAtPosPK.
-     * In case you observe an UnknownEntityException when calling this
-     * method, check whether StockItem has been declared as an entity.
+     * use a Query for reading out the stock item based on the given product and point of sale
      */
     public StockItem readStockItem(IndividualisedProductItem prod, PointOfSale pos);
 
