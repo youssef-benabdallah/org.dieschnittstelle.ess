@@ -4,7 +4,6 @@ import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
-import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUDLocal;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
@@ -23,7 +22,7 @@ import java.util.List;
  * MIP: in contrast to hibernate, openjpa implementation does not accept id comparison for entity attributes in jpql queries.
  * comparison must be done for the id attribute of the entity attribute
  */
-public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, CustomerTransactionCRUDLocal {
+public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager
 			.getLogger(CustomerTransactionCRUDImpl.class);
@@ -57,31 +56,26 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 
 	@Override
 	public List<CustomerTransaction> readAllTransactionsForTouchpoint(
-			AbstractTouchpoint touchpoint) {
-		// check the transactions on the touchpoint
-		logger.info("readAllTransactionsForTouchpoint(): before merge transactions are: "
-				+ touchpoint.getTransactions());
+			long touchpointId) {
+		// as there is a bidirectional association between AbstractTouchpoint and
+		// CustomerTransaction, we can also read the transactions from the touchpoint
+		// object itself
+		AbstractTouchpoint touchpoint = em.find(AbstractTouchpoint.class, touchpointId);
 
-		touchpoint = em.find(AbstractTouchpoint.class, touchpoint.getId());
-		logger.info("touchpoint queried.");
-
-		// now read out the transactions
 		List<CustomerTransaction> trans = new ArrayList<>(touchpoint.getTransactions());
-		logger.info("readAllTransactionsForTouchpoint(): transactions are: "
-				+ trans);
-		logger.info("readAllTransactionsForTouchpoint(): class is: "
-				+ (trans == null ? "<null pointer>" : String.valueOf(trans
-						.getClass())));
+
+		logger.info("readAllTransactionsForTouchpoint(): transactions on touchpoint object are: "
+				+ touchpoint.getTransactions());
 
 		return trans;
 	}
 
 	@Override
 	public List<CustomerTransaction> readAllTransactionsForCustomer(
-			Customer customer) {
+			long customerId) {
 		Query query = em
 				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer.id = "
-						+ customer.getId());
+						+ customerId);
 		logger.info("readAllTransactionsForCustomer(): created query: " + query);
 
 		List<CustomerTransaction> trans = query.getResultList();
@@ -100,12 +94,12 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD, Cus
 
 	@Override
 	public List<CustomerTransaction> readAllTransactionsForTouchpointAndCustomer(
-			AbstractTouchpoint touchpoint, Customer customer) {
+			long touchpointId, long customerId) {
 		Query query = em
 				.createQuery("SELECT t FROM CustomerTransaction t WHERE t.customer.id = "
-						+ customer.getId()
+						+ customerId
 						+ " AND t.touchpoint.id = "
-						+ touchpoint.getId());
+						+ touchpointId);
 		logger.info("readAllTransactionsForTouchpointAndCustomer(): created query: "
 				+ query);
 

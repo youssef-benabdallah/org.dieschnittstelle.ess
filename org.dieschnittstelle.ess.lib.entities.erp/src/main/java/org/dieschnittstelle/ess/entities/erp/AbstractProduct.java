@@ -26,7 +26,7 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 	private int price;
 
 	public AbstractProduct() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 
 	public AbstractProduct(String name) {

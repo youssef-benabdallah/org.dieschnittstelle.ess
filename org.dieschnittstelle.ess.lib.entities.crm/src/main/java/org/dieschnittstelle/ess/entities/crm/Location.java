@@ -39,7 +39,7 @@ public class Location implements Serializable {
 	private long geoLong;
 
 	public Location() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 	
 	@Id

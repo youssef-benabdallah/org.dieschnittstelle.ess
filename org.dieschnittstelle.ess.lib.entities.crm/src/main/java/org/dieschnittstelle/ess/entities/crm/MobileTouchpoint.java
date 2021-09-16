@@ -31,7 +31,7 @@ public class MobileTouchpoint extends AbstractTouchpoint {
 	private Collection<String> mobilePhoneIds = new HashSet<String>();
 
 	public MobileTouchpoint() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 
 	public MobileTouchpoint(String mobilePhoneId) {

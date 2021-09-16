@@ -8,7 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
-import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUDLocal;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 import org.apache.logging.log4j.Logger;
@@ -31,9 +30,6 @@ public class CustomerTrackingImpl implements CustomerTracking {
 	@Inject
 	private CustomerTransactionCRUD customerTransactionCRUD;
 
-	@Inject
-	private CustomerTransactionCRUDLocal customerTransactionCRUDLocal;
-
 	public CustomerTrackingImpl() {
 		logger.info("<constructor>: " + this);
 	}
@@ -46,11 +42,23 @@ public class CustomerTrackingImpl implements CustomerTracking {
 			item.setId(0);
 		}
 		
-		customerTransactionCRUDLocal.createTransaction(transaction);
+		customerTransactionCRUD.createTransaction(transaction);
 	}
 
-	public List<CustomerTransaction> readAllTransactions() {
-		return customerTransactionCRUD.readAllTransactions();
+	@Override
+	public List<CustomerTransaction> readTransactions(long touchpointId,long customerId) {
+		if (customerId == 0 && touchpointId == 0) {
+			return customerTransactionCRUD.readAllTransactions();
+		}
+		else if (customerId != 0 && touchpointId != 0) {
+			return customerTransactionCRUD.readAllTransactionsForTouchpointAndCustomer(touchpointId,customerId);
+		}
+		else if (customerId != 0) {
+			return customerTransactionCRUD.readAllTransactionsForCustomer(customerId);
+		}
+		else {
+			return customerTransactionCRUD.readAllTransactionsForTouchpoint(touchpointId);
+		}
 	}
 
 	@PostConstruct

@@ -28,10 +28,10 @@ public class ShowAnnotations {
 	/*
 	 * TODO BAS2
 	 */
-	private static void showAttributes(Object consumable) {
-		show("class is: " + consumable.getClass());
+	private static void showAttributes(Object instance) {
+		show("class is: " + instance.getClass());
 
-		// TODO BAS2: create a string representation of consumable by iterating
+		// TODO BAS2: create a string representation of instance by iterating
 		//  over the object's attributes / fields as provided by its class
 		//  and reading out the attribute values. The string representation
 		//  will then be built from the field names and field values.

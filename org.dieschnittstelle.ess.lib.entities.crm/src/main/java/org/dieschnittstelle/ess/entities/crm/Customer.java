@@ -95,7 +95,7 @@ public class Customer implements Serializable {
 	}
 	
 	public Customer() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 
 	public Customer(String firstName, String lastName, Gender gender) {

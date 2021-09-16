@@ -25,7 +25,7 @@ public class ProductBundle implements Serializable {
 	private int units;
 
 	public ProductBundle() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 
 	public ProductBundle(IndividualisedProductItem product, int units) {

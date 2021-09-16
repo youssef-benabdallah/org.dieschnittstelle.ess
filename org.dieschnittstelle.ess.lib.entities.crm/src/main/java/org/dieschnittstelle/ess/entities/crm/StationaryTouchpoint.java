@@ -46,7 +46,7 @@ public class StationaryTouchpoint extends AbstractTouchpoint  implements Seriali
 	private Address address;
 	
 	public StationaryTouchpoint() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 	
 	public StationaryTouchpoint(int erpPointOfSaleId) {

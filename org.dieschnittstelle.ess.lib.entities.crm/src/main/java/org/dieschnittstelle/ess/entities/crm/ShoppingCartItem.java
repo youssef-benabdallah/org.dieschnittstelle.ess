@@ -50,7 +50,7 @@ public class ShoppingCartItem implements Serializable {
 	private AbstractProduct productObj;
 	
 	public ShoppingCartItem() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 	
 	public ShoppingCartItem(long erpProductId, int units) {

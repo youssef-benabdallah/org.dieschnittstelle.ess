@@ -6,6 +6,7 @@ import org.dieschnittstelle.ess.mip.client.shopping.ShoppingSession;
 import org.dieschnittstelle.ess.mip.client.shopping.PurchaseServiceClient;
 import org.dieschnittstelle.ess.mip.components.crm.api.CampaignTracking;
 import org.dieschnittstelle.ess.mip.components.crm.api.CrmException;
+import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
 import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerCRUD;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
@@ -15,6 +16,7 @@ import org.dieschnittstelle.ess.entities.crm.CampaignExecution;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 import org.dieschnittstelle.ess.mip.client.apiclients.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.dieschnittstelle.ess.mip.client.Constants.*;
@@ -53,7 +55,7 @@ public class TotalUsecase {
 	private StockSystem stockSystem;
 	private CustomerCRUD customerCRUD;
 	private CampaignTracking campaignTracking;
-	private CustomerTransactionCRUD transactionCRUD;
+	private CustomerTracking customerTracking;
 
 	public TotalUsecase() throws Exception {
 		instantiateClients();
@@ -89,7 +91,7 @@ public class TotalUsecase {
 		stockSystem = new StockSystemClient();
 		customerCRUD = new CustomerCRUDClient();
 		campaignTracking = new CampaignTrackingClient();
-		transactionCRUD = new CustomerTransactionCRUDClient();
+		customerTracking = new CustomerTrackingClient();
 
 		System.out.println("\n***************** instantiated clients\n");
 	}
@@ -207,15 +209,19 @@ public class TotalUsecase {
 	public void showTransactions() {
 		System.out.println("\n***************** show transactions\n");
 
-		Collection<CustomerTransaction> trans = transactionCRUD
-				.readAllTransactionsForTouchpoint(Constants.TOUCHPOINT_1);
-		logger.info("transactions for touchpoint are: " + trans);
-		trans = transactionCRUD
-				.readAllTransactionsForCustomer(Constants.CUSTOMER_1);
-		logger.info("transactions for customer are: " + trans);
-//		trans = transactionCRUD.readAllTransactionsForTouchpointAndCustomer(
-//				Constants.TOUCHPOINT_1, Constants.CUSTOMER_1);
-//		logger.info("transactions for touchpoint and customer are: " + trans);
+		Collection<CustomerTransaction> trans = new ArrayList<>();
+
+		// in the total usecase scenario, all three methods for transaction access return the same
+		// list of transactions as a single customer makes three purchases at a single touchpoint
+//		trans = customerTracking
+//				.readTransactions(Constants.TOUCHPOINT_1.getId(),0);
+//		logger.info("transactions for touchpoint are: " + trans);
+//		trans = customerTracking
+//				.readTransactions(0, Constants.CUSTOMER_1.getId());
+//		logger.info("transactions for customer are: " + trans);
+		trans = customerTracking.
+				readTransactions(TOUCHPOINT_1.getId(), Constants.CUSTOMER_1.getId());
+		logger.info("transactions for touchpoint and customer are: " + trans);
 
 	}
 

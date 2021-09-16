@@ -30,7 +30,7 @@ public class PointOfSale implements Serializable {
 	private long id;
 
 	public PointOfSale() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 
 	public long getId() {

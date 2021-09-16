@@ -23,7 +23,8 @@ public class Campaign extends AbstractProduct implements Serializable {
 	private List<ProductBundle> bundles;
 
 	public Campaign() {
-		logger.info("<constructor>"); this.bundles = new ArrayList<ProductBundle>();
+		logger.debug("<constructor>");
+		this.bundles = new ArrayList<ProductBundle>();
 	}
 
 	public Campaign(String name) {

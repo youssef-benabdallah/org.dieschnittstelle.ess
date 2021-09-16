@@ -27,7 +27,7 @@ public class Address extends Location  implements Serializable {
 	private String city;
 	
 	public Address() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 	
 	public Address(String street,String houseNr,String zipCode,String city) {

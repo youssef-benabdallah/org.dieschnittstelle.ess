@@ -16,6 +16,6 @@ public interface CustomerTracking {
 	public void createTransaction(CustomerTransaction transaction);
 
 	@GET
-	public List<CustomerTransaction> readAllTransactions();
+	public List<CustomerTransaction> readTransactions(@QueryParam("touchpointId") long touchpointId,@QueryParam("customerId") long customerId);
 
 }

@@ -61,7 +61,7 @@ public class CustomerTransaction implements Serializable {
 	private boolean completed;
 	
 	public CustomerTransaction() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 	
 	public CustomerTransaction(Customer customer,AbstractTouchpoint tp,List<ShoppingCartItem> products) {

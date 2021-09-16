@@ -21,7 +21,7 @@ public class IndividualisedProductItem extends AbstractProduct implements Serial
 	private int expirationAfterStocked;
 	
 	public IndividualisedProductItem() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 	
 	public IndividualisedProductItem(String name,ProductType type,int expirationAfterStocked) {

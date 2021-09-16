@@ -100,7 +100,7 @@ public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEnt
 
 
 	public AbstractTouchpoint() {
-		logger.info("<constructor>");
+		logger.debug("<constructor>");
 	}
 
 	public long getId() {

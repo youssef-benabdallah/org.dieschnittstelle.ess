@@ -19,8 +19,8 @@ public class CustomerTrackingClient implements CustomerTracking {
 	}
 
 	@Override
-	public List<CustomerTransaction> readAllTransactions() {
-		return serviceProxy.readAllTransactions();
+	public List<CustomerTransaction> readTransactions(long touchpointId, long customerId) {
+		return serviceProxy.readTransactions(touchpointId,customerId);
 	}
 
 }
