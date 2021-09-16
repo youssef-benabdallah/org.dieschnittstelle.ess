@@ -1,4 +1,4 @@
-package org.dieschnittstelle.ess.mip.components.crm.crud.api;
+package org.dieschnittstelle.ess.mip.components.crm.crud.impl;
 
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Customer;

@@ -11,7 +11,7 @@ import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
 import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerTransactionCRUD;
+import org.dieschnittstelle.ess.mip.components.crm.crud.impl.CustomerTransactionCRUD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 /**
