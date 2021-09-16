@@ -129,6 +129,12 @@ public class ServiceProxyFactory {
         return instance;
     }
 
+    // obtain a deployment specific instance (beyond the singleton usage)
+    public static ServiceProxyFactory newInstance(String deployment) {
+        return new ServiceProxyFactory(deployment);
+    }
+
+
     // this is the client-side representation of the web api, which gives access to the different services offered via this api
     private List<ServiceRegistryItem> serviceRegistry = new ArrayList<>();
 
