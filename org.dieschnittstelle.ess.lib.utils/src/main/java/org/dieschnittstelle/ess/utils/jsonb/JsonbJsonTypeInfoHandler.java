@@ -48,26 +48,38 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
     @Override
     public T deserialize(JsonParser parser, DeserializationContext context, Type rtType) {
 
+        logger.info("deserialise(): type is: " + rtType);
+
         JsonObject jsonObj = parser.getObject();
         String jsonString = jsonObj.toString();
+        logger.info("deserialise(): jsonString is: " + jsonString);
 
-        // this is a custom implementation of the JsonTypeInfo logics that is possible for deserialisation
-        // however, as serialisation does not seem to appear possible without duplicating large part of
-        // serialisation logic, we just embed the jackson processing here
-
-        String klassname = jsonObj.getString(lookupClassnameProperty((Class)rtType));
-        logger.info("deserialise(): klassname is: " + klassname);
-
-        try {
-            Class klass = Class.forName(klassname);
-            T obj = (T)jsonb.fromJson(jsonString, klass);
-            logger.info("deserialise(): deserialised instance of polymorphic type: " + obj);
+        if (rtType instanceof Class && !Modifier.isAbstract(((Class)rtType).getModifiers())) {
+            // if we do not have an abstract class, we just use the type for deserialisation
+            logger.info("deserialise(): we do not have an abstract type. Use standard deserialisation...");
+            T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
             return obj;
         }
-        catch (Exception e) {
-            throw new PolymorphicTypeException("Cannot deserialise object of class: " + klassname + ". Got: " + e,e);
-        }
+        else {
+            // this is a custom implementation of the JsonTypeInfo logics that is possible for deserialisation
+            // however, as serialisation does not seem to appear possible without duplicating large part of
+            // serialisation logic, we just embed the jackson processing here
+            logger.info("deserialise(): we have an abstract type. Lookup classname of concrete class...");
 
+            String klassname = jsonObj.getString(lookupClassnameProperty((Class)rtType));
+            logger.info("deserialise(): klassname is: " + klassname);
+
+            try {
+                Class klass = Class.forName(klassname);
+                logger.info("deserialise(): klass is: " + klass);
+                T obj = (T)jsonb.fromJson(jsonString, klass);
+                logger.info("deserialise(): deserialised instance of polymorphic type: " + obj);
+                return obj;
+            }
+            catch (Exception e) {
+                throw new PolymorphicTypeException("Cannot deserialise object of class: " + klassname + ". Got: " + e,e);
+            }
+        }
     }
 
     @Override
@@ -116,7 +128,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
 
     private String lookupClassnameProperty(Class klass) {
         if (klass.isAnnotationPresent(JsonTypeInfo.class)) {
-            show("lookup classname property from annotated klass " + klass);
+            logger.info("lookup classname property from annotated klass " + klass);
             return ((JsonTypeInfo)klass.getAnnotation(JsonTypeInfo.class)).property();
         }
         else if (klass.getSuperclass() != null && klass.getSuperclass() != Object.class) {

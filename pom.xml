@@ -12,7 +12,8 @@
     <!-- these are the shared properties for deploying all server-side
          components within a wildfly executable jar -->
     <properties>
-        <version.tomee>8.0.0-M3</version.tomee>
+        <version.tomee>8.0.8</version.tomee>
+<!--        <version.tomee>8.0.0-M3</version.tomee>-->
         <version.bootable.jar>3.0.0.Beta1-SNAPSHOT</version.bootable.jar>
         <version.wildfly>21.0.0.Final</version.wildfly>
         <version.jkube>1.0.1</version.jkube>
