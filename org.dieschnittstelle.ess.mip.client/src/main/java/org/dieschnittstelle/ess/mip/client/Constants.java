@@ -1,10 +1,6 @@
 package org.dieschnittstelle.ess.mip.client;
 
-import org.dieschnittstelle.ess.entities.crm.Address;
-import org.dieschnittstelle.ess.entities.crm.Customer;
-import org.dieschnittstelle.ess.entities.crm.Gender;
-import org.dieschnittstelle.ess.entities.crm.MobileTouchpoint;
-import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.*;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.entities.erp.ProductBundle;
@@ -17,19 +13,8 @@ import org.dieschnittstelle.ess.entities.erp.ProductType;
 public class Constants {
 
 	/*
-	 * the bean identifiers
-	 */
-	public static final String SHOPPING_CART_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/ShoppingCartStateful!org.dieschnittstelle.ess.ejb.ejbmodule.crm.ShoppingCartRemote?stateful";
-	public static final String CAMPAIGN_TRACKING_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/CampaignTrackingSingleton!org.dieschnittstelle.ess.ejb.ejbmodule.crm.CampaignTrackingRemote";
-	public static final String CUSTOMER_TRACKING_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/customerTrackingSystem!org.dieschnittstelle.ess.ejb.ejbmodule.crm.CustomerTrackingRemote";
-	public static final String CUSTOMER_CRUD_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/CustomerCRUDStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerCRUDRemote";
-	public static final String TOUCHPOINT_ACCESS_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/TouchpointAccessStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessRemote";
-	public static final String TOUCHPOINT_ACCESS_ASYNC_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/TouchpointAccessStatelessAsync!org.dieschnittstelle.ess.ejb.ejbmodule.crm.TouchpointAccessRemoteAsync";
-	public static final String TRANSACTIONS_CRUD_BEAN_URI = "ejb:org.dieschnittstelle.ess.ejb/org.dieschnittstelle.ess.ejb.ejbmodule.crm/CustomerTransactionCRUDStateless!org.dieschnittstelle.ess.ejb.ejbmodule.crm.crud.CustomerTransactionCRUDRemote";
-
-	/*
 	 * constants for the objects that are dealt with in the different accessors
-	 * to the beans
+	 * to the server-side functions
 	 */
 
 	public static StationaryTouchpoint TOUCHPOINT_1;
@@ -41,6 +26,8 @@ public class Constants {
 	public static IndividualisedProductItem PRODUCT_1;
 
 	public static IndividualisedProductItem PRODUCT_2;
+
+	public static IndividualisedProductItem PRODUCT_3;
 
 	public static Campaign CAMPAIGN_1;
 
@@ -69,12 +56,16 @@ public class Constants {
 		PRODUCT_2 = new IndividualisedProductItem("Kirschplunder",
 				ProductType.PASTRY, 1080);
 
+		PRODUCT_3 = new IndividualisedProductItem("Nussstriezel",
+				ProductType.PASTRY, 1080);
+
 		CAMPAIGN_1 = new Campaign("Familienfrühstück");
 		CAMPAIGN_1.addBundle(new ProductBundle(PRODUCT_1, 5));
 		CAMPAIGN_1.addBundle(new ProductBundle(PRODUCT_2, 2));
 
 		CAMPAIGN_2 = new Campaign("Kaffeerunde");
 		CAMPAIGN_2.addBundle(new ProductBundle(PRODUCT_2, 3));
+		CAMPAIGN_2.addBundle(new ProductBundle(PRODUCT_3, 1));
 
         // use a shared address for the two customers
 		Address addr3 = new Address("Kopernikusstrasse", "11", "10245",

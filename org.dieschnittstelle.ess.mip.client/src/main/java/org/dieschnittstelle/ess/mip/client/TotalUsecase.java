@@ -99,6 +99,7 @@ public class TotalUsecase {
 		// create products
 		productCRUD.createProduct(PRODUCT_1);
 		productCRUD.createProduct(PRODUCT_2);
+		productCRUD.createProduct(PRODUCT_3);
 		productCRUD.createProduct(CAMPAIGN_1);
 		productCRUD.createProduct(CAMPAIGN_2);
 
@@ -131,6 +132,10 @@ public class TotalUsecase {
 		stockSystem.addToStock(PRODUCT_2,
 				TOUCHPOINT_1.getErpPointOfSaleId(), units);
 		stockSystem.addToStock(PRODUCT_2,
+				TOUCHPOINT_2.getErpPointOfSaleId(), units);
+		stockSystem.addToStock(PRODUCT_3,
+				TOUCHPOINT_1.getErpPointOfSaleId(), units);
+		stockSystem.addToStock(PRODUCT_3,
 				TOUCHPOINT_2.getErpPointOfSaleId(), units);
 
 		System.out.println("\n***************** created stock\n");

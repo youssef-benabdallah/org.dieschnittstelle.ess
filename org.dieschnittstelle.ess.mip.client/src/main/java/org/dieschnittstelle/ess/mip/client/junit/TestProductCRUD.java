@@ -1,17 +1,16 @@
 package org.dieschnittstelle.ess.mip.client.junit;
 
-import java.util.List;
-
-import static org.dieschnittstelle.ess.mip.client.Constants.*;
-
-import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
-import org.dieschnittstelle.ess.mip.client.apiclients.ProductCRUDClient;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
+import org.dieschnittstelle.ess.mip.client.Constants;
+import org.dieschnittstelle.ess.mip.client.apiclients.ProductCRUDClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.dieschnittstelle.ess.mip.client.Constants.*;
 import static org.junit.Assert.*;
 
 public class TestProductCRUD {
@@ -68,10 +67,11 @@ public class TestProductCRUD {
 		// first create the individual items
 		PRODUCT_1.setId(client.createProduct(PRODUCT_1).getId());
 		PRODUCT_2.setId(client.createProduct(PRODUCT_2).getId());
+		PRODUCT_3.setId(client.createProduct(PRODUCT_3).getId());
 
 		/* CREATE */
 		CAMPAIGN_1.setId(client.createProduct(CAMPAIGN_1).getId());
-		assertEquals("product list is appended on create for campaigns", 3, client.readAllProducts().size()
+		assertEquals("product list is appended on create for campaigns", 4, client.readAllProducts().size()
 				- prodlistBefore.size());
 
 		Campaign createdCampaign = (Campaign) client.readProduct(CAMPAIGN_1.getId());
@@ -88,12 +88,22 @@ public class TestProductCRUD {
 		assertEquals("id values for campaigns (and other products) are assigned independently from other entities)",1,CAMPAIGN_2.getId()-CAMPAIGN_1.getId());
 
 		/* DELETE */
-		client.deleteProduct(CAMPAIGN_1.getId());
-		assertEquals("product list is reduced by 1 on delete for campaigns", 3, client.readAllProducts().size()
+		client.deleteProduct(CAMPAIGN_2.getId());
+		assertEquals("product list is reduced by 1 on delete for campaigns", 4, client.readAllProducts().size()
 				- prodlistBefore.size());
 
-		assertNull("deleted campaign does not exist anymore", client.readProduct(CAMPAIGN_1.getId()));
+		assertNull("deleted campaign does not exist anymore", client.readProduct(CAMPAIGN_2.getId()));
 		assertNotNull("individual products still exist after campaign deletion", client.readProduct(PRODUCT_1.getId()));
+
+		try {
+			client.deleteProduct(PRODUCT_3.getId());
+			assertEquals("products that were part of campaigns can be deleted after campaign deletion", 3, client.readAllProducts().size()
+					- prodlistBefore.size());
+		}
+		catch (Exception e) {
+			fail("Fix this issue: products that were part of campaigns cannot be deleted after campaign deletion.");
+		}
+
 	}
 
 }

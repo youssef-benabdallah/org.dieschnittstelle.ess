@@ -1,46 +1,45 @@
 package org.dieschnittstelle.ess.mip.client.junit;
 
-import static org.dieschnittstelle.ess.mip.client.Constants.*;
-
-import java.util.List;
-
+import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.mip.client.Constants;
-import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.mip.client.apiclients.ProductCRUDClient;
+import org.dieschnittstelle.ess.mip.client.apiclients.ServiceProxyFactory;
 import org.dieschnittstelle.ess.mip.client.apiclients.StockSystemClient;
 import org.dieschnittstelle.ess.mip.client.apiclients.TouchpointAccessClient;
-import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.dieschnittstelle.ess.mip.client.Constants.*;
 import static org.junit.Assert.*;
 
 
 public class TestStockSystem {
-	
+
 	private ProductCRUDClient productCRUDClient;
 	private StockSystemClient stockSystemClient;
 	private TouchpointAccessClient touchpointCRUDClient;
-	
+
 	@Before
 	public void prepareContext() throws Exception {
 		ServiceProxyFactory.initialise();
 
 		// we reset the ids on the local entities
-		Constants.resetEntities();	
+		Constants.resetEntities();
 		// initialise the clients
-		productCRUDClient = new ProductCRUDClient();		
-		stockSystemClient = new StockSystemClient();		
+		productCRUDClient = new ProductCRUDClient();
+		stockSystemClient = new StockSystemClient();
 		touchpointCRUDClient = new TouchpointAccessClient();
 		// we create the touchpoints and products before creating the stock items as the actual subject of testing
 		productCRUDClient.createProduct(PRODUCT_1);
 		productCRUDClient.createProduct(PRODUCT_2);
-		
+
 		touchpointCRUDClient.createTouchpointAndPointOfSale(TOUCHPOINT_1);
 		touchpointCRUDClient.createTouchpointAndPointOfSale(TOUCHPOINT_2);
 	}
-	
-	@Test 
+
+	@Test
 	public void stockSystemWorks() {
 
 		// determine initial number of products on stock from previous run
@@ -84,6 +83,6 @@ public class TestStockSystem {
 		assertEquals("all products on stock correct", 2, stockSystemClient.getAllProductsOnStock().size() - initialProductsOnStock.size());
 
 	}
-	
+
 
 }
