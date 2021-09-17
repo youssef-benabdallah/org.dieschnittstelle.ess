@@ -27,8 +27,8 @@ import static org.dieschnittstelle.ess.utils.Utils.show;
  * this is our own implementation of the @JsonTypeInfo semantics from Jackson using
  * json-b standard expressive means, see: https://stackoverflow.com/questions/62398858/deserialize-json-into-polymorphic-pojo-with-json-b-yasson (the following ones are only partially useful: https://itsallbinary.com/java-json-polymorphic-type-handling-jackson-vs-gson-vs-json-b/, see also: https://javaee.github.io/jsonb-spec/users-guide.html)
  *
- * starting from tomee maven plugin version 8.0.2, there is a loop issue as the fromJson method also
- * delegates to this handler for concrete types on which the deserialisation annotation has, not been set!
+ * starting from tomee maven plugin version 8.0.2, there is a loop issue as the fromJson() method also
+ * delegates to this handler for concrete types on which the deserialisation annotation has NOT been set!
  * For this reason, we keep version 8.0.1 for the time being.
  */
 public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbSerializer<T> {
