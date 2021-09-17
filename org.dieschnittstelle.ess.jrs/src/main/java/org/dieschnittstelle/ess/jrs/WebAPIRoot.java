@@ -1,7 +1,5 @@
 package org.dieschnittstelle.ess.jrs;
 
-//import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
