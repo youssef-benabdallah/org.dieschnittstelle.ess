@@ -11,7 +11,6 @@
       <module fileurl="file://$PROJECT_DIR$/ess-deployment.iml" filepath="$PROJECT_DIR$/ess-deployment.iml" group="0_SHARED" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.api/jrs-api.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.api/jrs-api.iml" group="4_JRS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client/jrs-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client/jrs-client.iml" group="4_JRS" />
-      <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client.openapi/jrs-client-openapi.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client.openapi/jrs-client-openapi.iml" group="4_JRS"/>
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/jrs-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs/jrs-webapp.iml" group="4_JRS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/jws-client.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/jws-client.iml" group="5_JWS" />
       <module fileurl="file://$PROJECT_DIR$/org.dieschnittstelle.ess.jws/jws-webapp.iml" filepath="$PROJECT_DIR$/org.dieschnittstelle.ess.jws/jws-webapp.iml" group="5_JWS" />

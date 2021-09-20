@@ -36,7 +36,6 @@
         <module name="demo-jrs-webapp" />
         <module name="ser-webapp" />
         <module name="mip-app (1)" />
-        <module name="jrs-client-openapi" />
         <module name="mip-app-wildfly" />
         <module name="demo-bas" />
         <module name="jws-client" />
