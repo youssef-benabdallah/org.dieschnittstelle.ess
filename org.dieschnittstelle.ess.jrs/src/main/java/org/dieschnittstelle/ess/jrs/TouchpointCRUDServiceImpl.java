@@ -5,11 +5,12 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.dieschnittstelle.ess.entities.GenericCRUDExecutor;
 
 public class TouchpointCRUDServiceImpl implements ITouchpointCRUDService {
@@ -19,7 +20,7 @@ public class TouchpointCRUDServiceImpl implements ITouchpointCRUDService {
     /**
      * this accessor will be provided by the ServletContext, to which it is written by the TouchpointServletContextListener
      */
-    private GenericCRUDExecutor<AbstractTouchpoint> touchpointCRUD;
+    private GenericCRUDExecutor<StationaryTouchpoint> touchpointCRUD;
 
     /**
      * here we will be passed the context parameters by the resteasy framework. Alternatively @Context
@@ -31,20 +32,20 @@ public class TouchpointCRUDServiceImpl implements ITouchpointCRUDService {
     public TouchpointCRUDServiceImpl(@Context ServletContext servletContext, @Context HttpServletRequest request) {
         logger.info("<constructor>: " + servletContext + "/" + request);
         // read out the dataAccessor
-        this.touchpointCRUD = (GenericCRUDExecutor<AbstractTouchpoint>) servletContext.getAttribute("touchpointCRUD");
+        this.touchpointCRUD = (GenericCRUDExecutor<StationaryTouchpoint>) servletContext.getAttribute("touchpointCRUD");
 
         logger.debug("read out the touchpointCRUD from the servlet context: " + this.touchpointCRUD);
     }
 
 
     @Override
-    public List<AbstractTouchpoint> readAllTouchpoints() {
+    public List<StationaryTouchpoint> readAllTouchpoints() {
         return (List) this.touchpointCRUD.readAllObjects();
     }
 
     @Override
-    public AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint) {
-        return (AbstractTouchpoint) this.touchpointCRUD.createObject(touchpoint);
+    public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint) {
+        return (StationaryTouchpoint) this.touchpointCRUD.createObject(touchpoint);
     }
 
     @Override
@@ -53,8 +54,8 @@ public class TouchpointCRUDServiceImpl implements ITouchpointCRUDService {
     }
 
     @Override
-    public AbstractTouchpoint readTouchpoint(long id) {
-        AbstractTouchpoint tp = (AbstractTouchpoint) this.touchpointCRUD.readObject(id);
+    public StationaryTouchpoint readTouchpoint(long id) {
+        StationaryTouchpoint tp = (StationaryTouchpoint) this.touchpointCRUD.readObject(id);
         if (tp != null) {
             return tp;
         } else {

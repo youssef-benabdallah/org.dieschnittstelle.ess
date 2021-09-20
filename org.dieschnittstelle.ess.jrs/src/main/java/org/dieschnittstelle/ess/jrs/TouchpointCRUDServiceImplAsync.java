@@ -14,6 +14,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+import org.eclipse.microprofile.openapi.annotations.*;
+
 /*
  * this class is a wrapper around the synchronous implementation that demonstrates an async service implementation
  */
@@ -37,7 +39,8 @@ public class TouchpointCRUDServiceImplAsync {
 	public TouchpointCRUDServiceImplAsync(@Context ServletContext servletContext, @Context HttpServletRequest request) {
 		this.service = new TouchpointCRUDServiceImpl(servletContext,request);
 	}
-	
+
+	@Operation(hidden = true)
 	@GET
 	public void readAllTouchpoints(@Suspended AsyncResponse response) {
 		logger.info("readAllTouchpoints()");
@@ -47,6 +50,7 @@ public class TouchpointCRUDServiceImplAsync {
 		}).start();
 	}
 
+	@Operation(hidden = true)
 	@POST
 	public void createTouchpoint(StationaryTouchpoint touchpoint,@Suspended AsyncResponse response) {
 		logger.info("createTouchpoint()");
@@ -56,6 +60,7 @@ public class TouchpointCRUDServiceImplAsync {
 		}).start();
 	}
 
+	@Operation(hidden = true)
 	@DELETE
 	@Path("/{id}")
 	public void deleteTouchpoint(@PathParam("id") long id,@Suspended AsyncResponse response) {
@@ -66,6 +71,7 @@ public class TouchpointCRUDServiceImplAsync {
 		}).start();
 	}
 
+	@Operation(hidden = true)
 	@GET
 	@Path("/{id}")
 	public void readTouchpoint(@PathParam("id") long id,@Suspended AsyncResponse response) {

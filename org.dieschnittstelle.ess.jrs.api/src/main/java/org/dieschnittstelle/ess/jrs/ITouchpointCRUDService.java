@@ -1,6 +1,8 @@
 package org.dieschnittstelle.ess.jrs;
 
-import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.graalvm.compiler.word.Word;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,17 +12,21 @@ import java.util.List;
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
 public interface ITouchpointCRUDService {
-	
-	@GET
-	List<AbstractTouchpoint> readAllTouchpoints();
 
+	@Operation
+	@GET
+	List<StationaryTouchpoint> readAllTouchpoints();
+
+	@Operation
 	@GET
 	@Path("/{touchpointId}")
-	AbstractTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
+	StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
 
+	@Operation
 	@POST
-	AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint);
-	
+	StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
+
+	@Operation
 	@DELETE
 	@Path("/{touchpointId}")
 	boolean deleteTouchpoint(@PathParam("touchpointId") long id);
