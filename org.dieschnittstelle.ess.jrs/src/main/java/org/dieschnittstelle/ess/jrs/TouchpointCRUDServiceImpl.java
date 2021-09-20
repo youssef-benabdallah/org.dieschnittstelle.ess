@@ -8,7 +8,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 
 import org.apache.logging.log4j.Logger;
-import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.GenericCRUDExecutor;
 
@@ -38,13 +38,13 @@ public class TouchpointCRUDServiceImpl implements ITouchpointCRUDService {
 
 
     @Override
-    public List<StationaryTouchpoint> readAllTouchpoints() {
+    public List<AbstractTouchpoint> readAllTouchpoints() {
         return (List) this.touchpointCRUD.readAllObjects();
     }
 
     @Override
-    public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint) {
-        return (StationaryTouchpoint) this.touchpointCRUD.createObject(touchpoint);
+    public AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint) {
+        return (AbstractTouchpoint) this.touchpointCRUD.createObject(touchpoint);
     }
 
     @Override
@@ -53,8 +53,8 @@ public class TouchpointCRUDServiceImpl implements ITouchpointCRUDService {
     }
 
     @Override
-    public StationaryTouchpoint readTouchpoint(long id) {
-        StationaryTouchpoint tp = (StationaryTouchpoint) this.touchpointCRUD.readObject(id);
+    public AbstractTouchpoint readTouchpoint(long id) {
+        AbstractTouchpoint tp = (AbstractTouchpoint) this.touchpointCRUD.readObject(id);
         if (tp != null) {
             return tp;
         } else {

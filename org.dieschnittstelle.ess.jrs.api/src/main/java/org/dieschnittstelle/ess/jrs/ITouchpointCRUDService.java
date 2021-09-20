@@ -1,6 +1,6 @@
 package org.dieschnittstelle.ess.jrs;
 
-import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,14 +12,14 @@ import java.util.List;
 public interface ITouchpointCRUDService {
 	
 	@GET
-	List<StationaryTouchpoint> readAllTouchpoints();
+	List<AbstractTouchpoint> readAllTouchpoints();
 
 	@GET
 	@Path("/{touchpointId}")
-	StationaryTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
+	AbstractTouchpoint readTouchpoint(@PathParam("touchpointId") long id);
 
 	@POST
-	StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint);
+	AbstractTouchpoint createTouchpoint(AbstractTouchpoint touchpoint);
 	
 	@DELETE
 	@Path("/{touchpointId}")
