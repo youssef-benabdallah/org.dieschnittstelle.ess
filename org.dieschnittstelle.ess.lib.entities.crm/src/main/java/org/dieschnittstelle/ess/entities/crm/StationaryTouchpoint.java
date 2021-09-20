@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.entities.crm;
 
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.io.Serializable;
 
@@ -29,6 +30,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @DiscriminatorValue("stationary")
 @JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
+@Schema(name="MyStationaryTouchpoint")
 public class StationaryTouchpoint extends AbstractTouchpoint  implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(StationaryTouchpoint.class);

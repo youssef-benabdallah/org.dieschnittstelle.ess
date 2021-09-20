@@ -1,0 +1,862 @@
+---
+openapi: "3.0.1"
+paths:
+  /api/metrics/{registry}/{metric}:
+    get:
+      parameters:
+      - name: "registry"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "string"
+      - name: "metric"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: "string"
+          description: "default response"
+        default:
+          content:
+            text/plain:
+              schema:
+                type: "string"
+          description: "default response"
+      operationId: "getText"
+    options:
+      parameters:
+      - name: "registry"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "string"
+      - name: "metric"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/java_lang_Object"
+          description: "default response"
+        default:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/java_lang_Object"
+          description: "default response"
+      operationId: "getMetadata"
+  /api/metrics/{registry}:
+    get:
+      parameters:
+      - name: "registry"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: "string"
+          description: "default response"
+        default:
+          content:
+            text/plain:
+              schema:
+                type: "string"
+          description: "default response"
+      operationId: "getText"
+    options:
+      parameters:
+      - name: "registry"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/java_lang_Object"
+          description: "default response"
+        default:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/java_lang_Object"
+          description: "default response"
+      operationId: "getMetadata"
+  /api/metrics:
+    get:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/java_lang_Object"
+          description: "default response"
+        default:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/java_lang_Object"
+          description: "default response"
+      operationId: "getJson"
+  /api/health:
+    get:
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "object"
+                nullable: true
+          description: "default response"
+        default:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                nullable: true
+          description: "default response"
+      operationId: "getChecks"
+  /api/opi/touchpoints:
+    get:
+      parameters: []
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                readOnly: false
+                type: "array"
+                exclusiveMaximum: false
+                exclusiveMinimum: false
+                maxLength: 2147483647
+                minLength: 0
+                uniqueItems: false
+                nullable: false
+                writeOnly: false
+                deprecated: false
+                items:
+                  readOnly: false
+                  type: "object"
+                  exclusiveMaximum: false
+                  exclusiveMinimum: false
+                  maxLength: 2147483647
+                  minLength: 0
+                  uniqueItems: false
+                  nullable: false
+                  writeOnly: false
+                  deprecated: false
+                  $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_StationaryTouchpoint"
+          description: "the touchpoint items"
+      deprecated: false
+      operationId: "myReadAllTouchpoints"
+    post:
+      parameters: []
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                properties:
+                  address:
+                    properties:
+                      zipCode:
+                        type: "string"
+                      city:
+                        type: "string"
+                      street:
+                        type: "string"
+                      geoLong:
+                        type: "integer"
+                      geoLat:
+                        type: "integer"
+                      id:
+                        type: "integer"
+                      houseNr:
+                        type: "string"
+                    type: "object"
+                  erpPointOfSaleId:
+                    type: "integer"
+                  name:
+                    type: "string"
+                  id:
+                    type: "integer"
+                  customers:
+                    type: "array"
+                    items:
+                      properties:
+                        firstName:
+                          type: "string"
+                        lastName:
+                          type: "string"
+                        address:
+                          type: "object"
+                          $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Address"
+                        gender:
+                          type: "string"
+                          nullable: true
+                          enum:
+                          - "M"
+                          - "W"
+                        touchpoints:
+                          type: "array"
+                          items:
+                            readOnly: false
+                            type: "object"
+                            exclusiveMaximum: false
+                            exclusiveMinimum: false
+                            maxLength: 2147483647
+                            minLength: 0
+                            uniqueItems: false
+                            nullable: false
+                            writeOnly: false
+                            deprecated: false
+                            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint"
+                        id:
+                          type: "integer"
+                        mobilePhoneId:
+                          type: "string"
+                        transactions:
+                          type: "array"
+                          items:
+                            properties:
+                              date:
+                                type: "string"
+                                nullable: true
+                              id:
+                                type: "integer"
+                              completed:
+                                type: "boolean"
+                              value:
+                                type: "integer"
+                              touchpoint:
+                                properties:
+                                  erpPointOfSaleId:
+                                    type: "integer"
+                                  name:
+                                    type: "string"
+                                  id:
+                                    type: "integer"
+                                  customers:
+                                    type: "array"
+                                    items:
+                                      readOnly: false
+                                      type: "object"
+                                      exclusiveMaximum: false
+                                      exclusiveMinimum: false
+                                      maxLength: 2147483647
+                                      minLength: 0
+                                      uniqueItems: false
+                                      nullable: false
+                                      writeOnly: false
+                                      deprecated: false
+                                      $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+                                  transactions:
+                                    type: "array"
+                                    items:
+                                      type: "object"
+                                      $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+                                readOnly: false
+                                type: "object"
+                                exclusiveMaximum: false
+                                exclusiveMinimum: false
+                                maxLength: 2147483647
+                                minLength: 0
+                                uniqueItems: false
+                                nullable: false
+                                writeOnly: false
+                                deprecated: false
+                              items:
+                                type: "array"
+                                items:
+                                  properties:
+                                    productObj:
+                                      properties:
+                                        price:
+                                          type: "integer"
+                                        name:
+                                          type: "string"
+                                        id:
+                                          type: "integer"
+                                      type: "object"
+                                    erpProductId:
+                                      type: "integer"
+                                    campaign:
+                                      type: "boolean"
+                                    id:
+                                      type: "integer"
+                                    units:
+                                      type: "integer"
+                                  type: "object"
+                              customer:
+                                type: "object"
+                                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+                            type: "object"
+                        email:
+                          type: "string"
+                        preferredTouchpoint:
+                          type: "object"
+                          $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint"
+                      readOnly: false
+                      type: "object"
+                      exclusiveMaximum: false
+                      exclusiveMinimum: false
+                      maxLength: 2147483647
+                      minLength: 0
+                      uniqueItems: false
+                      nullable: false
+                      writeOnly: false
+                      deprecated: false
+                  transactions:
+                    type: "array"
+                    items:
+                      type: "object"
+                      $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+                readOnly: false
+                type: "object"
+                exclusiveMaximum: false
+                exclusiveMinimum: false
+                maxLength: 2147483647
+                minLength: 0
+                uniqueItems: false
+                nullable: false
+                writeOnly: false
+                deprecated: false
+          description: ""
+      operationId: "createTouchpoint"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_StationaryTouchpoint"
+        required: true
+  /api/opi/touchpoints/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "integer"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_StationaryTouchpoint"
+          description: "default response"
+        default:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_StationaryTouchpoint"
+          description: "default response"
+      operationId: "readTouchpoint"
+    delete:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        style: "simple"
+        schema:
+          type: "integer"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: "boolean"
+          description: "default response"
+        default:
+          content:
+            application/json:
+              schema:
+                type: "boolean"
+          description: "default response"
+      operationId: "deleteTouchpoint"
+  /api/async/touchpoints: {}
+  /api/async/touchpoints/{id}: {}
+components:
+  schemas:
+    java_lang_Object:
+      properties: {}
+      type: "object"
+    org_dieschnittstelle_ess_entities_crm_StationaryTouchpoint:
+      properties:
+        address:
+          properties:
+            zipCode:
+              type: "string"
+            city:
+              type: "string"
+            street:
+              type: "string"
+            geoLong:
+              type: "integer"
+            geoLat:
+              type: "integer"
+            id:
+              type: "integer"
+            houseNr:
+              type: "string"
+          type: "object"
+        erpPointOfSaleId:
+          type: "integer"
+        name:
+          type: "string"
+        id:
+          type: "integer"
+        customers:
+          type: "array"
+          items:
+            properties:
+              firstName:
+                type: "string"
+              lastName:
+                type: "string"
+              address:
+                type: "object"
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Address"
+              gender:
+                type: "string"
+                nullable: true
+                enum:
+                - "M"
+                - "W"
+              touchpoints:
+                type: "array"
+                items:
+                  readOnly: false
+                  type: "object"
+                  exclusiveMaximum: false
+                  exclusiveMinimum: false
+                  maxLength: 2147483647
+                  minLength: 0
+                  uniqueItems: false
+                  nullable: false
+                  writeOnly: false
+                  deprecated: false
+                  $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint"
+              id:
+                type: "integer"
+              mobilePhoneId:
+                type: "string"
+              transactions:
+                type: "array"
+                items:
+                  properties:
+                    date:
+                      type: "string"
+                      nullable: true
+                    id:
+                      type: "integer"
+                    completed:
+                      type: "boolean"
+                    value:
+                      type: "integer"
+                    touchpoint:
+                      properties:
+                        erpPointOfSaleId:
+                          type: "integer"
+                        name:
+                          type: "string"
+                        id:
+                          type: "integer"
+                        customers:
+                          type: "array"
+                          items:
+                            readOnly: false
+                            type: "object"
+                            exclusiveMaximum: false
+                            exclusiveMinimum: false
+                            maxLength: 2147483647
+                            minLength: 0
+                            uniqueItems: false
+                            nullable: false
+                            writeOnly: false
+                            deprecated: false
+                            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+                        transactions:
+                          type: "array"
+                          items:
+                            type: "object"
+                            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+                      readOnly: false
+                      type: "object"
+                      exclusiveMaximum: false
+                      exclusiveMinimum: false
+                      maxLength: 2147483647
+                      minLength: 0
+                      uniqueItems: false
+                      nullable: false
+                      writeOnly: false
+                      deprecated: false
+                    items:
+                      type: "array"
+                      items:
+                        properties:
+                          productObj:
+                            properties:
+                              price:
+                                type: "integer"
+                              name:
+                                type: "string"
+                              id:
+                                type: "integer"
+                            type: "object"
+                          erpProductId:
+                            type: "integer"
+                          campaign:
+                            type: "boolean"
+                          id:
+                            type: "integer"
+                          units:
+                            type: "integer"
+                        type: "object"
+                    customer:
+                      type: "object"
+                      $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+                  type: "object"
+              email:
+                type: "string"
+              preferredTouchpoint:
+                type: "object"
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint"
+            readOnly: false
+            type: "object"
+            exclusiveMaximum: false
+            exclusiveMinimum: false
+            maxLength: 2147483647
+            minLength: 0
+            uniqueItems: false
+            nullable: false
+            writeOnly: false
+            deprecated: false
+        transactions:
+          type: "array"
+          items:
+            type: "object"
+            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+      readOnly: false
+      type: "object"
+      exclusiveMaximum: false
+      exclusiveMinimum: false
+      maxLength: 2147483647
+      minLength: 0
+      uniqueItems: false
+      nullable: false
+      writeOnly: false
+      deprecated: false
+    org_dieschnittstelle_ess_entities_crm_Address:
+      properties:
+        zipCode:
+          type: "string"
+        city:
+          type: "string"
+        street:
+          type: "string"
+        geoLong:
+          type: "integer"
+        geoLat:
+          type: "integer"
+        id:
+          type: "integer"
+        houseNr:
+          type: "string"
+      type: "object"
+    org_dieschnittstelle_ess_entities_crm_Customer:
+      properties:
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        address:
+          type: "object"
+          $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Address"
+        gender:
+          type: "string"
+          nullable: true
+          enum:
+          - "M"
+          - "W"
+        touchpoints:
+          type: "array"
+          items:
+            readOnly: false
+            type: "object"
+            exclusiveMaximum: false
+            exclusiveMinimum: false
+            maxLength: 2147483647
+            minLength: 0
+            uniqueItems: false
+            nullable: false
+            writeOnly: false
+            deprecated: false
+            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint"
+        id:
+          type: "integer"
+        mobilePhoneId:
+          type: "string"
+        transactions:
+          type: "array"
+          items:
+            properties:
+              date:
+                type: "string"
+                nullable: true
+              id:
+                type: "integer"
+              completed:
+                type: "boolean"
+              value:
+                type: "integer"
+              touchpoint:
+                properties:
+                  erpPointOfSaleId:
+                    type: "integer"
+                  name:
+                    type: "string"
+                  id:
+                    type: "integer"
+                  customers:
+                    type: "array"
+                    items:
+                      readOnly: false
+                      type: "object"
+                      exclusiveMaximum: false
+                      exclusiveMinimum: false
+                      maxLength: 2147483647
+                      minLength: 0
+                      uniqueItems: false
+                      nullable: false
+                      writeOnly: false
+                      deprecated: false
+                      $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+                  transactions:
+                    type: "array"
+                    items:
+                      type: "object"
+                      $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+                readOnly: false
+                type: "object"
+                exclusiveMaximum: false
+                exclusiveMinimum: false
+                maxLength: 2147483647
+                minLength: 0
+                uniqueItems: false
+                nullable: false
+                writeOnly: false
+                deprecated: false
+              items:
+                type: "array"
+                items:
+                  properties:
+                    productObj:
+                      properties:
+                        price:
+                          type: "integer"
+                        name:
+                          type: "string"
+                        id:
+                          type: "integer"
+                      type: "object"
+                    erpProductId:
+                      type: "integer"
+                    campaign:
+                      type: "boolean"
+                    id:
+                      type: "integer"
+                    units:
+                      type: "integer"
+                  type: "object"
+              customer:
+                type: "object"
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+            type: "object"
+        email:
+          type: "string"
+        preferredTouchpoint:
+          type: "object"
+          $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint"
+      readOnly: false
+      type: "object"
+      exclusiveMaximum: false
+      exclusiveMinimum: false
+      maxLength: 2147483647
+      minLength: 0
+      uniqueItems: false
+      nullable: false
+      writeOnly: false
+      deprecated: false
+    org_dieschnittstelle_ess_entities_crm_CustomerTransaction:
+      properties:
+        date:
+          type: "string"
+          nullable: true
+        id:
+          type: "integer"
+        completed:
+          type: "boolean"
+        value:
+          type: "integer"
+        touchpoint:
+          properties:
+            erpPointOfSaleId:
+              type: "integer"
+            name:
+              type: "string"
+            id:
+              type: "integer"
+            customers:
+              type: "array"
+              items:
+                readOnly: false
+                type: "object"
+                exclusiveMaximum: false
+                exclusiveMinimum: false
+                maxLength: 2147483647
+                minLength: 0
+                uniqueItems: false
+                nullable: false
+                writeOnly: false
+                deprecated: false
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+            transactions:
+              type: "array"
+              items:
+                type: "object"
+                $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+          readOnly: false
+          type: "object"
+          exclusiveMaximum: false
+          exclusiveMinimum: false
+          maxLength: 2147483647
+          minLength: 0
+          uniqueItems: false
+          nullable: false
+          writeOnly: false
+          deprecated: false
+        items:
+          type: "array"
+          items:
+            properties:
+              productObj:
+                properties:
+                  price:
+                    type: "integer"
+                  name:
+                    type: "string"
+                  id:
+                    type: "integer"
+                type: "object"
+              erpProductId:
+                type: "integer"
+              campaign:
+                type: "boolean"
+              id:
+                type: "integer"
+              units:
+                type: "integer"
+            type: "object"
+        customer:
+          type: "object"
+          $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+      type: "object"
+    org_dieschnittstelle_ess_entities_crm_AbstractTouchpoint:
+      properties:
+        erpPointOfSaleId:
+          type: "integer"
+        name:
+          type: "string"
+        id:
+          type: "integer"
+        customers:
+          type: "array"
+          items:
+            readOnly: false
+            type: "object"
+            exclusiveMaximum: false
+            exclusiveMinimum: false
+            maxLength: 2147483647
+            minLength: 0
+            uniqueItems: false
+            nullable: false
+            writeOnly: false
+            deprecated: false
+            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_Customer"
+        transactions:
+          type: "array"
+          items:
+            type: "object"
+            $ref: "#/components/schemas/org_dieschnittstelle_ess_entities_crm_CustomerTransaction"
+      readOnly: false
+      type: "object"
+      exclusiveMaximum: false
+      exclusiveMinimum: false
+      maxLength: 2147483647
+      minLength: 0
+      uniqueItems: false
+      nullable: false
+      writeOnly: false
+      deprecated: false
+    org_dieschnittstelle_ess_entities_crm_ShoppingCartItem:
+      properties:
+        productObj:
+          properties:
+            price:
+              type: "integer"
+            name:
+              type: "string"
+            id:
+              type: "integer"
+          type: "object"
+        erpProductId:
+          type: "integer"
+        campaign:
+          type: "boolean"
+        id:
+          type: "integer"
+        units:
+          type: "integer"
+      type: "object"
+    org_dieschnittstelle_ess_entities_erp_AbstractProduct:
+      properties:
+        price:
+          type: "integer"
+        name:
+          type: "string"
+        id:
+          type: "integer"
+      type: "object"
