@@ -3,15 +3,13 @@ package org.dieschnittstelle.ess.jrs.client.openapi;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.logging.log4j.Logger;
-import org.openapitools.api.DefaultApi;
 
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
-import org.apache.cxf.jaxrs.client.ClientConfiguration;
-import org.apache.cxf.jaxrs.client.WebClient;
-import org.openapitools.model.*;
-//import org.openapitools.model.ApiOpiTouchpointsAddress;
-//import org.openapitools.model.OrgDieschnittstelleEssEntitiesCrmAddress;
-//import org.openapitools.model.OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint;
+import org.dieschnittstelle.jrs.client.openapi.api.DefaultApi;
+import org.dieschnittstelle.jrs.client.openapi.model.ApiOpiTouchpointsAddress;
+import org.dieschnittstelle.jrs.client.openapi.model.InlineResponseDefault;
+import org.dieschnittstelle.jrs.client.openapi.model.InlineResponseDefault1;
+import org.dieschnittstelle.jrs.client.openapi.model.OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,25 +24,35 @@ public class RunOpenAPIRestServiceClient {
 	 */
 	public static void main(String[] args) {
 
-		// create the service proxy
+		// create the service proxy, using a jackson provider instance that is configured not
+		// to fail on unknown properties (most importantly, the @class property)
 		JacksonJsonProvider provider = new JacksonJsonProvider();
 		provider.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 		List providers = new ArrayList();
 		providers.add(provider);
 
 		DefaultApi serviceProxy = JAXRSClientFactory.create("http://localhost:8080", DefaultApi.class, providers);
+/*
 		org.apache.cxf.jaxrs.client.Client client = WebClient.client(serviceProxy);
 
 		ClientConfiguration config = WebClient.getConfig(client);
+ read all
+*/
 
-		List<OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint> tps = serviceProxy.myReadAllTouchpoints();
-		logger.info("read touchpoints: " + tps);
+		List<InlineResponseDefault1> existingTouchpoints = serviceProxy.readAllTouchpoints();
+		logger.info("read " + existingTouchpoints.size() + " touchpoints: " + toSinglelineString(existingTouchpoints));
 
-//		// create a new touchpoint - note that all attributes with primitive types need to be set to a default value
+		// if we have more than 0 touchpoints, delete the first one
+		if (existingTouchpoints.size() > 0) {
+			serviceProxy.deleteTouchpoint(existingTouchpoints.get(0).getId());
+			logger.info("after deletion, read " + serviceProxy.readAllTouchpoints().size() + " touchpoints");
+		}
+
+		// create a new touchpoint - note that all attributes with primitive types need to be set to a default value
 		// as the generated code uses the wrapper types, which will be passed as null values otherwise, causing
 		// server-side trouble
-		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint tp = new OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint();
-		InlineResponseDefaultAddress address = new InlineResponseDefaultAddress();
+		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint newTouchpoint = new OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint();
+		ApiOpiTouchpointsAddress address = new ApiOpiTouchpointsAddress();
 		address.setCity("Berlin");
 		address.setStreet("Luxemburger Str.");
 		address.setZipCode("13353");
@@ -52,14 +60,27 @@ public class RunOpenAPIRestServiceClient {
 		address.setGeoLat(0);
 		address.setGeoLong(0);
 		address.setId(0);
-		tp.setErpPointOfSaleId(0);
-		tp.setAddress(address);
-		tp.setName("BHT OpenAPI Touchpoint");
-		tp.setId(0);
+		newTouchpoint.setErpPointOfSaleId(0);
+		newTouchpoint.setAddress(address);
+		newTouchpoint.setName("BHT OpenAPI Touchpoint");
+		newTouchpoint.setId(0);
 
-		Object tpp = serviceProxy.createTouchpoint(tp);
-		logger.info("received: " + tpp);
-		
+		// create
+		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint tpp = serviceProxy.createTouchpoint(newTouchpoint);
+		logger.info("created: " + toSinglelineString(tpp));
+
+		// read the created one
+		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint resp = serviceProxy.readTouchpoint(tpp.getId());
+		logger.info("read created: " + toSinglelineString(resp));
+
+	}
+
+	public static String toSinglelineString(Object obj) {
+		String trimmed = String.valueOf(obj).replaceAll("\n","");
+		while (trimmed.indexOf("  ") != -1) {
+			trimmed = trimmed.replaceAll("  "," ");
+		}
+		return trimmed;
 	}
 
 }

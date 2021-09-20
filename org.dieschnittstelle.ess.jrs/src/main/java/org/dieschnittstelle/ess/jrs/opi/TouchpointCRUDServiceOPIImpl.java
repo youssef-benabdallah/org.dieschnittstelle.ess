@@ -43,17 +43,15 @@ public class TouchpointCRUDServiceOPIImpl {
     }
 
     @GET
-    @Operation(operationId = "myReadAllTouchpoints")
-    @APIResponse(description = "the touchpoint items",
-            content = @Content(mediaType = "application/json",
+    @APIResponse(content = @Content(mediaType = MediaType.APPLICATION_JSON,
                     schema = @Schema(type = SchemaType.ARRAY, implementation = StationaryTouchpoint.class)))
     public List<StationaryTouchpoint> readAllTouchpoints() {
         return (List)this.service.readAllTouchpoints();
     }
 
     @POST
-    @APIResponse(content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = StationaryTouchpoint.class)))
+    @APIResponse(content = @Content(mediaType = MediaType.APPLICATION_JSON,
+            schema = @Schema(type = SchemaType.OBJECT, implementation = StationaryTouchpoint.class)))
     public StationaryTouchpoint createTouchpoint(StationaryTouchpoint touchpoint) {
         return (StationaryTouchpoint) this.service.createTouchpoint( touchpoint);
     }
@@ -66,6 +64,8 @@ public class TouchpointCRUDServiceOPIImpl {
 
     @GET
     @Path("/{id}")
+    @APIResponse(content = @Content(mediaType = MediaType.APPLICATION_JSON,
+            schema = @Schema(type = SchemaType.OBJECT, implementation = StationaryTouchpoint.class)))
     public StationaryTouchpoint readTouchpoint(@PathParam("id") long id) {
         return (StationaryTouchpoint)this.service.readTouchpoint(id);
     }

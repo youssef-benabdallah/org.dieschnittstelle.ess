@@ -51,6 +51,8 @@
                             <generatorName>jaxrs-cxf-client</generatorName>
                             <configOptions>
                                 <sourceFolder>target/generated-sources/openapi</sourceFolder>
+                                <apiPackage>org.dieschnittstelle.jrs.client.openapi.api</apiPackage>
+                                <modelPackage>org.dieschnittstelle.jrs.client.openapi.model</modelPackage>
                             </configOptions>
                         </configuration>
                     </execution>
