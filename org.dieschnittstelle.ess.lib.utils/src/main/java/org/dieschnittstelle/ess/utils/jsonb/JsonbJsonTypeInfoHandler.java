@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.utils.jsonb;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -22,6 +23,7 @@ import javax.json.bind.serializer.SerializationContext;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonParser;
 import java.lang.reflect.Type;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import static org.dieschnittstelle.ess.utils.Utils.show;
@@ -30,9 +32,17 @@ import static org.dieschnittstelle.ess.utils.Utils.show;
  * this is our own implementation of the @JsonTypeInfo semantics from Jackson using
  * json-b standard expressive means, see: https://stackoverflow.com/questions/62398858/deserialize-json-into-polymorphic-pojo-with-json-b-yasson (the following ones are only partially useful: https://itsallbinary.com/java-json-polymorphic-type-handling-jackson-vs-gson-vs-json-b/, see also: https://javaee.github.io/jsonb-spec/users-guide.html)
  *
- * starting from tomee maven plugin version 8.0.2, there is a loop issue as the fromJson() method also
- * delegates to this handler for concrete types on which the deserialisation annotation has NOT been set!
- * For this reason, we keep version 8.0.1 for the time being.
+ * starting from tomee maven plugin version 8.0.2, there are two issues that require more or less dirty workarounds:
+ * 1. even though JsonbTypeDeserializer is not declared as inheritable, it is treated as such, which results in a loop
+ * when trying to deserialise a concrete subtype of an abstract type on which the annotation has been set
+ * 2. before calling serialize(), the object context in the json generator is already created, which does not allow to
+ * serialise from a map that contains the original object's attributes, possibly extended by additional ones (like the class name).
+ * The implementation of jsonGenerator that is passed (DynamicMappingGenerator$SkipLastWriteEndGenerator@7f8aaa67), further
+ * shows an issue when serialising arrays of objects, in which case the writeEnd() call is being ignored and results
+ * in an inconsistent state. For this reason, we access the writeEnd() method of the generator's underlying delegate to
+ * enforce it...
+ *
+ * for seeing debug messages, configure log4j accordingly
  */
 public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbSerializer<T> {
 
@@ -62,7 +72,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
     @Override
     public T deserialize(JsonParser parser, DeserializationContext context, Type rtType) {
 
-        logger.debug("deserialise(): type is: " + rtType);
+        logger.info("deserialise(): type is: " + rtType);
 
         JsonObject jsonObj = parser.getObject();
         String jsonString = jsonObj.toString();
@@ -72,7 +82,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
                 && !Modifier.isAbstract(((Class)rtType).getModifiers())) {
             if (superclassUsesCustomisedDeserialiser((Class) rtType)) {
                 // if we do not have an abstract class, we just use the type for deserialisation
-                logger.debug("deserialise(): we do not have an abstract type. Use standard deserialisation implemented by " + jsonb.getClass());
+                logger.debug("deserialise(): we do not have an abstract type, but our supertype declares custom deserialisation. Use Jackson for deserialising: " + rtType);
 //            T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
                 try {
                     T obj = (T) jacksonMapper.readValue(jsonString, ((Class) rtType));
@@ -128,63 +138,104 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
     }
 
     @Override
-    public void serialize(T t, JsonGenerator jsonGenerator, SerializationContext serializationContext) {
-        logger.debug("serialise(): java object is: " + t + ", generator is: " + jsonGenerator);
+    public void serialize(T obj, JsonGenerator jsonGenerator, SerializationContext serializationContext) {
+        logger.info("serialise(): object is: " + obj + ", generator is: " + jsonGenerator);
         try {
-            // we need to embed the complete serialisation logics here as there does not seem
-            // to exist a way how to simply add a single property (specifying the classname) and
-            // then run the normal serialisation for the object. It seems that serialise is called
-            // after the object boundaries have already been marked in the generator, therefore
-            // we also need to embed the logics for embedded objects and arrays, which may then,
-            // however, delegate to the serialisation context. I.e. only those objects whose class
-            // uses the JsonTypeInfo annotation need to be handled.
-            jsonGenerator.write(lookupClassnameProperty(t.getClass()),t.getClass().getName());
-            for (Method m : collectGetters(t.getClass())) {
-                String fieldname = getFieldnameForGetter(m.getName());
-                Object fieldvalue = m.invoke(t);
-                if (fieldvalue != null) {
-                    Type fieldtype = m.getGenericReturnType();
-                    // cover the primitive types
-                    // TODO: for full coverage, this would need to be extended
-                    if (fieldtype == Integer.TYPE || fieldtype == Integer.class) {
-                        jsonGenerator.write(fieldname,(int)fieldvalue);
-                    }
-                    else if (fieldtype == Long.TYPE || fieldtype == Long.class) {
-                        jsonGenerator.write(fieldname,(long)fieldvalue);
-                    }
-                    else if (fieldtype == Double.TYPE || fieldtype == Double.class) {
-                        jsonGenerator.write(fieldname,(double)fieldvalue);
-                    }
-                    else if (fieldtype == Boolean.TYPE || fieldtype == Boolean.class) {
-                        jsonGenerator.write(fieldname,(boolean)fieldvalue);
-                    }
-                    else if (fieldtype == String.class) {
-                        jsonGenerator.write(fieldname,(String)fieldvalue);
-                    }
-                    else if (fieldvalue instanceof Collection) {
-                        jsonGenerator.writeStartArray();
-                        ((Collection)fieldvalue).forEach(el -> {
-                            jsonGenerator.writeStartObject();
-                            logger.debug("serialise(): serialise embedded array of field " + fieldname + " using standard serialiser: " + fieldvalue);
+            logger.debug("serialise(): object is: " + obj + ", generator is: " + jsonGenerator);
+            showLevel(jsonGenerator);
+            try {
+                // we need to embed the complete serialisation logics here as there does not seem
+                // to exist a way how to simply add a single property (specifying the classname) and
+                // then run the normal serialisation for the object. It seems that serialise is called
+                // after the object boundaries have already been marked in the generator, therefore
+                // we also need to embed the logics for embedded objects and arrays, which may then,
+                // however, delegate to the serialisation context. I.e. only those objects whose class
+                // uses the JsonTypeInfo annotation need to be handled.
+                try {
+                    String classnameProperty = lookupClassnameProperty(obj.getClass());
+                    jsonGenerator.write(classnameProperty, obj.getClass().getName());
+                }
+                catch (PolymorphicTypeException pt) {
+                    // ignore this exception as we use this method also for any objects embedded in ones
+                    // marked for custom deserialisation
+                }
+                for (Method m : collectGetters(obj.getClass())) {
+                    String fieldname = getFieldnameForGetter(m.getName());
+                    Object fieldvalue = m.invoke(obj);
+                    if (fieldvalue != null) {
+                        Type fieldtype = m.getGenericReturnType();
+                        // cover the primitive types
+                        // TODO: for full coverage, this would need to be extended
+                        if (fieldtype == Integer.TYPE || fieldtype == Integer.class) {
+                            logger.debug("serialise(): int value: " + fieldname + "=" + fieldvalue);
+                            jsonGenerator.write(fieldname,(int)fieldvalue);
+                        }
+                        else if (fieldtype == Long.TYPE || fieldtype == Long.class) {
+                            logger.debug("serialise(): long value: " + fieldname + "=" + fieldvalue);
+                            jsonGenerator.write(fieldname,(long)fieldvalue);
+                        }
+                        else if (fieldtype == Double.TYPE || fieldtype == Double.class) {
+                            logger.debug("serialise(): double value: " + fieldname + "=" + fieldvalue);
+                            jsonGenerator.write(fieldname,(double)fieldvalue);
+                        }
+                        else if (fieldtype == Boolean.TYPE || fieldtype == Boolean.class) {
+                            logger.debug("serialise(): boolean value: " + fieldname + "=" + fieldvalue);
+                            jsonGenerator.write(fieldname,(boolean)fieldvalue);
+                        }
+                        else if (fieldtype == String.class) {
+                            logger.debug("serialise(): String value: " + fieldname + "=" + fieldvalue);
+                            jsonGenerator.write(fieldname,(String)fieldvalue);
+                        }
+                        // handle enums
+                        else if (fieldtype instanceof Class && ((Class)fieldtype).isEnum()) {
+                            logger.debug("serialise(): enum value: " + fieldname + "=" + fieldvalue);
+                            jsonGenerator.write(fieldname,String.valueOf(fieldvalue));
+                        }
+                        // handle arrays - note that currently, only arrays containing objects are considered
+                        else if (fieldvalue instanceof Collection) {
+                            logger.debug("serialise(): serialise embedded array of field " + fieldname);
+                            jsonGenerator.writeStartArray(fieldname);
+                            showLevel(jsonGenerator);
+                            ((Collection)fieldvalue).forEach(el -> {
+                                jsonGenerator.writeStartObject();
+                                logger.debug("serialise(): serialise embedded array element of field " + fieldname + " using standard serialiser: " + el);
+                                // serialise the embedded value
+                                serializationContext.serialize(el,jsonGenerator);
+                                jsonGenerator.writeEnd();
+                                logger.debug("serialise(): done serialising embedded array element of field " + fieldname);
+                            });
+                            logger.debug("serialise(): finalising embedded array of field " + fieldname);
+                            showLevel(jsonGenerator);
+                            jsonGenerator.writeEnd();
+                            enforceEnd(jsonGenerator);
+                            logger.debug("serialise(): done serialising embedded array of field " + fieldname);
+                            showLevel(jsonGenerator);
+                        }
+                        // handle objects
+                        else {
+                            jsonGenerator.writeStartObject(fieldname);
+                            logger.debug("serialise(): serialise embedded field value of " + fieldname + " using standard serialiser: " + fieldvalue);
+                            showLevel(jsonGenerator);
                             // serialise the embedded value
                             serializationContext.serialize(fieldvalue,jsonGenerator);
                             jsonGenerator.writeEnd();
-                        });
-                        jsonGenerator.writeEnd();
-                    }
-                    // if we have an embedded object, we somehow need to manage to write it as well...
-                    else {
-                        jsonGenerator.writeStartObject(fieldname);
-                        logger.debug("serialise(): serialise embedded field value of " + fieldname + " using standard serialiser: " + fieldvalue);
-                        // serialise the embedded value
-                        serializationContext.serialize(fieldvalue,jsonGenerator);
-                        jsonGenerator.writeEnd();
+                            logger.debug("serialise(): done serialising embedded field value of field " + fieldname);
+                            showLevel(jsonGenerator);
+                        }
                     }
                 }
+
+                logger.debug("serialise(): done serialising " + obj.getClass());
+            }
+            catch (Exception e) {
+                throw new PolymorphicTypeException("Cannot serialise object: " + obj + ". Got: " + e,e);
             }
         }
+        catch (PolymorphicTypeException e) {
+            throw e;
+        }
         catch (Exception e) {
-            throw new PolymorphicTypeException("Cannot serialise object: " + t + ". Got: " + e,e);
+            throw new PolymorphicTypeException("Cannot serialise object: " + obj + ". Got: " + e,e);
         }
     }
 
@@ -221,6 +272,33 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
         }
         else {
             throw new PolymorphicTypeException("Could not determine classname property from class " + klass);
+        }
+    }
+
+    private void showLevel(JsonGenerator generator) {
+        try {
+            Field level = generator.getClass().getDeclaredField("level");
+            level.setAccessible(true);
+            logger.debug("generator level is: " + level.get(generator));
+        }
+        catch (Exception e) {
+            // ignore
+        }
+    }
+
+    private void enforceEnd(JsonGenerator generator) {
+        if (generator.getClass().getName().endsWith("SkipLastWriteEndGenerator")) {
+            try {
+                Class klass = generator.getClass().getSuperclass();
+                Field delegateField = klass.getDeclaredField("delegate");
+                delegateField.setAccessible(true);
+                Object delegateObj = delegateField.get(generator);
+                Method writeEnd = delegateObj.getClass().getMethod("writeEnd");
+                writeEnd.invoke(delegateObj);
+            }
+            catch (Exception e) {
+                throw new PolymorphicTypeException("Exception trying to enforce end on generator, it might be that johnzon implementation has changed since tomee maven plugin version 8.0.8. Exception is: " + e,e);
+            }
         }
     }
 
