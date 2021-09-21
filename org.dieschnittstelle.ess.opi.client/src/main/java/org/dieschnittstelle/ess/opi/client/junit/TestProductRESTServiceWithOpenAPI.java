@@ -1,7 +1,7 @@
 package org.dieschnittstelle.ess.opi.client.junit;
 
 // TODO: entfernen Sie die auskommentierten Codezeilen, nachdem Sie nach Umsetzung der server-seitigen
-//  Entwicklunsmassnerstmalig fuer OPI1 erstmalig die client-seitigen Klassen fuer den Zugriff auf die WebAPI
+//  Entwicklunsmassnahmen fuer OPI1 erstmalig die client-seitigen Klassen fuer den Zugriff auf die WebAPI
 //  generiert haben. Falls Ihre imports automatisch aktualisiert werden, dann entfernen Sie erst die Kommentare
 //  aus der Implementierung der Klasse und kommentieren Sie die imports erst danach ein.
 

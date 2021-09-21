@@ -1,7 +1,6 @@
 package org.dieschnittstelle.ess.opi.client;
 
-// TODO: entfernen Sie die auskommentierten Codezeilen, nachdem erstmalig die client-seitigen
-//  Klassen fuer den Zugriff auf die WebAPI generiert wurden. Falls Ihre imports automatisch aktualisiert
+// TODO: entfernen Sie die auskommentierten Codezeilen. Falls Ihre imports automatisch aktualisiert
 //  werden, dann entfernen Sie erst die Kommentare aus der Implementierung der Klasse und kommentieren
 //  Sie die imports erst danach ein.
 
@@ -17,10 +16,10 @@ import org.dieschnittstelle.ess.opi.client.model.StationaryTouchpoint;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RunOpenAPIRestServiceClient {
+public class ShowOpenAPIRestServiceClient {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager
-			.getLogger(RunOpenAPIRestServiceClient.class);
+			.getLogger(ShowOpenAPIRestServiceClient.class);
 
 	/**
 	 * @param args
