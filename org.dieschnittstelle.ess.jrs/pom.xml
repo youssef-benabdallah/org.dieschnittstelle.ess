@@ -55,7 +55,8 @@
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>${version.tomee}</version>
+<!--                <version>${version.tomee}</version>-->
+                <version>8.0.8</version>
                 <executions>
                     <execution>
                         <id>executable-jar</id>

@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="5_JWS" pattern="file[group:0_SHARED]:*//*||file[group:5_JWS]:*//*" />
-</component>

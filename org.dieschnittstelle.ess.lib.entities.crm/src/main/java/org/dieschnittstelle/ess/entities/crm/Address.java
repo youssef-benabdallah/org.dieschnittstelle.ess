@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
+@Schema(name="Address")
 public class Address extends Location  implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Address.class);

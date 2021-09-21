@@ -99,6 +99,7 @@
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.erp.app.tomee/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.mip.ms.shopping.app.tomee/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.jrs.client.openapi/pom.xml" />
+        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.opi.client/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -6,10 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.dieschnittstelle.jrs.client.openapi.api.DefaultApi;
-import org.dieschnittstelle.jrs.client.openapi.model.ApiOpiTouchpointsAddress;
-import org.dieschnittstelle.jrs.client.openapi.model.InlineResponseDefault;
-import org.dieschnittstelle.jrs.client.openapi.model.InlineResponseDefault1;
-import org.dieschnittstelle.jrs.client.openapi.model.OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint;
+import org.dieschnittstelle.jrs.client.openapi.model.Address;
+import org.dieschnittstelle.jrs.client.openapi.model.StationaryTouchpoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,7 @@ public class RunOpenAPIRestServiceClient {
  read all
 */
 
-		List<InlineResponseDefault1> existingTouchpoints = serviceProxy.readAllTouchpoints();
+		List<StationaryTouchpoint> existingTouchpoints = serviceProxy.readAllTouchpoints();
 		logger.info("read " + existingTouchpoints.size() + " touchpoints: " + toSinglelineString(existingTouchpoints));
 
 		// if we have more than 0 touchpoints, delete the first one
@@ -51,8 +49,8 @@ public class RunOpenAPIRestServiceClient {
 		// create a new touchpoint - note that all attributes with primitive types need to be set to a default value
 		// as the generated code uses the wrapper types, which will be passed as null values otherwise, causing
 		// server-side trouble
-		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint newTouchpoint = new OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint();
-		ApiOpiTouchpointsAddress address = new ApiOpiTouchpointsAddress();
+		StationaryTouchpoint newTouchpoint = new StationaryTouchpoint();
+		Address address = new Address();
 		address.setCity("Berlin");
 		address.setStreet("Luxemburger Str.");
 		address.setZipCode("13353");
@@ -66,11 +64,11 @@ public class RunOpenAPIRestServiceClient {
 		newTouchpoint.setId(0);
 
 		// create
-		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint tpp = serviceProxy.createTouchpoint(newTouchpoint);
+		StationaryTouchpoint tpp = serviceProxy.createTouchpoint(newTouchpoint);
 		logger.info("created: " + toSinglelineString(tpp));
 
 		// read the created one
-		OrgDieschnittstelleEssEntitiesCrmStationaryTouchpoint resp = serviceProxy.readTouchpoint(tpp.getId());
+		StationaryTouchpoint resp = serviceProxy.readTouchpoint(tpp.getId());
 		logger.info("read created: " + toSinglelineString(resp));
 
 	}

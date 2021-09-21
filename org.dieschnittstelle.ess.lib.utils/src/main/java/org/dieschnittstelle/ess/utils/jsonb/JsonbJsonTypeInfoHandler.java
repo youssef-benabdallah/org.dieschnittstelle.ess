@@ -60,7 +60,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
 
         if (rtType instanceof Class && !Modifier.isAbstract(((Class)rtType).getModifiers())) {
             // if we do not have an abstract class, we just use the type for deserialisation
-            logger.info("deserialise(): we do not have an abstract type. Use standard deserialisation...");
+            logger.info("deserialise(): we do not have an abstract type. Use standard deserialisation implemented by " + jsonb.getClass());
             T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
             return obj;
         }

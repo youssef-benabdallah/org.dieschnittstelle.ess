@@ -30,7 +30,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
  * 
  */
 @Entity
-@Schema(name="MyCustomer")
 public class Customer implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Customer.class);

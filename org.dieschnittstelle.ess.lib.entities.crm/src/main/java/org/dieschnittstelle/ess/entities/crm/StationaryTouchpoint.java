@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @DiscriminatorValue("stationary")
 @JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
-@Schema(name="MyStationaryTouchpoint")
+@Schema(name="StationaryTouchpoint")
 public class StationaryTouchpoint extends AbstractTouchpoint  implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(StationaryTouchpoint.class);
@@ -45,6 +45,7 @@ public class StationaryTouchpoint extends AbstractTouchpoint  implements Seriali
 	 * see Customer->Address for a more intuitive handling of an "address" association as ManyToOne
 	 */
 	@OneToOne(cascade={CascadeType.ALL})
+	@Schema(implementation = Address.class)
 	private Address address;
 	
 	public StationaryTouchpoint() {
