@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.Logger;
 
@@ -39,9 +40,14 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
 
     private static final Jsonb jsonb = JsonbBuilder.create();
 
-    private ObjectMapper jacksonMapper = new ObjectMapper();
+    private ObjectMapper jacksonMapper;
 
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(JsonbJsonTypeInfoHandler.class);
+
+    public JsonbJsonTypeInfoHandler() {
+        this.jacksonMapper =  new ObjectMapper();
+        this.jacksonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+    }
 
     public static class PolymorphicTypeException extends RuntimeException {
         public PolymorphicTypeException(String message) {
@@ -56,21 +62,21 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
     @Override
     public T deserialize(JsonParser parser, DeserializationContext context, Type rtType) {
 
-        logger.info("deserialise(): type is: " + rtType);
+        logger.debug("deserialise(): type is: " + rtType);
 
         JsonObject jsonObj = parser.getObject();
         String jsonString = jsonObj.toString();
-        logger.info("deserialise(): jsonString is: " + jsonString);
+        logger.debug("deserialise(): jsonString is: " + jsonString);
 
         if (rtType instanceof Class
                 && !Modifier.isAbstract(((Class)rtType).getModifiers())) {
             if (superclassUsesCustomisedDeserialiser((Class) rtType)) {
                 // if we do not have an abstract class, we just use the type for deserialisation
-                logger.info("deserialise(): we do not have an abstract type. Use standard deserialisation implemented by " + jsonb.getClass());
+                logger.debug("deserialise(): we do not have an abstract type. Use standard deserialisation implemented by " + jsonb.getClass());
 //            T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
                 try {
                     T obj = (T) jacksonMapper.readValue(jsonString, ((Class) rtType));
-                    logger.info("deserialise(): deserialised json to concrete type using jackson as johnzon recursion workaround: " + obj);
+                    logger.debug("deserialise(): deserialised json to concrete type using jackson as johnzon recursion workaround: " + obj);
                     return obj;
                 } catch (Exception e) {
                     String err = "got exception trying to deserialise json using jackson as johnzon workaround: " + e;
@@ -79,7 +85,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
             }
             else {
                 T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
-                logger.info("deserialise(): deserialised json to concrete type using johnzon: " + obj);
+                logger.debug("deserialise(): deserialised json to concrete type using johnzon: " + obj);
                 return obj;
             }
         }
@@ -87,16 +93,16 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
             // this is a custom implementation of the JsonTypeInfo logics that is possible for deserialisation
             // however, as serialisation does not seem to appear possible without duplicating large part of
             // serialisation logic, we just embed the jackson processing here
-            logger.info("deserialise(): we have an abstract type. Lookup classname of concrete class...");
+            logger.debug("deserialise(): we have an abstract type. Lookup classname of concrete class...");
 
             String klassname = jsonObj.getString(lookupClassnameProperty((Class)rtType));
-            logger.info("deserialise(): klassname is: " + klassname);
+            logger.debug("deserialise(): klassname is: " + klassname);
 
             try {
                 Class klass = Class.forName(klassname);
-                logger.info("deserialise(): klass is: " + klass);
+                logger.debug("deserialise(): klass is: " + klass);
                 T obj = (T)jsonb.fromJson(jsonString, klass);
-                logger.info("deserialise(): deserialised instance of polymorphic type: " + obj);
+                logger.debug("deserialise(): deserialised instance of polymorphic type: " + obj);
                 return obj;
             }
             catch (Exception e) {
@@ -123,7 +129,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
 
     @Override
     public void serialize(T t, JsonGenerator jsonGenerator, SerializationContext serializationContext) {
-        logger.info("serialise(): java object is: " + t + ", generator is: " + jsonGenerator);
+        logger.debug("serialise(): java object is: " + t + ", generator is: " + jsonGenerator);
         try {
             // we need to embed the complete serialisation logics here as there does not seem
             // to exist a way how to simply add a single property (specifying the classname) and
@@ -159,6 +165,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
                         jsonGenerator.writeStartArray();
                         ((Collection)fieldvalue).forEach(el -> {
                             jsonGenerator.writeStartObject();
+                            logger.debug("serialise(): serialise embedded array of field " + fieldname + " using standard serialiser: " + fieldvalue);
                             // serialise the embedded value
                             serializationContext.serialize(fieldvalue,jsonGenerator);
                             jsonGenerator.writeEnd();
@@ -168,6 +175,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
                     // if we have an embedded object, we somehow need to manage to write it as well...
                     else {
                         jsonGenerator.writeStartObject(fieldname);
+                        logger.debug("serialise(): serialise embedded field value of " + fieldname + " using standard serialiser: " + fieldvalue);
                         // serialise the embedded value
                         serializationContext.serialize(fieldvalue,jsonGenerator);
                         jsonGenerator.writeEnd();
@@ -205,7 +213,7 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
 
     private String lookupClassnameProperty(Class klass) {
         if (klass.isAnnotationPresent(JsonTypeInfo.class)) {
-            logger.info("lookup classname property from annotated klass " + klass);
+            logger.debug("lookup classname property from annotated klass " + klass);
             return ((JsonTypeInfo)klass.getAnnotation(JsonTypeInfo.class)).property();
         }
         else if (klass.getSuperclass() != null && klass.getSuperclass() != Object.class) {

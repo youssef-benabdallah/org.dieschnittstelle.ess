@@ -26,6 +26,7 @@ public class RunOpenAPIRestServiceClient {
 		// to fail on unknown properties (most importantly, the @class property)
 		JacksonJsonProvider provider = new JacksonJsonProvider();
 		provider.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+
 		List providers = new ArrayList();
 		providers.add(provider);
 
