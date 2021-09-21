@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class TestProductRESTService {
 		
 	@Test
 	public void crudWorks() {
-		List<?> prodlistBefore;
+		List<?> prodlistBefore = new ArrayList<>();
 		// read all products
 		assertNotNull("product list can be read",prodlistBefore = client.readAllProducts());
 		
@@ -68,7 +69,7 @@ public class TestProductRESTService {
 		assertEquals("product list is reduced on delete",prodlistBefore.size()+1,client.readAllProducts().size());				
 
 		/* this is for internally testing that campaigns can be written and read via the web api - not part of the exercise */
-		Campaign campaign = (Campaign)client.createProduct(CAMPAIGN);
+//		Campaign campaign = (Campaign)client.createProduct(CAMPAIGN);
 	}
 
 }

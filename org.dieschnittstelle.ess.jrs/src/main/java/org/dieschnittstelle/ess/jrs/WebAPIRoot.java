@@ -2,6 +2,9 @@ package org.dieschnittstelle.ess.jrs;
 
 import org.dieschnittstelle.ess.jrs.opi.ProductCRUDServiceOPIImpl;
 import org.dieschnittstelle.ess.jrs.opi.TouchpointCRUDServiceOPIImpl;
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
+import org.eclipse.microprofile.openapi.annotations.info.Info;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -11,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationPath("/api")
+@OpenAPIDefinition(info=@Info(title = "WebAPI for JRS, OPI and WSV exercises", version = "0.1"))
 public class WebAPIRoot extends Application {
 
     @Override

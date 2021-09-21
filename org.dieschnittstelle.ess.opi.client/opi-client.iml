@@ -102,6 +102,9 @@
     <orderEntry type="library" name="Maven: org.apache.ant:ant:1.10.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.ant:ant-launcher:1.10.5" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind.external:relaxng-datatype:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-frontend-jaxrs:3.3.0" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.ws.rs:jakarta.ws.rs-api:2.1.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-security:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.ws:jaxws-api:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.soap:javax.xml.soap-api:1.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.sun.activation:javax.activation:1.2.0" level="project" />
@@ -113,15 +116,6 @@
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.rmi:jboss-rmi-api_1.0_spec:1.0.6.Final" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-frontend-jaxrs:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.ws.rs:jakarta.ws.rs-api:2.1.5" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-security:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-rs-service-description:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-ws-policy:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: wsdl4j:wsdl4j:1.6.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.neethi:neethi:3.1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.cxf:cxf-rt-wsdl:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.ow2.asm:asm:7.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.9" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.9.9" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.9" level="project" />

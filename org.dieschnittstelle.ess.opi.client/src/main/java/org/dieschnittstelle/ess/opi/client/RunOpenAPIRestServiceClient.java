@@ -1,13 +1,18 @@
-package org.dieschnittstelle.ess.jrs.client.openapi;
+package org.dieschnittstelle.ess.opi.client;
+
+// TODO: entfernen Sie die auskommentierten Codezeilen, nachdem erstmalig die client-seitigen
+//  Klassen fuer den Zugriff auf die WebAPI generiert wurden. Falls Ihre imports automatisch aktualisiert
+//  werden, dann entfernen Sie erst die Kommentare aus der Implementierung der Klasse und kommentieren
+//  Sie die imports erst danach ein.
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.logging.log4j.Logger;
 
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
-import org.dieschnittstelle.jrs.client.openapi.api.DefaultApi;
-import org.dieschnittstelle.jrs.client.openapi.model.Address;
-import org.dieschnittstelle.jrs.client.openapi.model.StationaryTouchpoint;
+import org.dieschnittstelle.ess.opi.client.api.DefaultApi;
+import org.dieschnittstelle.ess.opi.client.model.Address;
+import org.dieschnittstelle.ess.opi.client.model.StationaryTouchpoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +36,6 @@ public class RunOpenAPIRestServiceClient {
 		providers.add(provider);
 
 		DefaultApi serviceProxy = JAXRSClientFactory.create("http://localhost:8080", DefaultApi.class, providers);
-/*
-		org.apache.cxf.jaxrs.client.Client client = WebClient.client(serviceProxy);
-
-		ClientConfiguration config = WebClient.getConfig(client);
- read all
-*/
 
 		List<StationaryTouchpoint> existingTouchpoints = serviceProxy.readAllTouchpoints();
 		logger.info("read " + existingTouchpoints.size() + " touchpoints: " + toSinglelineString(existingTouchpoints));
