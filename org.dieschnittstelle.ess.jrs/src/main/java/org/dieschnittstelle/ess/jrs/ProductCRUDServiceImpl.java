@@ -1,8 +1,8 @@
 package org.dieschnittstelle.ess.jrs;
 
-import java.util.List;
-
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
+
+import java.util.List;
 
 /*
  * TODO JRS2: implementieren Sie hier die im Interface deklarierten Methoden

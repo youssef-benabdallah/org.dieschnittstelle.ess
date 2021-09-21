@@ -29,6 +29,7 @@
         <module name="mip-ms-erp-app-tomee" />
         <module name="jrs-api" />
         <module name="demo-ejb-earapp" />
+        <module name="opi-client" />
         <module name="mip-webapp" />
         <module name="mip-components-crm (1)" />
         <module name="demo-ser-webapp" />
@@ -94,7 +95,6 @@
       <module name="ess-deployment" target="1.8" />
       <module name="jrs-api" target="1.8" />
       <module name="jrs-client" target="1.8" />
-      <module name="jrs-client-openapi" target="1.8" />
       <module name="jrs-webapp" target="1.8" />
       <module name="jsf-cdi-webapp" target="1.8" />
       <module name="jsf-webapp" target="1.8" />
@@ -123,6 +123,7 @@
       <module name="mip-ms-shopping" target="1.8" />
       <module name="mip-ms-shopping-app-tomee" target="1.8" />
       <module name="mip-webapp" target="1.8" />
+      <module name="opi-client" target="1.8" />
       <module name="ser-client" target="1.8" />
       <module name="ser-webapp" target="1.8" />
       <module name="ue-add2" target="1.8" />

@@ -7,10 +7,13 @@ import java.util.List;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
 
+import javax.json.bind.annotation.JsonbTypeDeserializer;
+import javax.json.bind.annotation.JsonbTypeSerializer;
 import javax.persistence.*;
 
-
+//@JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
 public class Campaign extends AbstractProduct implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Campaign.class);

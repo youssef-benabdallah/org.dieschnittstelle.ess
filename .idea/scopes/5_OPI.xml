@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="5_OPI" pattern="file[group:0_SHARED]:*//*||file[group:5_OPI]:*//*||file[group:4_JRS]:*//*" />
+</component>

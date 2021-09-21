@@ -24,6 +24,7 @@ import javax.persistence.PreUpdate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 /*
  * 

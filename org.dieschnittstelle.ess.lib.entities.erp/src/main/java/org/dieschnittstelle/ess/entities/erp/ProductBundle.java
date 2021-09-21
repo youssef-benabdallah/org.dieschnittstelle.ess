@@ -18,9 +18,10 @@ public class ProductBundle implements Serializable {
 
 	private long id;
 
-	// this has been changed to AbstractProduct due to some jboss/jackson serialisation issue
-	// in wildfly 18, which throws an error on unmarshalling, probably due to @JsonTypeInfo
-	private AbstractProduct product;
+	// this had been changed to AbstractProduct due to some jboss/jackson serialisation issue
+	// in wildfly 18, which throws an error on unmarshalling, probably due to @JsonTypeInfo,
+	// but as we have migrated to TomEE in the meantime, we changed it back to the concrete class
+	private IndividualisedProductItem product;
 
 	private int units;
 
@@ -37,7 +38,7 @@ public class ProductBundle implements Serializable {
 		return this.product;
 	}
 
-	public void setProduct(AbstractProduct product) {
+	public void setProduct(IndividualisedProductItem product) {
 		this.product = product;
 	}
 

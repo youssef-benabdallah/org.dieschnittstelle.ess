@@ -5,11 +5,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
-import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
-import org.dieschnittstelle.ess.entities.erp.ProductType;
+import org.dieschnittstelle.ess.entities.erp.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,15 +19,24 @@ public class TestProductRESTService {
 	
 	private IndividualisedProductItem PRODUCT_1 = new IndividualisedProductItem("Schrippe",	ProductType.ROLL, 720);
 	private IndividualisedProductItem PRODUCT_2 = new IndividualisedProductItem("Kirschplunder",ProductType.PASTRY, 1080);
-	
+	private Campaign CAMPAIGN = new Campaign();
+
 	@Before
 	public void prepareContext() throws Exception {
 		client = new ProductCRUDRESTClient();
+		ProductBundle b1 = new ProductBundle();
+		b1.setUnits(10);
+		b1.setProduct(PRODUCT_1);
+		ProductBundle b2 = new ProductBundle();
+		b2.setUnits(3);
+		b2.setProduct(PRODUCT_2);
+		CAMPAIGN.addBundle(b1);
+		CAMPAIGN.addBundle(b2);
 	}
 		
 	@Test
 	public void crudWorks() {
-		List<?> prodlistBefore;
+		List<?> prodlistBefore = new ArrayList<>();
 		// read all products
 		assertNotNull("product list can be read",prodlistBefore = client.readAllProducts());
 		
@@ -58,7 +67,9 @@ public class TestProductRESTService {
 		assertTrue("product can be deleted",  client.deleteProduct(PRODUCT_1.getId()));
 		assertNull("deleted product does not exist anymore", client.readProduct(PRODUCT_1.getId()));
 		assertEquals("product list is reduced on delete",prodlistBefore.size()+1,client.readAllProducts().size());				
-			
+
+		/* this is for internally testing that campaigns can be written and read via the web api - not part of the exercise */
+//		Campaign campaign = (Campaign)client.createProduct(CAMPAIGN);
 	}
 
 }
