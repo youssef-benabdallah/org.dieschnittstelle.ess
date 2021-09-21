@@ -6,12 +6,14 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.Logger;
 
 import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.annotation.JsonbTransient;
+import javax.json.bind.annotation.JsonbTypeDeserializer;
 import javax.json.bind.serializer.DeserializationContext;
 import javax.json.bind.serializer.JsonbDeserializer;
 import javax.json.bind.serializer.JsonbSerializer;
@@ -37,6 +39,8 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
 
     private static final Jsonb jsonb = JsonbBuilder.create();
 
+    private ObjectMapper jacksonMapper = new ObjectMapper();
+
     protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(JsonbJsonTypeInfoHandler.class);
 
     public static class PolymorphicTypeException extends RuntimeException {
@@ -58,11 +62,26 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
         String jsonString = jsonObj.toString();
         logger.info("deserialise(): jsonString is: " + jsonString);
 
-        if (rtType instanceof Class && !Modifier.isAbstract(((Class)rtType).getModifiers())) {
-            // if we do not have an abstract class, we just use the type for deserialisation
-            logger.info("deserialise(): we do not have an abstract type. Use standard deserialisation implemented by " + jsonb.getClass());
-            T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
-            return obj;
+        if (rtType instanceof Class
+                && !Modifier.isAbstract(((Class)rtType).getModifiers())) {
+            if (superclassUsesCustomisedDeserialiser((Class) rtType)) {
+                // if we do not have an abstract class, we just use the type for deserialisation
+                logger.info("deserialise(): we do not have an abstract type. Use standard deserialisation implemented by " + jsonb.getClass());
+//            T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
+                try {
+                    T obj = (T) jacksonMapper.readValue(jsonString, ((Class) rtType));
+                    logger.info("deserialise(): deserialised json to concrete type using jackson as johnzon recursion workaround: " + obj);
+                    return obj;
+                } catch (Exception e) {
+                    String err = "got exception trying to deserialise json using jackson as johnzon workaround: " + e;
+                    throw new PolymorphicTypeException(err, e);
+                }
+            }
+            else {
+                T obj = (T)jsonb.fromJson(jsonString, ((Class)rtType));
+                logger.info("deserialise(): deserialised json to concrete type using johnzon: " + obj);
+                return obj;
+            }
         }
         else {
             // this is a custom implementation of the JsonTypeInfo logics that is possible for deserialisation
@@ -86,21 +105,75 @@ public class JsonbJsonTypeInfoHandler<T> implements JsonbDeserializer<T>, JsonbS
         }
     }
 
+    public boolean superclassUsesCustomisedDeserialiser(Class klass) {
+        if (klass == null) {
+            return false;
+        }
+        else if (klass == Object.class) {
+            return false;
+        }
+        else if (klass.isAnnotationPresent(JsonbTypeDeserializer.class) &&
+                ((JsonbTypeDeserializer)klass.getAnnotation(JsonbTypeDeserializer.class)).value() == JsonbJsonTypeInfoHandler.class) {
+            return true;
+        }
+        else {
+            return superclassUsesCustomisedDeserialiser(klass.getSuperclass());
+        }
+    }
+
     @Override
     public void serialize(T t, JsonGenerator jsonGenerator, SerializationContext serializationContext) {
-        logger.info("serialise(): java object is: " + t);
+        logger.info("serialise(): java object is: " + t + ", generator is: " + jsonGenerator);
         try {
-            // we convert the object into a map, using the instance attributes, and ignoring for the time being
-            // any attribute name mappings... there seems to be no straightforward way to access the result
-            // of default generation for the given object and simply add the klassname attribute...
-            Map<String,Object> intermediateObj = new HashMap<>();
-            intermediateObj.put(lookupClassnameProperty(t.getClass()),t.getClass());
+            // we need to embed the complete serialisation logics here as there does not seem
+            // to exist a way how to simply add a single property (specifying the classname) and
+            // then run the normal serialisation for the object. It seems that serialise is called
+            // after the object boundaries have already been marked in the generator, therefore
+            // we also need to embed the logics for embedded objects and arrays, which may then,
+            // however, delegate to the serialisation context. I.e. only those objects whose class
+            // uses the JsonTypeInfo annotation need to be handled.
+            jsonGenerator.write(lookupClassnameProperty(t.getClass()),t.getClass().getName());
             for (Method m : collectGetters(t.getClass())) {
                 String fieldname = getFieldnameForGetter(m.getName());
-                intermediateObj.put(fieldname, m.invoke(t));
+                Object fieldvalue = m.invoke(t);
+                if (fieldvalue != null) {
+                    Type fieldtype = m.getGenericReturnType();
+                    // cover the primitive types
+                    // TODO: for full coverage, this would need to be extended
+                    if (fieldtype == Integer.TYPE || fieldtype == Integer.class) {
+                        jsonGenerator.write(fieldname,(int)fieldvalue);
+                    }
+                    else if (fieldtype == Long.TYPE || fieldtype == Long.class) {
+                        jsonGenerator.write(fieldname,(long)fieldvalue);
+                    }
+                    else if (fieldtype == Double.TYPE || fieldtype == Double.class) {
+                        jsonGenerator.write(fieldname,(double)fieldvalue);
+                    }
+                    else if (fieldtype == Boolean.TYPE || fieldtype == Boolean.class) {
+                        jsonGenerator.write(fieldname,(boolean)fieldvalue);
+                    }
+                    else if (fieldtype == String.class) {
+                        jsonGenerator.write(fieldname,(String)fieldvalue);
+                    }
+                    else if (fieldvalue instanceof Collection) {
+                        jsonGenerator.writeStartArray();
+                        ((Collection)fieldvalue).forEach(el -> {
+                            jsonGenerator.writeStartObject();
+                            // serialise the embedded value
+                            serializationContext.serialize(fieldvalue,jsonGenerator);
+                            jsonGenerator.writeEnd();
+                        });
+                        jsonGenerator.writeEnd();
+                    }
+                    // if we have an embedded object, we somehow need to manage to write it as well...
+                    else {
+                        jsonGenerator.writeStartObject(fieldname);
+                        // serialise the embedded value
+                        serializationContext.serialize(fieldvalue,jsonGenerator);
+                        jsonGenerator.writeEnd();
+                    }
+                }
             }
-            logger.info("serialise(): created intermediate map object: " + intermediateObj);
-            serializationContext.serialize(intermediateObj,jsonGenerator);
         }
         catch (Exception e) {
             throw new PolymorphicTypeException("Cannot serialise object: " + t + ". Got: " + e,e);
