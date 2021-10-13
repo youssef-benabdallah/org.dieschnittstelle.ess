@@ -2,7 +2,6 @@ package org.dieschnittstelle.ess.jrs;
 
 import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.graalvm.compiler.word.Word;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
