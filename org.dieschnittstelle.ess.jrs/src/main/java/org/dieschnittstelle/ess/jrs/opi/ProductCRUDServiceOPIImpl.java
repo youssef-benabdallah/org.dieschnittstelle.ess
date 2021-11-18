@@ -44,7 +44,7 @@ public class ProductCRUDServiceOPIImpl {
 	}
 
 	// TODO: ueberlegen Sie, wie Sie createCampaign() von createProduct() unterscheidbar machen koennen - wenn
-	//  Sie JRS3 umgesetzt haben, koennen Sie die auskommentierte Codezeile entfernen
+	//  Sie JRS3 umgesetzt haben, koennen Sie die derzeit noch auskommentierte Codezeile aktivieren
 	public Campaign createCampaign(
 			Campaign prod) {
 //		return (Campaign) this.service.createProduct(prod);
