@@ -12,10 +12,10 @@
     <!-- these are the shared properties for deploying all server-side
          components within a wildfly executable jar -->
     <properties>
-        <version.tomee>8.0.8</version.tomee>
+        <version.tomee>8.0.9</version.tomee>
         <version.microprofile>3.3</version.microprofile>
         <version.bootable.jar>3.0.0.Beta1-SNAPSHOT</version.bootable.jar>
-        <version.wildfly>24.0.0.Final</version.wildfly>
+        <version.wildfly>26.0.1.Final</version.wildfly>
         <version.jkube>1.0.1</version.jkube>
         <plugin.fork.embedded>true</plugin.fork.embedded>
         <maven.compiler.source>1.8</maven.compiler.source>
