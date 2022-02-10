@@ -14,7 +14,6 @@
         <module name="mip-components-crm-impl" />
         <module name="org.dieschnittstelle.ess.ue.jws4" />
         <module name="mip-components-shopping-impl" />
-        <module name="jws-webapp" />
         <module name="bas" />
         <module name="ser-client" />
         <module name="demo-jrs-client" />
@@ -39,7 +38,6 @@
         <module name="mip-app (1)" />
         <module name="mip-app-wildfly" />
         <module name="demo-bas" />
-        <module name="jws-client" />
         <module name="jrs-webapp" />
         <module name="demo-lib-entities-erp" />
         <module name="demo-jrs-api" />
@@ -50,10 +48,6 @@
         <module name="wsv-client" />
         <module name="demo-lib-entities-crm" />
         <module name="org.dieschnittstelle.ess.bas" />
-        <module name="ue-jws5" />
-        <module name="ue-add2" />
-        <module name="ue-jws4" />
-        <module name="ue-add3" />
         <module name="mip-components-shopping-api" />
         <module name="demo-jws-client" />
         <module name="mip-components-erp (1)" />
