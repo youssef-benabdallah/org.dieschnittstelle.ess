@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="10_ADD" pattern="file[group:0_SHARED]:*//*||file[group:7_MIP+JPA+ADD+PAT]:*//*||file[group:10_ADD]:*//*" />
-</component>

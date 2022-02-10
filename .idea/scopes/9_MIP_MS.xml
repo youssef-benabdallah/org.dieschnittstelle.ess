@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="9_MIP-MS" pattern="file[group:0_SHARED]:*//*||file[group:7_MIP+JPA+ADD+PAT]:*//*||file[group:9_MIP-MS]:*//*" />
+  <scope name="9_MIP-MS" pattern="file[group:0_SHARED]:*//*||file[group:7_MIP+JPA+PAT]:*//*||file[group:9_MIP-MS]:*//*" />
 </component>
