@@ -21,10 +21,10 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${version.mvn.compiler.plugin}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${version.mvn.compiler.java}</source>
+                    <target>${version.mvn.compiler.java}</target>
                 </configuration>
             </plugin>
 <!--            &lt;!&ndash; this is for running the application in wildfly, see https://docs.wildfly.org/21/Bootable_Guide.html &ndash;&gt;-->
