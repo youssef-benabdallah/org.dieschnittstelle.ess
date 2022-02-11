@@ -11,7 +11,7 @@
 
     <groupId>org.dieschnittstelle.ess</groupId>
     <artifactId>mip-ms-crm-app-tomee</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <!-- MP: use war packaging -->
     <packaging>war</packaging>
 
@@ -70,38 +70,38 @@
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-crm-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-erp-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-components-crm-impl</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess</groupId>
             <artifactId>mip-ms-shared-webapp</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
             <type>war</type>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess.shared</groupId>
             <artifactId>lib-entities-crm</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess.shared</groupId>
             <artifactId>lib-entities-erp</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.dieschnittstelle.ess.shared</groupId>
             <artifactId>lib-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

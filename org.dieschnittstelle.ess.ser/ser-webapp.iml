@@ -24,7 +24,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.platform:jakarta.jakartaee-web-api:8.0.0" level="project" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.15.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.15.0" level="project" />
     <orderEntry type="module" module-name="lib-entities-crm" />

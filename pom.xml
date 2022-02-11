@@ -12,6 +12,13 @@
     <!-- these are the shared properties for deploying all server-side
          components within a wildfly executable jar -->
     <properties>
+        <!-- the ess project version -->
+        <!-- the revision property should to be used in order for child poms
+        to access the version of the parent pom, but yet there are issues
+        for some build cases, so children specify the parent pom version explicitly,
+         but use the revision property for their own lib version -->
+        <version.esslibs>1.0-SNAPSHOT</version.esslibs>
+        <revision>${version.esslibs}</revision>
         <!-- specs versions -->
         <version.microprofile>3.3</version.microprofile>
         <version.jakartaee>8.0.0</version.jakartaee>
