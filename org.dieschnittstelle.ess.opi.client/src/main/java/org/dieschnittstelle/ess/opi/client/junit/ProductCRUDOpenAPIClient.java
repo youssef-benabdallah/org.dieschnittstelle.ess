@@ -21,7 +21,7 @@ public class ProductCRUDOpenAPIClient {
 //
 //	public ProductCRUDOpenAPIClient() throws Exception {
 //
-//		// TODO: instantiieren Sie das serviceProxy Attribut unter Verwendung der generierten Klassen, und beruecksichtigen
+//		// TODO: OPI1: instantiieren Sie das serviceProxy Attribut unter Verwendung der generierten Klassen, und beruecksichtigen
 //		//  Sie, dass bei der JSON Verarbeitung unbekannte Attribute ignoriert werden sollen.
 //        serviceProxy = null;
 //	}
