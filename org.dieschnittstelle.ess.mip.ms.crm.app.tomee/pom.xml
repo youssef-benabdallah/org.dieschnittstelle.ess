@@ -32,7 +32,7 @@
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>${version.tomee}</version>
+                <version>${version.tomee.plugin}</version>
                 <executions>
                     <execution>
                         <id>executable-jar</id>
