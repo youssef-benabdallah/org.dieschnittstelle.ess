@@ -67,6 +67,7 @@
                 </executions>
                 <configuration>
                     <context>ROOT</context>
+                    <tomeeVersion>${version.tomee.server}</tomeeVersion>
                     <tomeeClassifier>microprofile</tomeeClassifier>
                 </configuration>
             </plugin>

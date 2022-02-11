@@ -43,6 +43,7 @@
                 </executions>
                 <configuration>
                     <context>ROOT</context>
+                    <tomeeVersion>${version.tomee.server}</tomeeVersion>
                     <tomeeClassifier>microprofile</tomeeClassifier>
                     <tomeeHttpPort>7082</tomeeHttpPort>
                     <tomeeAjpPort>7011</tomeeAjpPort>
