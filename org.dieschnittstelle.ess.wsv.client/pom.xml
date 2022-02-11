@@ -26,13 +26,7 @@
     </build>
 
     <dependencies>
-        <!-- we do not need the api as we declare the web api interface locally -->
-        <!--<dependency>-->
-            <!--<groupId>javax.ws.rs</groupId>-->
-            <!--<artifactId>javax.ws.rs-api</artifactId>-->
-            <!--<version>2.1.1</version>-->
-        <!--</dependency>-->
-        <!-- but we do need the jax-rs api -->
+        <!-- we do need the jax-rs api -->
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
