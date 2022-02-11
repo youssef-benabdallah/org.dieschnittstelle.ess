@@ -92,6 +92,7 @@ public class Constants {
 		TOUCHPOINT_3.setId(0);
 		PRODUCT_1.setId(0);
 		PRODUCT_2.setId(0);
+		PRODUCT_3.setId(0);
 		CAMPAIGN_1.setId(0);
 		for (ProductBundle bundle : CAMPAIGN_1.getBundles()) {
 			bundle.setId(0);
