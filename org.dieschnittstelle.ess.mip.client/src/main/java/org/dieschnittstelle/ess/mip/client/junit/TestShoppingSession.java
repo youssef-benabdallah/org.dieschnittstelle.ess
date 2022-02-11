@@ -23,7 +23,7 @@ public class TestShoppingSession {
 	}
 
 	@Test
-	public void stockSystemWorksWithShoppingSession() throws Exception {
+	public void purchaseWorksForPAT2() throws Exception {
 
 		TotalUsecase uc = new TotalUsecase();
 		uc.setStepping(false);

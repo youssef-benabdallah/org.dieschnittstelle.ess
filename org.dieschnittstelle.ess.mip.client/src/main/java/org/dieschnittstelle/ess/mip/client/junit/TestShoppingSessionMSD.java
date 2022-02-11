@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.dieschnittstelle.ess.mip.client.Constants.*;
 import static org.junit.Assert.assertEquals;
 
-public class TestShoppingSessionMS {
+public class TestShoppingSessionMSD {
 
 	private StockSystemClient stockSystemClient;
 
@@ -23,7 +23,7 @@ public class TestShoppingSessionMS {
 	}
 
 	@Test
-	public void stockSystemWorksWithShoppingSession() throws Exception {
+	public void purchaseWorksForPAT2AndMSD() throws Exception {
 
 		TotalUsecase uc = new TotalUsecase();
 		uc.setStepping(false);
