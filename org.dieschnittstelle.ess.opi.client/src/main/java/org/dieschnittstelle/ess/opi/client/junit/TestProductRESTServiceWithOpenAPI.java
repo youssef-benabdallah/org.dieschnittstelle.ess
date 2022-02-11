@@ -30,7 +30,7 @@ public class TestProductRESTServiceWithOpenAPI {
 //    private static List<?> prodlistBefore = new ArrayList<>();
 //
 //    @Before
-//    public void prepareContext() throws Exception {
+//    public void prepareClient() throws Exception {
 //        // prepare the client
 //        client = new ProductCRUDOpenAPIClient();
 //    }

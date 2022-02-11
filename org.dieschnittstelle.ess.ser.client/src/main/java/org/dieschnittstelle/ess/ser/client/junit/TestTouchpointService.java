@@ -6,45 +6,57 @@ import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 import org.dieschnittstelle.ess.entities.crm.Address;
 import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.dieschnittstelle.ess.ser.client.ShowTouchpointService;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class TestTouchpointService {
 
-	@Test
-	public void serviceWorks() {
+	private ShowTouchpointService client;
 
+	private static List<AbstractTouchpoint> initialTps;
+	private static StationaryTouchpoint ORIGINAL_TOUCHPOINT;
+	private static StationaryTouchpoint CREATED_TOUCHPOINT;
+
+	@Before
+	public void prepareClient() {
 		// create the accessor for the service
-		ShowTouchpointService client = new ShowTouchpointService();
+		client = new ShowTouchpointService();
 		client.setStepwise(false);
-		
+	}
+
+	@Test
+	public void a_create() {
+		// read out all touchpoints - this has already been implemented
+		initialTps = client.readAllTouchpoints();
+
 		// create a touchpoint
 		Address addr = new Address("Luxemburger Strasse", "10", "13353",
 				"Berlin");
-		StationaryTouchpoint tp = new StationaryTouchpoint(-1,
+		ORIGINAL_TOUCHPOINT = new StationaryTouchpoint(-1,
 				"BHT Verkaufsstand", addr);
 
-		// read out all touchpoints
-		List<AbstractTouchpoint> initialTps = client.readAllTouchpoints();
 
 		// create a new touchpoint
-		tp = (StationaryTouchpoint) client.createNewTouchpoint(tp);
+		CREATED_TOUCHPOINT = (StationaryTouchpoint) client.createNewTouchpoint(ORIGINAL_TOUCHPOINT);
 		List<AbstractTouchpoint> newTps = client.readAllTouchpoints();
-		assertNotNull("touchpoint creation returns an object", tp);
+		assertNotNull("touchpoint creation returns an object", CREATED_TOUCHPOINT);
 		assertEquals("list of touchpoints is extended on creation",
 				initialTps.size() + 1, newTps.size());
-		AbstractTouchpoint createdTp = getTouchpointFromList(newTps, tp);
-		assertTrue("created touchpoint coincides with local copy", tp.getName()
-				.equals(createdTp.getName()));
+		CREATED_TOUCHPOINT = (StationaryTouchpoint) getTouchpointFromList(newTps, CREATED_TOUCHPOINT);
+		assertTrue("created touchpoint coincides with local copy", ORIGINAL_TOUCHPOINT.getName()
+				.equals(CREATED_TOUCHPOINT.getName()));
 		assertNotNull("created touchpoint contains embedded address",
-				((StationaryTouchpoint) createdTp).getAddress());
+				((StationaryTouchpoint) CREATED_TOUCHPOINT).getAddress());
+	}
 
+	@Test
+	public void b_delete() {
 		// delete the new touchpoint
-		client.deleteTouchpoint(tp);
+		client.deleteTouchpoint(CREATED_TOUCHPOINT);
 		assertEquals("deletion reduces touchpoint list", initialTps.size(),
 				client.readAllTouchpoints().size());
-
 	}
 
 	private AbstractTouchpoint getTouchpointFromList(
