@@ -26,7 +26,7 @@ public class TestStockSystem {
 	private static List<IndividualisedProductItem> initialProductsOnStock;
 
 	@Before
-	public void prepareContext() throws Exception {
+	public void prepareClients() throws Exception {
 		ServiceProxyFactory.initialise();
 
 		productCRUDClient = new ProductCRUDClient();

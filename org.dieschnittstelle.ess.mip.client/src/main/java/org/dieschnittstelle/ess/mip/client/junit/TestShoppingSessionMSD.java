@@ -15,7 +15,7 @@ public class TestShoppingSessionMSD {
 	private StockSystemClient stockSystemClient;
 
 	@Before
-	public void prepareContext() throws Exception {
+	public void prepareClient() throws Exception {
 		ServiceProxyFactory.initialise(ServiceProxyFactory.MICROSERVICES_DEPLOYMENT);
 
 		Constants.resetEntities();

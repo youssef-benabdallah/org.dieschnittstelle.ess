@@ -23,7 +23,7 @@ public class TestProductRESTService {
 	private static List<?> prodlistBefore = new ArrayList<>();
 
 	@Before
-	public void prepareContext() throws Exception {
+	public void prepareClient() throws Exception {
 		client = new ProductCRUDRESTClient();
 	}
 

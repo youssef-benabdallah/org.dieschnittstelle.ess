@@ -20,7 +20,7 @@ public class TestProductCRUD {
 	private ProductCRUDClient client;
 
 	@Before
-	public void prepareContext() throws Exception {
+	public void prepareClient() throws Exception {
 		ServiceProxyFactory.initialise();
 		client = new ProductCRUDClient();
 	}
