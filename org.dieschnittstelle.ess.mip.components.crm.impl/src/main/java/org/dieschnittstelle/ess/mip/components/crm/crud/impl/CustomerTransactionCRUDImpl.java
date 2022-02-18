@@ -91,6 +91,14 @@ public class CustomerTransactionCRUDImpl implements CustomerTransactionCRUD {
 	}
 
 	@Override
+	public List<CustomerTransaction> readAllTransactionsForProduct(long productId) {
+		// this is an example for a jpql query using JOIN to express conditions on
+		// entities to which entities are related via a ToMany relation
+		Query query = em.createQuery("SELECT t FROM CustomerTransaction t JOIN t.items item WHERE item.erpProductId = " + productId);
+		return query.getResultList();
+	}
+
+	@Override
 	public List<CustomerTransaction> readAllTransactionsForTouchpointAndCustomer(
 			long touchpointId, long customerId) {
 		Query query = em

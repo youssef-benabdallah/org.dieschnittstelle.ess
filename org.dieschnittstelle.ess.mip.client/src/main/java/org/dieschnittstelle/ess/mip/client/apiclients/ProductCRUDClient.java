@@ -2,6 +2,7 @@ package org.dieschnittstelle.ess.mip.client.apiclients;
 
 import java.util.List;
 
+import org.dieschnittstelle.ess.entities.erp.Campaign;
 import org.dieschnittstelle.ess.mip.client.Constants;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.ProductCRUD;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
@@ -46,6 +47,12 @@ public class ProductCRUDClient implements ProductCRUD {
 	public boolean deleteProduct(long productID) {
 //		return serviceProxy.deleteProduct(productID);
 		return false;
+	}
+
+	@Override
+	public List<Campaign> getCampaignsForProduct(long productID) {
+//		return serviceProxy.getCampaignsForProduct(productID);
+		return null;
 	}
 
 }

@@ -11,6 +11,7 @@ import java.util.List;
 public interface CustomerTransactionCRUD {
 
 	public boolean createTransaction(CustomerTransaction transaction);
+
 	public List<CustomerTransaction> readAllTransactionsForTouchpoint(long touchpointId);
 
 	public List<CustomerTransaction> readAllTransactionsForCustomer(long customerId);
@@ -18,5 +19,8 @@ public interface CustomerTransactionCRUD {
 	public List<CustomerTransaction> readAllTransactionsForTouchpointAndCustomer(long touchpointId, long customerId);
 
 	public List<CustomerTransaction> readAllTransactions();
+
+	public List<CustomerTransaction> readAllTransactionsForProduct(long productId);
+
 
 }

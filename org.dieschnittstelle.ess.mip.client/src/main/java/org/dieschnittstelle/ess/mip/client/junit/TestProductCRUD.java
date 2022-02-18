@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.dieschnittstelle.ess.mip.client.Constants.*;
 import static org.junit.Assert.*;
@@ -20,7 +21,7 @@ public class TestProductCRUD {
 	private ProductCRUDClient client;
 
 	@Before
-	public void prepareClient() throws Exception {
+	public void prepareContext() throws Exception {
 		ServiceProxyFactory.initialise();
 		client = new ProductCRUDClient();
 	}
@@ -116,7 +117,18 @@ public class TestProductCRUD {
 	}
 
 	@Test
-	public void h_deleteCampaign() {
+	public void h_getCampaignsForProduct() {
+		List<Long> campaignids = client.getCampaignsForProduct(PRODUCT_2.getId())
+				.stream()
+				.map(Campaign::getId)
+				.collect(Collectors.toList());
+		assertEquals("retrieved campaigns for product have the correct length", 2,campaignids.size());
+		assertTrue("campaign 1 is contained in campaigns", campaignids.contains(CAMPAIGN_1.getId()));
+		assertTrue("campaign 2 is contained in campaigns", campaignids.contains(CAMPAIGN_2.getId()));
+	}
+
+	@Test
+	public void i_deleteCampaign() {
 		List<AbstractProduct> prodlistBefore = readAll();
 
 		/* DELETE */

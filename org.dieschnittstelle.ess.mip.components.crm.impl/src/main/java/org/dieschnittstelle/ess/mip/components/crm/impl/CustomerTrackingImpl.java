@@ -58,6 +58,11 @@ public class CustomerTrackingImpl implements CustomerTracking {
 		}
 	}
 
+	@Override
+	public List<CustomerTransaction> readTransactionsForProduct(long productId) {
+		return customerTransactionCRUD.readAllTransactionsForProduct(productId);
+	}
+
 	@PostConstruct
 	public void initialise() {
 		logger.info("@PostConstruct: customerTransactionCRUD is: " + customerTransactionCRUD);
