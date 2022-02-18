@@ -7,8 +7,8 @@ package org.dieschnittstelle.ess.opi.client.junit;
 
 //import org.apache.logging.log4j.Logger;
 //import org.dieschnittstelle.ess.opi.client.api.DefaultApi;
-//import org.dieschnittstelle.ess.opi.client.model.Campaign;
-//import org.dieschnittstelle.ess.opi.client.model.IndividualisedProductItem;
+//import org.dieschnittstelle.ess.opi.client.entities.Campaign;
+//import org.dieschnittstelle.ess.opi.client.entities.IndividualisedProductItem;
 //
 //import java.util.ArrayList;
 //import java.util.List;

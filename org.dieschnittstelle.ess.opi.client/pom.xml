@@ -59,7 +59,7 @@
 <!--                                <apiNameSuffix>Test</apiNameSuffix>-->
                                 <sourceFolder>target/generated-sources/openapi</sourceFolder>
                                 <apiPackage>org.dieschnittstelle.ess.opi.client.api</apiPackage>
-                                <modelPackage>org.dieschnittstelle.ess.opi.client.model</modelPackage>
+                                <modelPackage>org.dieschnittstelle.ess.opi.client.entities</modelPackage>
                             </configOptions>
                         </configuration>
                     </execution>

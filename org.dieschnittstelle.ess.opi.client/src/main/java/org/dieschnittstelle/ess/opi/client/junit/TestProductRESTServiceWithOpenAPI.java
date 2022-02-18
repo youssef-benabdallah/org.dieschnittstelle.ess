@@ -5,9 +5,9 @@ package org.dieschnittstelle.ess.opi.client.junit;
 //  generiert haben. Falls Ihre imports automatisch aktualisiert werden, dann entfernen Sie erst die Kommentare
 //  aus der Implementierung der Klasse und kommentieren Sie die imports erst danach ein.
 
-//import org.dieschnittstelle.ess.opi.client.model.Campaign;
-//import org.dieschnittstelle.ess.opi.client.model.IndividualisedProductItem;
-//import org.dieschnittstelle.ess.opi.client.model.ProductBundle;
+//import org.dieschnittstelle.ess.opi.client.entities.Campaign;
+//import org.dieschnittstelle.ess.opi.client.entities.IndividualisedProductItem;
+//import org.dieschnittstelle.ess.opi.client.entities.ProductBundle;
 //import org.junit.Before;
 //import org.junit.FixMethodOrder;
 //import org.junit.Test;

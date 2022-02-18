@@ -10,8 +10,8 @@ package org.dieschnittstelle.ess.opi.client;
 //
 //import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 //import org.dieschnittstelle.ess.opi.client.api.DefaultApi;
-//import org.dieschnittstelle.ess.opi.client.model.Address;
-//import org.dieschnittstelle.ess.opi.client.model.StationaryTouchpoint;
+//import org.dieschnittstelle.ess.opi.client.entities.Address;
+//import org.dieschnittstelle.ess.opi.client.entities.StationaryTouchpoint;
 //
 //import java.util.ArrayList;
 //import java.util.List;
