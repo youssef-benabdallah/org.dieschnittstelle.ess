@@ -227,6 +227,10 @@ public class TotalUsecase {
 				readTransactions(TOUCHPOINT_1.getId(), Constants.CUSTOMER_1.getId());
 		logger.info("transactions for touchpoint and customer are: " + trans);
 
+		// we finally show transactions for some selected product
+		trans = customerTracking.readTransactionsForProduct(CAMPAIGN_1.getId());
+		logger.info("transactions for campaign with id " + CAMPAIGN_1.getId() + " are: " + trans);
+
 	}
 
 	public void setStepping(boolean stepping) {
