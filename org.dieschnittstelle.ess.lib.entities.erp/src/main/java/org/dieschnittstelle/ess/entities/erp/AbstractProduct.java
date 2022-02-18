@@ -10,10 +10,17 @@ import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
 import javax.json.bind.annotation.JsonbTypeDeserializer;
 import javax.json.bind.annotation.JsonbTypeSerializer;
 
+import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLASSNAME_PROPERTY;
+
 /*
  * TODO JRS3: entfernen Sie die Auskommentierung der Annotationen
+ *
+ * note that the value of the constant KLASSNAME_PROPERTY in this implementation is "@class". It
+ * specifies the name of the json property the value of which will be the classname of the respective
+ * concrete subclass of the abstract class, and thus allows to create correctly typed java objects
+ * based on the untyped json data.
  */
-//@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+//@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 //@JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
 //@JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
 public abstract class AbstractProduct implements Serializable, GenericCRUDEntity {

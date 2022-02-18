@@ -15,7 +15,7 @@ public class TestShoppingSession {
 	private StockSystemClient stockSystemClient;
 
 	@Before
-	public void prepareContext() throws Exception {
+	public void prepareClient() throws Exception {
 		ServiceProxyFactory.initialise();
 
 		Constants.resetEntities();
@@ -23,7 +23,7 @@ public class TestShoppingSession {
 	}
 
 	@Test
-	public void stockSystemWorksWithShoppingSession() throws Exception {
+	public void purchaseWorksForPAT2() throws Exception {
 
 		TotalUsecase uc = new TotalUsecase();
 		uc.setStepping(false);

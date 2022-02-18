@@ -4,21 +4,17 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
 
 import org.dieschnittstelle.ess.mip.components.crm.api.CrmException;
 import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.TouchpointCRUD;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
+import org.dieschnittstelle.ess.entities.crm.CustomerTransactionShoppingCartItem;
 import org.dieschnittstelle.ess.entities.erp.PointOfSale;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.PointOfSaleCRUD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
-@WebService(targetNamespace = "http://dieschnittstelle.org/ess/jws", serviceName = "TouchpointAccessWebService", endpointInterface = "org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess")
-@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @Logged
 @ApplicationScoped
 public class TouchpointAccessImpl implements TouchpointAccess {
@@ -57,8 +53,8 @@ public class TouchpointAccessImpl implements TouchpointAccess {
 	// for testing class loading
 	private void logProductBundleKlass() {
 		StringBuffer log = new StringBuffer();
-		log.append(ShoppingCartItem.class + "\n");
-		ClassLoader cl = ShoppingCartItem.class.getClassLoader();
+		log.append(CustomerTransactionShoppingCartItem.class + "\n");
+		ClassLoader cl = CustomerTransactionShoppingCartItem.class.getClassLoader();
 		do {
 			log.append("\t"+ cl + "\n");
 			cl = cl.getParent();

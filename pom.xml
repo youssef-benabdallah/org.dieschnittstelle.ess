@@ -12,23 +12,50 @@
     <!-- these are the shared properties for deploying all server-side
          components within a wildfly executable jar -->
     <properties>
-        <version.tomee>8.0.8</version.tomee>
-        <version.microprofile>3.3</version.microprofile>
-        <version.bootable.jar>3.0.0.Beta1-SNAPSHOT</version.bootable.jar>
-        <version.wildfly>24.0.0.Final</version.wildfly>
-        <version.jkube>1.0.1</version.jkube>
+        <!-- mvn settings -->
+        <!-- see: https://ralph.blog.imixs.com/2020/12/13/migrating-to-jakarta-ee-9/ -->
+        <version.mvn.compiler.plugin>3.9.0</version.mvn.compiler.plugin>
+        <version.mvn.compiler.java>11</version.mvn.compiler.java>
+        <!-- the ess project version -->
+        <!-- the revision property should to be used in order for child poms
+        to access the version of the parent pom, but yet there are issues
+        for some build cases, so children specify the parent pom version explicitly,
+         but use the revision property for their own lib version -->
+        <version.esslibs>1.0-SNAPSHOT</version.esslibs>
+        <revision>${version.esslibs}</revision>
+        <!-- specs versions -->
+        <version.microprofile>4.1</version.microprofile>
+        <version.jakartaee>8.0.0</version.jakartaee>
+        <!-- server versions -->
+        <version.wildfly>25.0.0.Final</version.wildfly>
+        <version.tomee.plugin>8.0.9</version.tomee.plugin>
+        <version.tomee.server>8.0.9</version.tomee.server>
+        <!-- additional jakarta libs versions -->
+        <version.jpa>2.2.3</version.jpa>
+        <version.transactionapi>1.3.3</version.transactionapi>
+        <!-- other libs -->
+        <version.h2>1.4.200</version.h2>
+        <version.log4j>2.17.1</version.log4j>
+        <version.junit>4.12</version.junit>
+        <version.commons.io>2.9.0</version.commons.io>
+        <version.commons.lang>2.6</version.commons.lang>
+        <!-- http+rest client libs. -->
+        <!-- For resteasy client versions starting with 4.4.2 there
+         is an annoying polymorphic type validation issue which might be due to changed
+         default settings for jackson. In case this issue occurs with the 4.4.1 version,
+         refresh the idea libs via the maven tool window -->
+        <version.resteasy.client>4.4.1.Final</version.resteasy.client>
+<!--        <version.resteasy.client>5.0.0.Final</version.resteasy.client>-->
+        <version.jackson>2.13.0</version.jackson>
+        <version.httpclient>4.5.13</version.httpclient>
+        <version.httpasyncclient>4.1.5</version.httpasyncclient>
+        <version.jakartars.wsv>2.1.6</version.jakartars.wsv>
+        <!-- further settings -->
         <plugin.fork.embedded>true</plugin.fork.embedded>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-        <version.microprofile.bom>${version.wildfly}</version.microprofile.bom>
-        <version.server.bom>${version.wildfly}</version.server.bom>
-        <version.org.wildfly.arquillian>3.0.0.Final</version.org.wildfly.arquillian>
-        <version.org.jboss.arquillian.junit>1.6.0.Final</version.org.jboss.arquillian.junit>
-        <version.junit>4.13.1</version.junit>
-        <version.org.jboss.shrinkwrap.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap.shrinkwrap>
     </properties>
 
 </project>

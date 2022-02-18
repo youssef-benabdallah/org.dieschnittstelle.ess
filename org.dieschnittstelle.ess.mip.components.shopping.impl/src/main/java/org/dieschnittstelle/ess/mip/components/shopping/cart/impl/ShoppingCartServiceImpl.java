@@ -1,9 +1,9 @@
 package org.dieschnittstelle.ess.mip.components.shopping.cart.impl;
 
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.shopping.ShoppingCartItem;
 import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartService;
 import org.dieschnittstelle.ess.mip.components.shopping.impl.EntityManagerProvider;
-import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 

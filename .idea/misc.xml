@@ -48,17 +48,12 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.jws.client/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.bas/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws4/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.jws5/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ejb/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jrs/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.jws/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications.ser/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.applications/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add2/pom.xml" />
-        <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.ue.add3/pom.xml" />
         <option value="$PROJECT_DIR$/org.dieschnittstelle.ess.wsv.client/pom.xml" />
         <option value="$PROJECT_DIR$/demo.org.dieschnittstelle.ess.bas/pom.xml" />
         <option value="$PROJECT_DIR$/demo.org.dieschnittstelle.ess.jrs/pom.xml" />

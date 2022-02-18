@@ -45,8 +45,8 @@ public interface StockSystem {
 	/**
 	 * returns all products on stock
 	 *
-	 * this method can be implemented using the readAllPointsOfSale() method from the PointOfSaleLocal
-	 * CRUD Bean and using getProductsOnStock for each of point of sale. Note that there should be
+	 * this method can be implemented using the readAllPointsOfSale() method from the PointOfSaleCRUD
+	 * Bean and using getProductsOnStock for each of point of sale. Note that there should be
 	 * no duplicates in the list that is returned.
 	 *
 	 * @return

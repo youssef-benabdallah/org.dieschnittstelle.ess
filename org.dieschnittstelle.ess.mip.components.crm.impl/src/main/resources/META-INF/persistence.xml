@@ -15,9 +15,9 @@
 		<class>org.dieschnittstelle.ess.entities.crm.Address</class>
 		<class>org.dieschnittstelle.ess.entities.crm.Customer</class>
 		<class>org.dieschnittstelle.ess.entities.crm.CustomerTransaction</class>
+		<class>org.dieschnittstelle.ess.entities.crm.CustomerTransactionShoppingCartItem</class>
 		<class>org.dieschnittstelle.ess.entities.crm.Location</class>
 		<class>org.dieschnittstelle.ess.entities.crm.MobileTouchpoint</class>
-		<class>org.dieschnittstelle.ess.entities.crm.ShoppingCartItem</class>
 		<class>org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint</class>
 		<properties>
 			<!-- hibernate/wildfly automatic schema generation -->

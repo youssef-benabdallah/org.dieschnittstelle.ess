@@ -8,7 +8,7 @@ import javax.annotation.PreDestroy;
 import javax.persistence.*;
 
 
-import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
+import org.dieschnittstelle.ess.entities.shopping.ShoppingCartItem;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;

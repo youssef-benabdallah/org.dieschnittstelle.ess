@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.json.bind.annotation.JsonbDateFormat;
-import javax.json.bind.annotation.JsonbTypeAdapter;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,7 +53,7 @@ public class CustomerTransaction implements Serializable {
 	 */
 	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
 	//@OneToMany
-	private List<ShoppingCartItem> items = new ArrayList<ShoppingCartItem>();
+	private List<CustomerTransactionShoppingCartItem> items = new ArrayList<CustomerTransactionShoppingCartItem>();
 
 	private int value;
 
@@ -64,7 +63,7 @@ public class CustomerTransaction implements Serializable {
 		logger.debug("<constructor>");
 	}
 	
-	public CustomerTransaction(Customer customer,AbstractTouchpoint tp,List<ShoppingCartItem> products) {
+	public CustomerTransaction(Customer customer,AbstractTouchpoint tp,List<CustomerTransactionShoppingCartItem> products) {
 		this.customer = customer;
 		this.touchpoint = tp;
 		this.items = products;
@@ -124,11 +123,11 @@ public class CustomerTransaction implements Serializable {
 				+ this.touchpoint + ", " + this.items + ">";
 	}
 
-	public List<ShoppingCartItem> getItems() {
+	public List<CustomerTransactionShoppingCartItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ShoppingCartItem> items) {
+	public void setItems(List<CustomerTransactionShoppingCartItem> items) {
 		this.items = items;
 	}
 	

@@ -61,6 +61,11 @@ public class AccessRESTServiceWithInterpreter {
         tp = (StationaryTouchpoint)serviceProxy.createTouchpoint(tp);
         show("created: " + tp);
 
+        // this is for verifying that the touchpoint objects are created without data loss from the json data of the http response
+        if (tp.getAddress() == null) {
+            throw new RuntimeException("Something went wrong during touchpoint creation. The address of the touchpoint returned by createTouchpoint() is null.");
+        }
+
         // TODO: comment-in the call to read() once this is handled
 //		/*
 //		 * 4) read out the new touchpoint

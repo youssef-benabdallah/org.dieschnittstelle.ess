@@ -18,11 +18,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,11 +36,6 @@ import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLAS
  * @author kreutel
  * 
  */
-// jaxb annotations
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "http://dieschnittstelle.org/ess/entities/crm/ws")
-@XmlSeeAlso({StationaryTouchpoint.class,MobileTouchpoint.class})
-
 // jpa annotations
 @Entity
 // inheritance
@@ -56,6 +46,10 @@ import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLAS
 @SequenceGenerator(name = "touchpoint_sequence", sequenceName = "touchpoint_id_sequence")
 
 // jrs/jackson annotations
+// note that the value of the constant KLASSNAME_PROPERTY in this implementation is "@class". It
+// specifies the name of the json property the value of which will be the classname of the respective
+// concrete subclass of the abstract class, and thus allows to create correctly typed java objects
+// based on the untyped json data.
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 // jsonb annotations
@@ -90,12 +84,10 @@ public abstract class AbstractTouchpoint implements Serializable, GenericCRUDEnt
 	/*
 	 * TODO JWS2: kommentieren Sie @XmlTransient aus
 	 */
-	@XmlTransient
 	@ManyToMany
 	@JsonbTransient
 	private Collection<Customer> customers = new HashSet<Customer>();
 	
-	@XmlTransient
 	@OneToMany(mappedBy="touchpoint")
 	@JsonbTransient
 	private Collection<CustomerTransaction> transactions;

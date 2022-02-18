@@ -31,13 +31,13 @@ public class StockSystemClient implements StockSystem {
 
 	@Override
 	public List<IndividualisedProductItem> getProductsOnStock(long pointOfSaleId) {
-//		return this.serviceProxy.getProductsOnStock(pointOfSaleId);
-		return new ArrayList<>();
+		return this.serviceProxy.getProductsOnStock(pointOfSaleId);
+//		return new ArrayList<>();
 	}
 
 	@Override
 	public List<IndividualisedProductItem> getAllProductsOnStock() {
-//		return this.serviceProxy.getAllProductsOnStock();
+//		return this.serviceProxy.getProductsOnStock(0);
 		return new ArrayList<>();
 	}
 
@@ -49,7 +49,7 @@ public class StockSystemClient implements StockSystem {
 
 	@Override
 	public int getTotalUnitsOnStock(IndividualisedProductItem product) {
-//		return this.serviceProxy.getTotalUnitsOnStock(product.getId());
+//		return this.serviceProxy.getUnitsOnStock(product.getId(),0);
 		return 0;
 	}
 

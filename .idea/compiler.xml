@@ -10,68 +10,62 @@
         <module name="demo-jws-webapp" />
         <module name="mip-client" />
         <module name="demo-ejb-ejbmodule-crm" />
-        <module name="demo-ser-client" />
-        <module name="mip-components-crm-impl" />
-        <module name="org.dieschnittstelle.ess.ue.jws4" />
-        <module name="mip-components-shopping-impl" />
-        <module name="jws-webapp" />
-        <module name="bas" />
-        <module name="ser-client" />
-        <module name="demo-jrs-client" />
-        <module name="mip-components-crm-api" />
-        <module name="lib-utils" />
-        <module name="mip-app-tomee" />
-        <module name="demo-ejb-client" />
-        <module name="mip-components-erp-api" />
-        <module name="mip-ms-crm-app-tomee" />
-        <module name="jrs-client" />
-        <module name="demo-ue-add2" />
-        <module name="mip-ms-erp-app-tomee" />
-        <module name="jrs-api" />
-        <module name="demo-ejb-earapp" />
-        <module name="opi-client" />
         <module name="mip-webapp" />
         <module name="mip-components-crm (1)" />
         <module name="demo-ser-webapp" />
+        <module name="demo-ser-client" />
         <module name="mip-components-erp-impl" />
+        <module name="mip-components-crm-impl" />
         <module name="demo-jrs-webapp" />
         <module name="ser-webapp" />
+        <module name="org.dieschnittstelle.ess.ue.jws4" />
+        <module name="mip-components-shopping-impl" />
         <module name="mip-app (1)" />
+        <module name="bas" />
+        <module name="ser-client" />
         <module name="mip-app-wildfly" />
         <module name="demo-bas" />
-        <module name="jws-client" />
+        <module name="demo-jrs-client" />
+        <module name="mip-components-crm-api" />
         <module name="jrs-webapp" />
         <module name="demo-lib-entities-erp" />
         <module name="demo-jrs-api" />
         <module name="lib-esa-utils" />
         <module name="mip-ms-shopping-app-tomee" />
+        <module name="lib-utils" />
+        <module name="mip-app-tomee" />
         <module name="mip-ms-shared-webapp" />
         <module name="org.dieschnittstelle.ess.jws.client" />
         <module name="wsv-client" />
         <module name="demo-lib-entities-crm" />
+        <module name="demo-ejb-client" />
         <module name="org.dieschnittstelle.ess.bas" />
-        <module name="ue-jws5" />
-        <module name="ue-add2" />
-        <module name="ue-jws4" />
-        <module name="ue-add3" />
+        <module name="mip-components-erp-api" />
         <module name="mip-components-shopping-api" />
+        <module name="mip-ms-crm-app-tomee" />
         <module name="demo-jws-client" />
         <module name="mip-components-erp (1)" />
+        <module name="jrs-client" />
         <module name="demo-wsv-client" />
         <module name="lib-entities-erp" />
+        <module name="demo-ue-add2" />
+        <module name="mip-ms-erp-app-tomee" />
+        <module name="jrs-api" />
+        <module name="demo-ejb-earapp" />
+        <module name="opi-client" />
         <module name="lib-entities-crm" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="bas" target="1.8" />
-      <module name="build-all-modules" target="1.8" />
-      <module name="build-jrs" target="1.8" />
+      <module name="bas" target="11" />
+      <module name="build-all-modules" target="11" />
+      <module name="build-jrs" target="11" />
       <module name="build-jsf" target="1.8" />
       <module name="build-jws" target="1.8" />
-      <module name="build-mip" target="1.8" />
+      <module name="build-mip" target="11" />
       <module name="build-mip (1)" target="1.5" />
       <module name="build-mip-tomee" target="1.8" />
-      <module name="build-ser" target="1.8" />
+      <module name="build-ser" target="11" />
       <module name="demo-bas" target="1.8" />
       <module name="demo-build-ejb" target="1.8" />
       <module name="demo-build-jrs" target="1.8" />
@@ -93,45 +87,45 @@
       <module name="demo-ue-add2" target="1.8" />
       <module name="demo-wsv-client" target="1.8" />
       <module name="ess-deployment" target="1.8" />
-      <module name="jrs-api" target="1.8" />
-      <module name="jrs-client" target="1.8" />
-      <module name="jrs-webapp" target="1.8" />
+      <module name="jrs-api" target="11" />
+      <module name="jrs-client" target="11" />
+      <module name="jrs-webapp" target="11" />
       <module name="jsf-cdi-webapp" target="1.8" />
       <module name="jsf-webapp" target="1.8" />
       <module name="jws-client" target="1.8" />
       <module name="jws-webapp" target="1.8" />
-      <module name="lib-entities-crm" target="1.8" />
-      <module name="lib-entities-erp" target="1.8" />
-      <module name="lib-utils" target="1.8" />
+      <module name="lib-entities-crm" target="11" />
+      <module name="lib-entities-erp" target="11" />
+      <module name="lib-utils" target="11" />
       <module name="mip-app (1)" target="1.8" />
-      <module name="mip-app-tomee" target="1.8" />
-      <module name="mip-app-wildfly" target="1.8" />
-      <module name="mip-client" target="1.9" />
+      <module name="mip-app-tomee" target="11" />
+      <module name="mip-app-wildfly" target="11" />
+      <module name="mip-client" target="11" />
       <module name="mip-components-crm (1)" target="1.5" />
-      <module name="mip-components-crm-api" target="1.8" />
-      <module name="mip-components-crm-impl" target="1.8" />
+      <module name="mip-components-crm-api" target="11" />
+      <module name="mip-components-crm-impl" target="11" />
       <module name="mip-components-erp (1)" target="1.8" />
-      <module name="mip-components-erp-api" target="1.8" />
-      <module name="mip-components-erp-impl" target="1.8" />
-      <module name="mip-components-shopping-api" target="1.8" />
-      <module name="mip-components-shopping-impl" target="1.8" />
-      <module name="mip-ms-crm-app-tomee" target="1.8" />
+      <module name="mip-components-erp-api" target="11" />
+      <module name="mip-components-erp-impl" target="11" />
+      <module name="mip-components-shopping-api" target="11" />
+      <module name="mip-components-shopping-impl" target="11" />
+      <module name="mip-ms-crm-app-tomee" target="11" />
       <module name="mip-ms-erp" target="1.8" />
-      <module name="mip-ms-erp-app-tomee" target="1.8" />
-      <module name="mip-ms-shared-webapp" target="1.8" />
+      <module name="mip-ms-erp-app-tomee" target="11" />
+      <module name="mip-ms-shared-webapp" target="11" />
       <module name="mip-ms-shared-webapp-crm" target="1.8" />
       <module name="mip-ms-shopping" target="1.8" />
-      <module name="mip-ms-shopping-app-tomee" target="1.8" />
-      <module name="mip-webapp" target="1.8" />
-      <module name="opi-client" target="1.8" />
-      <module name="ser-client" target="1.8" />
-      <module name="ser-webapp" target="1.8" />
+      <module name="mip-ms-shopping-app-tomee" target="11" />
+      <module name="mip-webapp" target="11" />
+      <module name="opi-client" target="11" />
+      <module name="ser-client" target="11" />
+      <module name="ser-webapp" target="11" />
       <module name="ue-add2" target="1.8" />
       <module name="ue-add3" target="1.8" />
       <module name="ue-jsf5" target="1.8" />
       <module name="ue-jws4" target="1.8" />
       <module name="ue-jws5" target="1.8" />
-      <module name="wsv-client" target="1.8" />
+      <module name="wsv-client" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
