@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="OPI: RunOpenAPIRestServiceClient" type="Application" factoryName="Application">
+  <configuration default="false" name="OPI: ShowOpenAPIRestServiceClient" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="org.dieschnittstelle.ess.opi.client.ShowOpenAPIRestServiceClient" />
     <module name="opi-client" />
     <extension name="coverage">
