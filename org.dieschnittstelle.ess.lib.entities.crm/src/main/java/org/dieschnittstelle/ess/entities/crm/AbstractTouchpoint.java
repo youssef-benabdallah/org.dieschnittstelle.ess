@@ -46,6 +46,10 @@ import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLAS
 @SequenceGenerator(name = "touchpoint_sequence", sequenceName = "touchpoint_id_sequence")
 
 // jrs/jackson annotations
+// note that the value of the constant KLASSNAME_PROPERTY in this implementation is "@class". It
+// specifies the name of the json property the value of which will be the classname of the respective
+// concrete subclass of the abstract class, and thus allows to create correctly typed java objects
+// based on the untyped json data.
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 // jsonb annotations

@@ -24,9 +24,6 @@ public class CustomerTrackingImpl implements CustomerTracking {
 	protected static Logger logger = org.apache.logging.log4j.LogManager
 			.getLogger(CustomerTrackingImpl.class);
 
-	/**
-	 * we use the local interface to the CustomerTransactionCRUD
-	 */
 	@Inject
 	private CustomerTransactionCRUD customerTransactionCRUD;
 

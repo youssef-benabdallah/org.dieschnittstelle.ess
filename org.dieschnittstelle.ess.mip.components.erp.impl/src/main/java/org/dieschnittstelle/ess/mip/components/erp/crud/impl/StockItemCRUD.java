@@ -42,11 +42,6 @@ public interface StockItemCRUD {
     public StockItem updateStockItem(StockItem item);
 
     /*
-     * here you can create a simple Query using em.createQuery() - see readAllTransactionsForCustomer() in .crm.crud.impl.CustomerTransactionCRUDImpl as an example
-     */
-    public List<StockItem> readAllStockItems();
-
-    /*
      * here you can create a Query using the id of the prod object -
 	 * see readAllTransactionsForTouchpointAndCustomer() in
 	 * CustomerTransactionCRUDImpl (in .mip.components.crm.impl) as an
