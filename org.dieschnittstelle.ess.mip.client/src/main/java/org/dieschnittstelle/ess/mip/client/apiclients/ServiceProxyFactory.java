@@ -10,9 +10,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientResponseContext;
-import javax.ws.rs.client.ClientResponseFilter;
+import javax.ws.rs.client.*;
 import java.io.*;
 import java.util.*;
 
@@ -193,7 +191,7 @@ public class ServiceProxyFactory {
      * this creates the service registry using a single client instance, from which the web targets will be created
      */
     public void createServiceRegistry(String deployment) {
-        ResteasyClient client = new ResteasyClientBuilder().register(new LoggingFilter()).build();
+        Client client = ClientBuilder.newBuilder().register(new LoggingFilter()).build();
 
         // we iterate over the properties and create the registry. Note that more specific base url assignments need
         // to precede less specific ones, therefore we sort the matching property in ascending order of their length
@@ -202,7 +200,7 @@ public class ServiceProxyFactory {
                 .filter(prop -> prop.startsWith(PROPERTY_WEB_API_BASE_URL_PREFIX + deployment + "."))
                 .sorted(Comparator.comparingInt(String::length).reversed())
                 .forEach(prop -> {
-                    serviceRegistry.add(new ServiceRegistryItem(prop.substring((PROPERTY_WEB_API_BASE_URL_PREFIX + deployment + ".").length()),client.target(String.valueOf(essClientProperties.getProperty(prop)))));
+                    serviceRegistry.add(new ServiceRegistryItem(prop.substring((PROPERTY_WEB_API_BASE_URL_PREFIX + deployment + ".").length()),((ResteasyWebTarget) client.target(String.valueOf(essClientProperties.getProperty(prop))))));
                 });
     }
 
