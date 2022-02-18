@@ -1,14 +1,16 @@
 package org.dieschnittstelle.ess.mip.client.shopping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.shopping.ShoppingCartItem;
 import org.dieschnittstelle.ess.mip.components.crm.api.CampaignTracking;
 import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
 import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
 import org.dieschnittstelle.ess.mip.components.shopping.api.ShoppingException;
 import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
-import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
+import org.dieschnittstelle.ess.entities.crm.CustomerTransactionShoppingCartItem;
 import org.dieschnittstelle.ess.entities.crm.Customer;
 import org.dieschnittstelle.ess.entities.crm.CustomerTransaction;
 import org.dieschnittstelle.ess.mip.client.apiclients.CampaignTrackingClient;
@@ -106,8 +108,13 @@ public class ShoppingSession implements ShoppingBusinessDelegate {
 		// TODO PAT1: once this functionality has been moved to the server side components, make sure
 		//  that the ShoppingCartItem instances will be cloned/copied by constructing new items before
 		//  using them for creating the CustomerTransaction object.
-		List<ShoppingCartItem> products = this.shoppingCart.getItems();
-		CustomerTransaction transaction = new CustomerTransaction(this.customer, this.touchpoint, products);
+		List<ShoppingCartItem> productsInCart = this.shoppingCart.getItems();
+		List<CustomerTransactionShoppingCartItem> productsInCartForTransaction = productsInCart
+				.stream()
+				.map(si -> new CustomerTransactionShoppingCartItem(si.getErpProductId(),si.getUnits(),si.isCampaign()))
+				.collect(Collectors.toList());
+		CustomerTransaction transaction = new CustomerTransaction(this.customer, this.touchpoint,
+				productsInCartForTransaction);
 		transaction.setCompleted(true);
 		customerTracking.createTransaction(transaction);
 

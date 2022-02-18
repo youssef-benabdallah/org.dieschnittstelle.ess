@@ -12,7 +12,7 @@
 		<!-- <class>com.example.SomeClass</class> -->
 		<!-- as we are using different PUs within a single deployment, we list the classes for each PU -->
 		<class>org.dieschnittstelle.ess.mip.components.shopping.cart.impl.ShoppingCartEntity</class>
-		<class>org.dieschnittstelle.ess.entities.crm.ShoppingCartItem</class>
+		<class>org.dieschnittstelle.ess.entities.shopping.ShoppingCartItem</class>
 		<properties>
 			<!-- hibernate/wildfly automatic schema generation -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

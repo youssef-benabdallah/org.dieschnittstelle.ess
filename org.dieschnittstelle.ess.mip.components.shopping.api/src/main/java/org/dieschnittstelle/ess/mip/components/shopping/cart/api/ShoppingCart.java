@@ -2,7 +2,7 @@ package org.dieschnittstelle.ess.mip.components.shopping.cart.api;
 
 import java.util.List;
 
-import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
+import org.dieschnittstelle.ess.entities.shopping.ShoppingCartItem;
 
 public interface ShoppingCart {
 

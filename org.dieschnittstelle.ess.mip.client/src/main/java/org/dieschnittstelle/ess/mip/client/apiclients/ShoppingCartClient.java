@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCartService;
 import org.dieschnittstelle.ess.mip.components.shopping.cart.api.ShoppingCart;
-import org.dieschnittstelle.ess.entities.crm.ShoppingCartItem;
+import org.dieschnittstelle.ess.entities.shopping.ShoppingCartItem;
 
 public class ShoppingCartClient implements ShoppingCart {
 

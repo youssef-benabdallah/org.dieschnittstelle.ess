@@ -22,11 +22,15 @@ import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 /**
  * a product bundle on the part of the crm system that tracks the number of
  * units for some erpProductId and also tracks wheher the product is a campaign
+ *
+ * for separating the SHOPPING domain in a separate schema from the CRM domain,
+ * we need two classes, as otherwise database constraints will be violated on
+ * schema creation starting from some higher h2 db versions
  */
 @Entity
-public class ShoppingCartItem implements Serializable {
+public class CustomerTransactionShoppingCartItem implements Serializable {
 
-	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ShoppingCartItem.class);
+	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(CustomerTransactionShoppingCartItem.class);
 
 
 	/**
@@ -49,15 +53,15 @@ public class ShoppingCartItem implements Serializable {
 	@JsonbTransient
 	private AbstractProduct productObj;
 	
-	public ShoppingCartItem() {
+	public CustomerTransactionShoppingCartItem() {
 		logger.debug("<constructor>");
 	}
 	
-	public ShoppingCartItem(long erpProductId, int units) {
+	public CustomerTransactionShoppingCartItem(long erpProductId, int units) {
 		this(erpProductId, units, false);
 	}
 
-	public ShoppingCartItem(long erpProductId, int units, boolean isCampaign) {
+	public CustomerTransactionShoppingCartItem(long erpProductId, int units, boolean isCampaign) {
 		this.erpProductId = erpProductId;
 		this.units = units;
 		this.isCampaign = isCampaign;

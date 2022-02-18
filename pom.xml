@@ -34,7 +34,7 @@
         <version.jpa>2.2.3</version.jpa>
         <version.transactionapi>1.3.3</version.transactionapi>
         <!-- other libs -->
-        <version.h2>1.4.186</version.h2>
+        <version.h2>1.4.200</version.h2>
         <version.log4j>2.17.1</version.log4j>
         <version.junit>4.12</version.junit>
         <version.commons.io>2.9.0</version.commons.io>
