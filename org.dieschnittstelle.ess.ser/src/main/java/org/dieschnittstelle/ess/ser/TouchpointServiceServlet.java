@@ -1,5 +1,6 @@
 package org.dieschnittstelle.ess.ser;
 
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import static org.dieschnittstelle.ess.utils.Utils.*;
 
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.AbstractTouchpoint;
 
 public class TouchpointServiceServlet extends HttpServlet {
 
@@ -52,7 +54,8 @@ public class TouchpointServiceServlet extends HttpServlet {
 	/*
 	 * TODO: SER3 server-side implementation of createNewTouchpoint
 	 */
-	/*
+
+
 	@Override	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -62,27 +65,39 @@ public class TouchpointServiceServlet extends HttpServlet {
 
 		// obtain the executor for reading out the touchpoints from the servlet context using the touchpointCRUD attribute
 
+		TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext().getAttribute("touchpointCRUD");
+
+
 		try {
 			// create an ObjectInputStream from the request's input stream
+			ObjectInputStream ois = new ObjectInputStream(request.getInputStream());
+			AbstractTouchpoint tp = (AbstractTouchpoint) ois.readObject();
+
+			show("tp: " + tp);
 		
 			// read an AbstractTouchpoint object from the stream
+			exec.createTouchpoint(tp);
 		
 			// call the create method on the executor and take its return value
 		
 			// set the response status as successful, using the appropriate
 			// constant from HttpServletResponse
+			response.setStatus(HttpServletResponse.SC_OK);
 		
 			// then write the object to the response's output stream, using a
 			// wrapping ObjectOutputStream
-		
+			ObjectOutputStream oos = new ObjectOutputStream(response.getOutputStream());
+
 			// ... and write the object to the stream
+			oos.writeObject(tp);
 		
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
+
 	}
-	*/
+
 
 	/*
 	 * TODO: SER4 server-side implementation of deleteTouchpoint

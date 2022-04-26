@@ -60,6 +60,14 @@ public class ReflectedStockItemBuilder implements IStockItemBuilder {
 			Class klass = Class.forName(klassname);
 			show("klass: %s", klass);
 
+			Arrays.asList(klass.getDeclaredFields()).forEach(attr ->{
+				show("found attr: %s of class: %s of name %s and type %s", attr, attr.getClass(), attr.getName(), attr.getType());
+			});
+
+			for (Method meth : klass.getDeclaredMethods()){
+				show("found method of name %s with return type %s", meth.getName(), meth.getReturnType());
+			}
+
 			// create the instance
 			instance = (IStockItem)klass.getConstructor(new Class[]{}).newInstance();
 			show("created instance: %s", instance);
