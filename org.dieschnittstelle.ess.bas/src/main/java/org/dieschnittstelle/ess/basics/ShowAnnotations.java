@@ -52,12 +52,8 @@ public class ShowAnnotations {
         try {
             for (Field field : klass.getDeclaredFields()) {
                 String fieldName = field.getName();
-                String firstCharUppercase = fieldName.substring(0, 1).toUpperCase();
-                String restOfName = fieldName.substring(1);
-                String fieldGetterName = "get" + firstCharUppercase + restOfName;
-
-                Method getter = klass.getDeclaredMethod(fieldGetterName);
-                String getValue = getter.invoke(instance).toString();
+                field.setAccessible(true);
+                String getValue = field.get(instance).toString();
 
                 // TODO BAS3: if the new @DisplayAs annotation is present on a field,
                 //  the string representation will not use the field's name, but the name
@@ -72,18 +68,17 @@ public class ShowAnnotations {
                 result.add(msg);
             }
 
+            System.out.printf("{%s", instance.getClass().getSimpleName());
 
             for (int i = 0; i < result.size() - 1; i++) {
                 System.out.printf(" %s,", result.get(i));
             }
             System.out.printf(" %s}", result.get(result.size() - 1));
+            System.out.println();
 
 
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+
+        }catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
