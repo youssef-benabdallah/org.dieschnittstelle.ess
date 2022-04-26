@@ -88,6 +88,7 @@ public class ReflectedStockItemBuilder implements IStockItemBuilder {
 				// determine the field object for the attribute
 				Field f = klass.getDeclaredField(xmlAttr);
 
+				/* Method 1
 				// determine the name of the setter
 				String settername = getAccessorNameForField("set",f.getName());
 
@@ -103,7 +104,15 @@ public class ReflectedStockItemBuilder implements IStockItemBuilder {
 				else {
 					setter.invoke(instance,value);
 				}
+				*/
 
+				//Method 2
+				f.setAccessible(true);
+				if(f.getType() == Integer.TYPE){
+					f.set(instance, Integer.parseInt(value));
+				} else {
+					f.set(instance,value);
+				}
 			}
 			// and pass back the instance
 			return (IStockItem)instance;

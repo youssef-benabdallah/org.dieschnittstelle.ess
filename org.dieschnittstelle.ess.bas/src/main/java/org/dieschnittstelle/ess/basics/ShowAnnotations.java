@@ -49,14 +49,9 @@ public class ShowAnnotations {
 
         try {
             for (Field field : klass.getDeclaredFields()) {
-                String fieldName = field.getName();
-                String firstCharUppercase = fieldName.substring(0,1).toUpperCase();
-                String restOfName = fieldName.substring(1);
-                String fieldGetterName = "get" + firstCharUppercase + restOfName;
-
-                Method getter = klass.getDeclaredMethod(fieldGetterName);
-                String getValue = getter.invoke(instance).toString();
-                String msg = fieldName + ":" + getValue ;
+                field.setAccessible(true);
+                String getValue = field.get(instance).toString();
+                String msg = field.getName() + ":" + getValue ;
                 result.add(msg);
             }
 
@@ -68,11 +63,7 @@ public class ShowAnnotations {
 			System.out.printf(" %s}", result.get(result.size()-1) );
 
 
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        }  catch (IllegalAccessException e) {
             e.printStackTrace();
         }
 
