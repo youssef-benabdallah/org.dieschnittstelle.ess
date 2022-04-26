@@ -7,7 +7,7 @@ import static org.dieschnittstelle.ess.utils.Utils.*;
 public class Chocolate implements IStockItem {
 
 	private int units;
-	
+
 	private String brandname;
 	
 	private int price;
@@ -20,7 +20,7 @@ public class Chocolate implements IStockItem {
 		this.brandname = brandname;
 	}
 	
-	
+
 	@Override
 	public void initialise(int units,String brandname) {
 		show("Chocolate: intialise() invoked");
