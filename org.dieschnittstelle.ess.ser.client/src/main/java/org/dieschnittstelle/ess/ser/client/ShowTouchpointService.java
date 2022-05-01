@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
@@ -183,6 +184,34 @@ public class ShowTouchpointService {
 
 		logger.debug("client running: {}",client.isRunning());
 
+		try {
+
+			long id = tp.getId();
+			// create delete request for the api/touchpoints uri
+			String url = "http://localhost:8080/api/touchpoints/delete/".concat(String.valueOf(id)) ;
+			HttpDelete request = new HttpDelete(url);
+
+			// execute the request, which will return a Future<HttpResponse> object
+			Future<HttpResponse> responseFuture = client.execute(request,null);
+
+			// get the response from the Future object
+			HttpResponse response = responseFuture.get();
+
+			// log the status line
+			show("response: " + response);
+
+			// evaluate the result using getStatusLine(), use constants in
+			// HttpStatus
+
+			/* if successful: */
+			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				show("Object Deleted successful");
+			}
+		} catch (Exception e) {
+			logger.error("got exception: " + e, e);
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	/**
@@ -207,6 +236,7 @@ public class ShowTouchpointService {
 			// create post request for the api/touchpoints uri
 			String url = "http://localhost:8080/api/touchpoints";
 			HttpPost request = new HttpPost(url);
+
 
 			// create an ObjectOutputStream from a ByteArrayOutputStream - the
 			// latter must be accessible via a variable
@@ -239,7 +269,8 @@ public class ShowTouchpointService {
 
 			// evaluate the result using getStatusLine(), use constants in
 			// HttpStatus
-
+			// create a null AbstractTouchpoint
+			AbstractTouchpoint receivedTp = null;
 			/* if successful: */
 			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 
@@ -248,7 +279,7 @@ public class ShowTouchpointService {
 				ObjectInputStream ois = new ObjectInputStream(response.getEntity().getContent());
 
 				// read the touchpoint object from the input stream
-				AbstractTouchpoint receivedTp = (AbstractTouchpoint) ois.readObject();
+				receivedTp = (AbstractTouchpoint) ois.readObject();
 
 				show("original tp: %s", tp);
 				show("receivedTp: %s", receivedTp);
@@ -257,7 +288,7 @@ public class ShowTouchpointService {
 
 				// return the object that you have read from the response
 			}
-			return null;
+			return receivedTp;
 		} catch (Exception e) {
 			logger.error("got exception: " + e, e);
 			throw new RuntimeException(e);

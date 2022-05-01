@@ -8,6 +8,7 @@ import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 import org.dieschnittstelle.ess.ser.client.ShowTouchpointService;
 import org.junit.Before;
 import org.junit.Test;
+import static org.dieschnittstelle.ess.utils.Utils.*;
 
 import static org.junit.Assert.*;
 
@@ -54,6 +55,7 @@ public class TestTouchpointService {
 	@Test
 	public void b_delete() {
 		// delete the new touchpoint
+		show(CREATED_TOUCHPOINT.toString());
 		client.deleteTouchpoint(CREATED_TOUCHPOINT);
 		assertEquals("deletion reduces touchpoint list", initialTps.size(),
 				client.readAllTouchpoints().size());

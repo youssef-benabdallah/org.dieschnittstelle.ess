@@ -76,7 +76,7 @@ public class TouchpointServiceServlet extends HttpServlet {
 			show("tp: " + tp);
 		
 			// read an AbstractTouchpoint object from the stream
-			exec.createTouchpoint(tp);
+			tp = exec.createTouchpoint(tp);
 		
 			// call the create method on the executor and take its return value
 		
@@ -102,6 +102,42 @@ public class TouchpointServiceServlet extends HttpServlet {
 	/*
 	 * TODO: SER4 server-side implementation of deleteTouchpoint
 	 */
+
+	@Override
+	protected void doDelete(HttpServletRequest request,
+						  HttpServletResponse response) {
+
+		// assume DELETE will only be used for touchpoint delete, i.e. there is
+
+
+		// obtain the executor for reading out the touchpoints from the servlet context using the touchpointCRUD attribute
+
+		TouchpointCRUDExecutor exec = (TouchpointCRUDExecutor) getServletContext().getAttribute("touchpointCRUD");
+
+
+		try {
+			// get the URL from request
+			String uri = request.getRequestURI();
+
+			//get the ID from URL
+			int index = uri.lastIndexOf("/");
+			long id = Long.parseLong(uri.substring(index+1));
+
+			boolean isDeleted = exec.deleteTouchpoint(id);
+
+			if(isDeleted){
+				response.setStatus(HttpServletResponse.SC_OK);
+				show(response.getStatus());
+			}else {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			}
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+
+	}
 
 
 }

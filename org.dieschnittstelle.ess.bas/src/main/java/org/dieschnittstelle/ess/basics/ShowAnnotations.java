@@ -68,7 +68,7 @@ public class ShowAnnotations {
                 result.add(msg);
             }
 
-            System.out.printf("{%s", instance.getClass().getSimpleName());
+            System.out.printf("{%s", klass.getSimpleName());
 
             for (int i = 0; i < result.size() - 1; i++) {
                 System.out.printf(" %s,", result.get(i));
