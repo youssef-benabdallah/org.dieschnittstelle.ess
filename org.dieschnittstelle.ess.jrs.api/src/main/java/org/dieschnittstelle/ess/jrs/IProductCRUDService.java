@@ -40,6 +40,7 @@ public interface IProductCRUDService {
 	boolean deleteProduct(@PathParam("productId") long id);
 
 	@GET
-	public IndividualisedProductItem readProduct(long id);
+	@Path("/{productId}")
+	IndividualisedProductItem readProduct(@PathParam("productId") long id);
 			
 }

@@ -1,11 +1,13 @@
 package org.dieschnittstelle.ess.jrs;
 
+import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.entities.GenericCRUDExecutor;
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import java.util.List;
 
@@ -15,10 +17,13 @@ import java.util.List;
 
 public class ProductCRUDServiceImpl implements IProductCRUDService {
 
+	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ProductCRUDServiceImpl.class);
 	private GenericCRUDExecutor<AbstractProduct> productCRUD;
 
 	public ProductCRUDServiceImpl(@Context ServletContext servletContext, @Context HttpServletRequest request) {
 		this.productCRUD = (GenericCRUDExecutor<AbstractProduct>) servletContext.getAttribute("productCRUD");
+		logger.debug("read out the productCRUD from the servlet context: " + this.productCRUD);
+
 	}
 
 	private GenericCRUDExecutor<AbstractProduct> getExecutor() {
@@ -58,7 +63,14 @@ public class ProductCRUDServiceImpl implements IProductCRUDService {
 	@Override
 	public IndividualisedProductItem readProduct(long id) {
 		// TODO Auto-generated method stub
-		return (IndividualisedProductItem) productCRUD.readObject(id);
+		IndividualisedProductItem productItem = (IndividualisedProductItem) this.productCRUD.readObject(id);
+
+		if (productItem != null) {
+			return productItem;
+		} else {
+			return null;
+//			throw new NotFoundException("The product with id " + id + " does not exist!");
+		}
 	}
 	
 }
