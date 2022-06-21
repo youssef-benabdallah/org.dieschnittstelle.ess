@@ -19,7 +19,7 @@ public class TestProductRESTService {
 	// we use static attributes for sharing data between the single cases
 	private static IndividualisedProductItem PRODUCT_1 = new IndividualisedProductItem("Schrippe",	ProductType.ROLL, 720);
 	private static IndividualisedProductItem PRODUCT_2 = new IndividualisedProductItem("Kirschplunder",ProductType.PASTRY, 1080);
-	private static Campaign CAMPAIGN = new Campaign();
+	private static Campaign CAMPAIGN = new Campaign("test");
 	private static List<?> prodlistBefore = new ArrayList<>();
 
 	@Before
@@ -88,10 +88,10 @@ public class TestProductRESTService {
 
 
 	// TODO: activate this method (including the @Test annotation), for testing JRS3
-//	@Test
-//	public void f_createCampaign() {
-//		/* this is for internally testing that campaigns can be written and read via the web api - not part of the exercise */
-//		assertNotNull("campaign creation works",(Campaign)client.createCampaign(CAMPAIGN));
-//	}
+	@Test
+	public void f_createCampaign() {
+		/* this is for internally testing that campaigns can be written and read via the web api - not part of the exercise */
+		assertNotNull("campaign creation works",(Campaign)client.createCampaign(CAMPAIGN));
+	}
 
 }

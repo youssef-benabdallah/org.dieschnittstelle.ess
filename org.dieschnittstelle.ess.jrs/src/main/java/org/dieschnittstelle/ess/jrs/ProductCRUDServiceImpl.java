@@ -31,23 +31,23 @@ public class ProductCRUDServiceImpl implements IProductCRUDService {
 	}
 
 	@Override
-	public IndividualisedProductItem createProduct(
-			IndividualisedProductItem prod) {
-		return (IndividualisedProductItem) productCRUD.createObject(prod);
+	public AbstractProduct createProduct(
+			AbstractProduct prod) {
+		return productCRUD.createObject(prod);
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<IndividualisedProductItem> readAllProducts() {
+	public List<AbstractProduct> readAllProducts() {
 		// TODO Auto-generated method stub
 		return (List) productCRUD.readAllObjects();
 
 	}
 
 	@Override
-	public IndividualisedProductItem updateProduct(long id,
-			IndividualisedProductItem update) {
+	public AbstractProduct updateProduct(long id,
+										 AbstractProduct update) {
 		// TODO Auto-generated method stub
 
 		update.setId(id);
@@ -61,7 +61,7 @@ public class ProductCRUDServiceImpl implements IProductCRUDService {
 	}
 
 	@Override
-	public IndividualisedProductItem readProduct(long id) {
+	public AbstractProduct readProduct(long id) {
 		// TODO Auto-generated method stub
 		IndividualisedProductItem productItem = (IndividualisedProductItem) this.productCRUD.readObject(id);
 
