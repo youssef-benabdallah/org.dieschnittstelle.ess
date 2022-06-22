@@ -8,13 +8,18 @@ import org.dieschnittstelle.ess.entities.erp.Campaign;
 import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.jrs.IProductCRUDService;
 import org.dieschnittstelle.ess.jrs.ProductCRUDServiceImpl;
+import org.dieschnittstelle.ess.jrs.TouchpointCRUDServiceImpl;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+//import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -25,12 +30,14 @@ import javax.ws.rs.core.MediaType;
  *  Zugegriffen wird auf diese Implementierung aus dem Testcase TestProductRESTServiceWithOpenAPI
  */
 // TODO: verwenden Sie die URI opi/products
+@Path("opi/products")
+@Consumes({MediaType.APPLICATION_JSON})
+@Produces({MediaType.APPLICATION_JSON})
 public class ProductCRUDServiceOPIImpl {
 
 	private IProductCRUDService service;
 
 	public ProductCRUDServiceOPIImpl() {
-
 	}
 
 	/*
@@ -38,6 +45,11 @@ public class ProductCRUDServiceOPIImpl {
 	 *  so zu instantiieren, dass es zur Laufzeit erfolgreich verwendet werden kann
 	 */
 
+	public ProductCRUDServiceOPIImpl(@Context ServletContext servletContext, @Context HttpServletRequest request) {
+		this.service = new ProductCRUDServiceImpl(servletContext,request);
+	}
+
+	@POST
 	public IndividualisedProductItem createProduct(
 			IndividualisedProductItem prod) {
 		return (IndividualisedProductItem)this.service.createProduct(prod);
@@ -45,12 +57,15 @@ public class ProductCRUDServiceOPIImpl {
 
 	// TODO: ueberlegen Sie, wie Sie createCampaign() von createProduct() unterscheidbar machen koennen - wenn
 	//  Sie JRS3 umgesetzt haben, koennen Sie die derzeit noch auskommentierte Codezeile aktivieren
+	@POST
+	@Path("/campaign")
 	public Campaign createCampaign(
 			Campaign prod) {
 //		return (Campaign) this.service.createProduct(prod);
 		return null;
 	}
 
+	@GET
 	public List<IndividualisedProductItem> readAllProducts() {
 		return (List)this.service.readAllProducts()
 				.stream()
@@ -58,16 +73,22 @@ public class ProductCRUDServiceOPIImpl {
 				.collect(Collectors.toList());
 	}
 
-	public IndividualisedProductItem updateProduct(long id,
+	@PUT
+	@Path("/{id}")
+	public IndividualisedProductItem updateProduct(@PathParam("id") long id,
 			IndividualisedProductItem update) {
 		return (IndividualisedProductItem)this.service.updateProduct(id,update);
 	}
 
-	public boolean deleteProduct(long id) {
+	@DELETE
+	@Path("/{id}")
+	public boolean deleteProduct(@PathParam("id") long id) {
 		return this.service.deleteProduct(id);
 	}
 
-	public IndividualisedProductItem readProduct(long id) {
+	@GET
+	@Path("/{id}")
+	public IndividualisedProductItem readProduct(@PathParam("id") long id) {
 		IndividualisedProductItem item = (IndividualisedProductItem)this.service.readProduct(id);
 		return item;
 	}

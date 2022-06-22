@@ -2,10 +2,13 @@ package org.dieschnittstelle.ess.wsv.interpreter;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Arrays;
+
 import org.apache.logging.log4j.Logger;
 
 import javax.ws.rs.GET;
@@ -53,7 +56,10 @@ public class JAXRSClientInterpreter implements InvocationHandler {
     // use a constructor that takes an annotated service interface and a baseurl. the implementation should read out the path annotation, we assume we produce and consume json, i.e. the @Produces and @Consumes annotations will not be considered here
     public JAXRSClientInterpreter(Class serviceInterface,String baseurl) {
 
-        // TODO: implement the constructor!
+        // TODO: implement the constructor!  //Done
+        this.serviceInterface = serviceInterface;
+        this.baseurl = baseurl;
+        this.commonPath = ((Path)serviceInterface.getAnnotation(Path.class)).value();
 
         logger.info("<constructor>: " + serviceInterface + " / " + baseurl + " / " + commonPath);
     }
@@ -63,15 +69,24 @@ public class JAXRSClientInterpreter implements InvocationHandler {
     public Object invoke(Object proxy, Method meth, Object[] args)
             throws Throwable {
 
-        // TODO check whether we handle the toString method and give some appropriate return value
+        show("invoke(): ", meth + " with args " + Arrays.asList(args != null ? args: new Class[]{}));
+
+        // TODO check whether we handle the toString method and give some appropriate return value //Done
+        if("toString".equals(meth.getName())) {
+            return "JAX-RS CLient Proxy for " + this.serviceInterface + ", accessing: " + this.baseurl;
+        }
 
         // use a default http client
         HttpClient client = Http.createSyncClient();
 
-        // TODO: create the url using baseurl and commonpath (further segments may be added if the method has an own @Path annotation)
-        String url = null;
+        // TODO: create the url using baseurl and commonpath (further segments may be added if the method has an own @Path annotation) //Done
+        String url = baseurl + commonPath;
+        if(meth.isAnnotationPresent(Path.class)){
+            url+= meth.getAnnotation(Path.class).value();
+        }
 
         // TODO: check whether we have a path annotation and append the url (path params will be handled when looking at the method arguments)
+
 
         // a value that needs to be sent via the http request body
         Object bodyValue = null;
@@ -91,9 +106,20 @@ public class JAXRSClientInterpreter implements InvocationHandler {
         // declare a HttpUriRequest variable
         HttpUriRequest request = null;
 
-        // TODO: check which of the http method annotation is present and instantiate request accordingly passing the url
+        // TODO: check which of the http method annotation is present and instantiate request accordingly passing the url //Done
 
-        // TODO: add a header on the request declaring that we accept json (for header names, you can use the constants declared in javax.ws.rs.core.HttpHeaders, for content types use the constants from javax.ws.rs.core.MediaType;)
+        if (meth.isAnnotationPresent(POST.class)){
+            request = new HttpPost(url);
+        }
+        if (meth.isAnnotationPresent(GET.class)){
+            request = new HttpGet(url);
+        }
+        else {
+            throw new UnsupportedOperationException("JAX-RS demo can only GET and Post annotations");
+        }
+        // TODO: add a header on the request declaring that we accept json (for header names, you can use the constants declared in javax.ws.rs.core.HttpHeaders, for content types use the constants from javax.ws.rs.core.MediaType;) //Done
+        request.setHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);
+
 
         // if we need to send the method argument in the request body we need to declare an entity
         ByteArrayEntity bae = null;
@@ -101,16 +127,23 @@ public class JAXRSClientInterpreter implements InvocationHandler {
         // if a body shall be sent, convert the bodyValue to json, create an entity from it and set it on the request
         if (bodyValue != null) {
 
-            // TODO: use a ByteArrayOutputStream for writing json
+            // TODO: use a ByteArrayOutputStream for writing json //Done
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-            // TODO: write the object to the stream using the jsonSerialiser
+            // TODO: write the object to the stream using the jsonSerialiser //Done
+            jsonSerialiser.writeObject(bodyValue, byteArrayOutputStream);
 
-            // TODO: create an ByteArrayEntity from the stream's content
+            byte[] jsonDataForBody = byteArrayOutputStream.toByteArray();
 
-            // TODO: set the entity on the request, which must be cast to HttpEntityEnclosingRequest
+            // TODO: create an ByteArrayEntity from the stream's content //Done
+            bae = new ByteArrayEntity(jsonDataForBody);
 
-            // TODO: and add a content type header for the request
 
+            // TODO: set the entity on the request, which must be cast to HttpEntityEnclosingRequest //Done
+            ((HttpEntityEnclosingRequest)request).setEntity(bae);
+
+            // TODO: and add a content type header for the request //Done
+            request.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
         }
 
         logger.info("invoke(): executing request: " + request);
@@ -126,8 +159,11 @@ public class JAXRSClientInterpreter implements InvocationHandler {
             // declare a variable for the return value
             Object returnValue = null;
 
-            // TODO: convert the resonse body to a java object of an appropriate type considering the return type of the method as returned by getGenericReturnType() and set the object as value of returnValue
+            // TODO: convert the resonse body to a java object of an appropriate type considering the return type of the method as returned by getGenericReturnType() and set the object as value of returnValue //Done
+            Type returnValueType = meth.getGenericReturnType();
+            InputStream returnValueJSONData = response.getEntity().getContent();
 
+            returnValue = jsonSerialiser.readObject(returnValueJSONData, returnValueType);
             // and return the return value
             logger.info("invoke(): returning value: " + returnValue);
             return returnValue;

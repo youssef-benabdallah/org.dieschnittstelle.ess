@@ -1,6 +1,10 @@
 package org.dieschnittstelle.ess.wsv.client;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
@@ -24,15 +28,20 @@ public class AccessRESTServiceWithInterpreter {
     public static void main(String[] args) {
 
 		/*
-		 * TODO WSV1 (here and following TODOs): create an instance of the invocation handler passing the service
+		 * TODO WSV1 (here and following TODOs): create an instance of the invocation handler passing the service //Done
 		 * interface and the base url
 		 */
-        JAXRSClientInterpreter invocationHandler = null;
+        JAXRSClientInterpreter invocationHandler = new JAXRSClientInterpreter(
+                ITouchpointCRUDService.class, "http://localhost:8080/api");
 
 		/*
-		 * TODO: create a client for the web service using Proxy.newProxyInstance()
+		 * TODO: create a client for the web service using Proxy.newProxyInstance() //Done
 		 */
-        ITouchpointCRUDService serviceProxy = null;
+        ITouchpointCRUDService serviceProxy = (ITouchpointCRUDService) Proxy.newProxyInstance(
+                AccessRESTServiceWithInterpreter.class.getClassLoader(),
+                new Class[]{ITouchpointCRUDService.class},
+                invocationHandler
+        );
 
         show("serviceProxy: " + serviceProxy);
 
