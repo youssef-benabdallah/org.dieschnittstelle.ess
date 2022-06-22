@@ -10,6 +10,10 @@ import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
 
 import javax.json.bind.annotation.JsonbTypeDeserializer;
 import javax.json.bind.annotation.JsonbTypeSerializer;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLASSNAME_PROPERTY;
 
@@ -21,6 +25,8 @@ import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLAS
  * concrete subclass of the abstract class, and thus allows to create correctly typed java objects
  * based on the untyped json data.
  */
+@Entity
+@Table(name = "Produkte")
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
@@ -34,6 +40,8 @@ public abstract class AbstractProduct implements Serializable, GenericCRUDEntity
 	 */
 	private static final long serialVersionUID = 6940403029597060153L;
 
+	@Id
+	@GeneratedValue
 	private long id;
 
 	private String name;
