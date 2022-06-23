@@ -1,12 +1,25 @@
 package org.dieschnittstelle.ess.entities.erp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.json.bind.annotation.JsonbTypeDeserializer;
+import javax.json.bind.annotation.JsonbTypeSerializer;
 import javax.persistence.*;
 import java.io.Serializable;
 
+import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLASSNAME_PROPERTY;
+
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
+@JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
+@Schema(name = "ProductBundle")
 public class ProductBundle implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(ProductBundle.class);
@@ -21,6 +34,7 @@ public class ProductBundle implements Serializable {
 	// this had been changed to AbstractProduct due to some jboss/jackson serialisation issue
 	// in wildfly 18, which throws an error on unmarshalling, probably due to @JsonTypeInfo,
 	// but as we have migrated to TomEE in the meantime, we changed it back to the concrete class
+	@Schema(implementation = IndividualisedProductItem.class)
 	private IndividualisedProductItem product;
 
 	private int units;

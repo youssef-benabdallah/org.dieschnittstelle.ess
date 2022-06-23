@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.logging.log4j.Logger;
 import org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.json.bind.annotation.JsonbTypeDeserializer;
 import javax.json.bind.annotation.JsonbTypeSerializer;
@@ -21,6 +22,7 @@ import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLAS
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
 @JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
+@Schema(name = "Campaign")
 public class Campaign extends AbstractProduct implements Serializable {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Campaign.class);
