@@ -38,7 +38,7 @@ public class ProductCRUDImpl implements ProductCRUD {
 
     @Override
     public AbstractProduct updateProduct(AbstractProduct update) {
-        return null;
+        return entityManager.merge(update);
     }
 
     @Override
@@ -48,11 +48,17 @@ public class ProductCRUDImpl implements ProductCRUD {
 
     @Override
     public boolean deleteProduct(long productID) {
+        AbstractProduct product = readProduct(productID);
+        if (product != null) {
+            entityManager.remove(product);
+            return true;
+        }
         return false;
     }
 
     @Override
     public List<Campaign> getCampaignsForProduct(long productID) {
+        Campaign campaign = (Campaign) readProduct(productID);
         return null;
     }
 }
