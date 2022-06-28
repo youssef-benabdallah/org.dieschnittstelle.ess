@@ -16,7 +16,6 @@ import javax.persistence.*;
 import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLASSNAME_PROPERTY;
 
 @Entity
-@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
 @JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)

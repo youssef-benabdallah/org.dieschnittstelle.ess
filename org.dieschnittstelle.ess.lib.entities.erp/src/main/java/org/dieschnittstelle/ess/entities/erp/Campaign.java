@@ -19,8 +19,6 @@ import javax.persistence.*;
 import static org.dieschnittstelle.ess.utils.jsonb.JsonbJsonTypeInfoHandler.KLASSNAME_PROPERTY;
 
 @Entity
-@Table(name = "campaign")
-@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property=KLASSNAME_PROPERTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonbTypeDeserializer(JsonbJsonTypeInfoHandler.class)
 @JsonbTypeSerializer(JsonbJsonTypeInfoHandler.class)
@@ -34,6 +32,7 @@ public class Campaign extends AbstractProduct implements Serializable {
 	 */
 	private static final long serialVersionUID = 4407600000386810001L;
 
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<ProductBundle> bundles;
 
 	public Campaign() {
