@@ -32,21 +32,29 @@ public class StockSystemServiceImpl implements StockSystemService {
 
     @Override
     public void removeFromStock(long productId, long pointOfSaleId, int units) {
+        AbstractProduct product = productCRUD.readProduct(productId);
 
+        stockSystem.removeFromStock((IndividualisedProductItem) product, pointOfSaleId, units);
     }
 
     @Override
     public List<IndividualisedProductItem> getProductsOnStock(long pointOfSaleId) {
-        return null;
+        if(pointOfSaleId == 0){
+            return stockSystem.getAllProductsOnStock();
+        }
+       return stockSystem.getProductsOnStock(pointOfSaleId);
+
     }
 
     @Override
     public int getUnitsOnStock(long productId, long pointOfSaleId) {
-        return 0;
+        AbstractProduct product = productCRUD.readProduct(productId);
+        return stockSystem.getUnitsOnStock((IndividualisedProductItem) product,pointOfSaleId);
     }
 
     @Override
     public List<Long> getPointsOfSale(long productId) {
-        return null;
+        AbstractProduct product = productCRUD.readProduct(productId);
+        return stockSystem.getPointsOfSale((IndividualisedProductItem) product);
     }
 }
