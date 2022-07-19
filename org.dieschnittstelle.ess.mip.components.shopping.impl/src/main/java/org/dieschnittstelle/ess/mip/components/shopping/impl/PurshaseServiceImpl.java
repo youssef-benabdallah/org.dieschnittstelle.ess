@@ -15,6 +15,7 @@ import org.dieschnittstelle.ess.mip.components.crm.api.CustomerTracking;
 import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
 import org.dieschnittstelle.ess.mip.components.crm.crud.api.CustomerCRUD;
 import org.dieschnittstelle.ess.mip.components.erp.api.StockSystem;
+import org.dieschnittstelle.ess.mip.components.erp.api.StockSystemService;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.ProductCRUD;
 import org.dieschnittstelle.ess.mip.components.shopping.api.PurchaseService;
 import org.dieschnittstelle.ess.mip.components.shopping.api.ShoppingException;
@@ -44,11 +45,11 @@ public class PurshaseServiceImpl implements PurchaseService {
     @Inject
     private ShoppingCart shoppingCart;
 
-    @Inject
-    private CustomerTracking customerTracking;
-
-    @Inject
-    private CampaignTracking campaignTracking;
+//    @Inject
+//    private CustomerTracking customerTracking;
+//
+//    @Inject
+//    private CampaignTracking campaignTracking;
 
     /**
      * the customer
@@ -70,16 +71,16 @@ public class PurshaseServiceImpl implements PurchaseService {
 
         for (ShoppingCartItem item : this.shoppingCart.getItems()) {
             if (item.isCampaign()) {
-                int availableCampaigns = this.campaignTracking.existsValidCampaignExecutionAtTouchpoint(
-                        item.getErpProductId(), this.touchpoint);
-                logger.info("got available campaigns for product " + item.getErpProductId() + ": "
-                        + availableCampaigns);
-                // we check whether we have sufficient campaign items available
-                if (availableCampaigns < item.getUnits()) {
-                    throw new ShoppingException("verifyCampaigns() failed for productBundle " + item
-                            + " at touchpoint " + this.touchpoint + "! Need " + item.getUnits()
-                            + " instances of campaign, but only got: " + availableCampaigns);
-                }
+//                int availableCampaigns = this.campaignTracking.existsValidCampaignExecutionAtTouchpoint(
+//                        item.getErpProductId(), this.touchpoint);
+//                logger.info("got available campaigns for product " + item.getErpProductId() + ": "
+//                        + availableCampaigns);
+//                // we check whether we have sufficient campaign items available
+//                if (availableCampaigns < item.getUnits()) {
+//                    throw new ShoppingException("verifyCampaigns() failed for productBundle " + item
+//                            + " at touchpoint " + this.touchpoint + "! Need " + item.getUnits()
+//                            + " instances of campaign, but only got: " + availableCampaigns);
+//                }
             }
         }
     }
@@ -111,7 +112,7 @@ public class PurshaseServiceImpl implements PurchaseService {
         CustomerTransaction transaction = new CustomerTransaction(this.customer, this.touchpoint,
                 productsInCartForTransaction);
         transaction.setCompleted(true);
-        customerTracking.createTransaction(transaction);
+//        customerTracking.createTransaction(transaction);
 
         logger.info("purchase(): done.\n");
     }
@@ -124,7 +125,7 @@ public class PurshaseServiceImpl implements PurchaseService {
     private ProductCRUD productCRUD;
 
     @Inject
-    private StockSystem stockSystem;
+    private StockSystemService stockSystem;
 
     private void checkAndRemoveProductsFromStock() {
         logger.info("checkAndRemoveProductsFromStock");
@@ -136,8 +137,8 @@ public class PurshaseServiceImpl implements PurchaseService {
             AbstractProduct product = productCRUD.readProduct(item.getErpProductId());
 
             if (item.isCampaign()) {
-                this.campaignTracking.purchaseCampaignAtTouchpoint(item.getErpProductId(), this.touchpoint,
-                        item.getUnits());
+//                this.campaignTracking.purchaseCampaignAtTouchpoint(item.getErpProductId(), this.touchpoint,
+//                        item.getUnits());
                 // TODO: wenn Sie eine Kampagne haben, muessen Sie hier
                 // 1) ueber die ProductBundle Objekte auf dem Campaign Objekt iterieren, und
                 Campaign campaign = (Campaign) product;
@@ -150,9 +151,9 @@ public class PurshaseServiceImpl implements PurchaseService {
                 // Warenkorb liegt)
                 for (ProductBundle productBundle : productBundles) {
                     int m = productBundle.getUnits() * item.getUnits();
-                    int totalUnit = stockSystem.getTotalUnitsOnStock((IndividualisedProductItem) productBundle.getProduct());
+                    int totalUnit = stockSystem.getUnitsOnStock(productBundle.getProduct().getId(),touchpoint.getErpPointOfSaleId());
                     if (m<=totalUnit){
-                        stockSystem.removeFromStock((IndividualisedProductItem) productBundle.getProduct(),touchpoint.getErpPointOfSaleId(), m);
+                        stockSystem.removeFromStock(productBundle.getProduct().getId(),touchpoint.getErpPointOfSaleId(), m);
                     }
                 }
 
@@ -161,9 +162,9 @@ public class PurshaseServiceImpl implements PurchaseService {
                 // 1) das Produkt in der in item.getUnits() angegebenen Anzahl hinsichtlich Verfuegbarkeit ueberpruefen und
 //                if(productCRUD)
                 // 2) das Produkt, falls verfuegbar, in der entsprechenden Anzahl aus dem Warenlager entfernen
-                int totalUnit = stockSystem.getTotalUnitsOnStock((IndividualisedProductItem) product);
+                int totalUnit = stockSystem.getUnitsOnStock(product.getId(),touchpoint.getErpPointOfSaleId());
                 if (item.getUnits()<=totalUnit){
-                    stockSystem.removeFromStock((IndividualisedProductItem) product,touchpoint.getErpPointOfSaleId(), item.getUnits());
+                    stockSystem.removeFromStock(product.getId(),touchpoint.getErpPointOfSaleId(), item.getUnits());
                 }
             }
 

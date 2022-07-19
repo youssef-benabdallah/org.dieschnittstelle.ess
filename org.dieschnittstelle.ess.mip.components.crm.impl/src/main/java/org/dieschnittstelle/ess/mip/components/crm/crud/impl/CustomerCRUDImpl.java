@@ -1,7 +1,10 @@
 package org.dieschnittstelle.ess.mip.components.crm.crud.impl;
 
+import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
+import javax.interceptor.Interceptor;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -13,6 +16,9 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
 @Logged
 @ApplicationScoped
 @Transactional
+
+@Alternative
+@Priority(Interceptor.Priority.APPLICATION+10)
 public class CustomerCRUDImpl implements CustomerCRUD {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager.getLogger(CustomerCRUDImpl.class);

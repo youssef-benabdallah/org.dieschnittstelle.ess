@@ -2,8 +2,11 @@ package org.dieschnittstelle.ess.mip.components.crm.impl;
 
 import java.util.List;
 
+import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
+import javax.interceptor.Interceptor;
 
 import org.dieschnittstelle.ess.mip.components.crm.api.CrmException;
 import org.dieschnittstelle.ess.mip.components.crm.api.TouchpointAccess;
@@ -17,6 +20,9 @@ import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
 @Logged
 @ApplicationScoped
+
+@Alternative
+@Priority(Interceptor.Priority.APPLICATION+10)
 public class TouchpointAccessImpl implements TouchpointAccess {
 
 	protected static Logger logger = org.apache.logging.log4j.LogManager

@@ -5,7 +5,11 @@ import java.util.List;
 
 import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
 import org.dieschnittstelle.ess.entities.erp.Campaign;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import javax.annotation.Priority;
+import javax.enterprise.inject.Alternative;
+import javax.interceptor.Interceptor;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -14,6 +18,8 @@ import javax.ws.rs.core.MediaType;
  * this interface shall be implemented using an ApplicationScoped CDI bean with an EntityManager.
  * See TouchpointCRUDImpl for an example bean with a similar scope of functionality
  */
+
+@RegisterRestClient
 @Path("/products")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

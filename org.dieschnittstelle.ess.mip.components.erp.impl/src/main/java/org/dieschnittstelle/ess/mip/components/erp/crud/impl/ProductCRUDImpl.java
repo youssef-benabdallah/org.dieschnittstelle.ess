@@ -6,8 +6,11 @@ import org.dieschnittstelle.ess.entities.erp.ProductBundle;
 import org.dieschnittstelle.ess.mip.components.erp.crud.api.ProductCRUD;
 import org.dieschnittstelle.ess.utils.interceptors.Logged;
 
+import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
+import javax.interceptor.Interceptor;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -21,6 +24,9 @@ import static org.dieschnittstelle.ess.utils.Utils.show;
 @ApplicationScoped
 @Transactional
 @Logged
+
+@Alternative
+@Priority(Interceptor.Priority.APPLICATION+10)
 public class ProductCRUDImpl implements ProductCRUD {
 
     @Inject
