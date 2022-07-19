@@ -1,6 +1,8 @@
 package org.dieschnittstelle.ess.mip.client;
 
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.erp.AbstractProduct;
+import org.dieschnittstelle.ess.entities.erp.IndividualisedProductItem;
 import org.dieschnittstelle.ess.mip.client.shopping.ShoppingBusinessDelegate;
 import org.dieschnittstelle.ess.mip.client.shopping.ShoppingSession;
 import org.dieschnittstelle.ess.mip.client.shopping.PurchaseServiceClient;
@@ -46,7 +48,7 @@ public class TotalUsecase {
 
 	// TODO: PAT1: set to true for testing purchase service
 	// TODO: ADD4: set to true for testing success-case for transactions and ShoppingException
-	private boolean usePurchaseServiceClient = false /*true*/;
+	private boolean usePurchaseServiceClient = true; //false /*true*/;
 
 	// declare the attributes that will be instantiated with the service clients
 	private ProductCRUD productCRUD;
@@ -55,6 +57,8 @@ public class TotalUsecase {
 	private CustomerCRUD customerCRUD;
 	private CampaignTracking campaignTracking;
 	private CustomerTracking customerTracking;
+
+	private AbstractProduct abstractProduct;
 
 	public TotalUsecase() throws Exception {
 		instantiateClients();

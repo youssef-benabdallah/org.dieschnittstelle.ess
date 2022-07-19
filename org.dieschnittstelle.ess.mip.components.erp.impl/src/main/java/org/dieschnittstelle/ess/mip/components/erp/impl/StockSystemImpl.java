@@ -29,6 +29,8 @@ public class StockSystemImpl implements StockSystem {
     @Override
     public void addToStock(IndividualisedProductItem product, long pointOfSaleId, int units) {
         PointOfSale pointOfSale = pointOfSaleCRUD.readPointOfSale(pointOfSaleId);
+        System.out.println("Youssef pointOfSale: " + pointOfSale.getId() );
+        System.out.println("Youssef product: " + product );
 
         StockItem stockItem = stockItemCRUD.readStockItem(product, pointOfSale);
 
@@ -39,7 +41,6 @@ public class StockSystemImpl implements StockSystem {
             stockItem.setUnits(stockItem.getUnits() + units);
             stockItemCRUD.updateStockItem(stockItem);
         }
-
     }
 
     @Override

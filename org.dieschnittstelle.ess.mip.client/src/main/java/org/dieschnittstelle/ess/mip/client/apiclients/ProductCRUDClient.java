@@ -19,6 +19,7 @@ public class ProductCRUDClient implements ProductCRUD {
 	public AbstractProduct createProduct(AbstractProduct prod) {
 
 		// TODO: KOMMENTIEREN SIE DIE FOLGENDE ZUWEISUNG VON IDs UND DIE RETURN-ANWEISUNG AUS
+//		System.out.println("Youssef Product: "+ prod);
 //		prod.setId(Constants.nextId());
 //		return prod;
 
