@@ -9,12 +9,10 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
+import org.apache.http.client.methods.*;
 import org.apache.logging.log4j.Logger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
@@ -22,9 +20,6 @@ import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntity;
 
 import org.dieschnittstelle.ess.utils.Http;
@@ -73,7 +68,7 @@ public class JAXRSClientInterpreter implements InvocationHandler {
 
         // TODO check whether we handle the toString method and give some appropriate return value //Done
         if("toString".equals(meth.getName())) {
-            return "JAX-RS CLient Proxy for " + this.serviceInterface + ", accessing: " + this.baseurl;
+            return "JAX-RS Client Proxy for " + this.serviceInterface + ", accessing: " + this.baseurl;
         }
 
         // use a default http client
@@ -110,12 +105,19 @@ public class JAXRSClientInterpreter implements InvocationHandler {
 
         if (meth.isAnnotationPresent(POST.class)){
             request = new HttpPost(url);
-        }
+        } else
         if (meth.isAnnotationPresent(GET.class)){
             request = new HttpGet(url);
+        } else
+        if (meth.isAnnotationPresent(DELETE.class)){
+            request = new HttpDelete(url);
+        } else
+        if (meth.isAnnotationPresent(PUT.class)){
+            request = new HttpPut(url);
         }
         else {
-            throw new UnsupportedOperationException("JAX-RS demo can only GET and Post annotations");
+            System.out.println(Arrays.toString(meth.getAnnotations()));
+            throw new UnsupportedOperationException("JAX-RS demo can only GET, Post, DELETE, PUT annotations");
         }
         // TODO: add a header on the request declaring that we accept json (for header names, you can use the constants declared in javax.ws.rs.core.HttpHeaders, for content types use the constants from javax.ws.rs.core.MediaType;) //Done
         request.setHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON);

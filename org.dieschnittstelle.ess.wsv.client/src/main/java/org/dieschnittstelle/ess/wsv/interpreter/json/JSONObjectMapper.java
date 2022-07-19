@@ -21,11 +21,12 @@ import com.fasterxml.jackson.databind.node.NumericNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.apache.logging.log4j.Logger;
+import org.dieschnittstelle.ess.entities.crm.StationaryTouchpoint;
 
 /**
- * 
+ *
  * CAUTION: THIS IS A RATHER QUICK&DIRTY SOLUTION... !!!
- * 
+ *
  */
 public class JSONObjectMapper {
 
@@ -44,7 +45,7 @@ public class JSONObjectMapper {
 
 	/**
 	 * obtain an instance of this class
-	 * 
+	 *
 	 * @return
 	 */
 	public static synchronized JSONObjectMapper getInstance() {
@@ -57,7 +58,7 @@ public class JSONObjectMapper {
 
 	/**
 	 * create a json node given some value (recursive)
-	 * 
+	 *
 	 * @param value
 	 * @return
 	 */
@@ -165,7 +166,7 @@ public class JSONObjectMapper {
 
 	/**
 	 * create an object from a json node
-	 * 
+	 *
 	 * @param json
 	 * @param type of object to be created - we assume that this is either a
 	 *        class or a parameterized type whose raw type is a class
@@ -215,9 +216,20 @@ public class JSONObjectMapper {
 				// info present
 				if (Modifier.isAbstract(((Class) type).getModifiers())) {
 					// TODO: include a handling for abstract classes considering
+                    if (((Class) type).isAnnotationPresent(JsonTypeInfo.class)) {
+                        JsonTypeInfo typeInfo = (JsonTypeInfo) ((Class) type).getAnnotation(JsonTypeInfo.class);
+                        if (typeInfo.include() == JsonTypeInfo.As.PROPERTY && typeInfo.use() == JsonTypeInfo.Id.CLASS) {
+                            Class<?> klass = Class.forName(json.get(typeInfo.property()).asText());
+                            obj = klass.newInstance();
+                            type = obj.getClass();
+                        }
+                    } else {
+                        throw new ObjectMappingException("cannot instantiate abstract class: " + type);
+                    }
+
 					// the JsonTypeInfo annotation that might be set on type
-					throw new ObjectMappingException(
-							"cannot instantiate abstract class: " + type);
+//					throw new ObjectMappingException(
+//							"cannot instantiate abstract class: " + type);
 				} else {
 					obj = ((Class) type).newInstance();
 				}
